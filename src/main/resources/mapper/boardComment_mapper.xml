@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.admin.repository.BoardCommentRepository">
+
+    <sql id="fullColumn">
+        bcNum,
+        bcContent,
+        memberId,
+        bcDate,
+        mbNum
+    </sql>
+
+    <select id="bcList" parameterType="int" resultType="com.bigmoim.module.admin.entity.AdminEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `boardComment`
+        WHERE mbNum = #{mbNum}
+    </select>
+
+    <insert id="bcInsert" parameterType="com.bigmoim.module.boardcomment.entity.BoardCommentEntity" >
+        INSERT INTO `boardComment` (
+            bcContent,
+            memberId,
+            bcDate,
+            mbNum
+        )
+        VALUES (
+
+                   #{bcContent},
+                   #{memberId},
+                   #{bcDate},
+                   #{mbNum}
+               )
+    </insert>
+    
+    <delete id="bcDelete" parameterType="int" >
+        DELETE `boardComment`
+        WHERE	bcNum = #{bcNum}
+    </delete>
+
+    <update id="bcUpdate" parameterType="int">
+        UPDATE `boardComment`
+        SET bcConetent = #{bcContent}
+        WHERE bcNum = #{bcNum}
+    </update>
+</mapper>

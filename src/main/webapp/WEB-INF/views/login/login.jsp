@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대모임 로그인 페이지</title>
-    <link type="text/css" rel="stylesheet" href="login.css">
+    <link type="text/css" rel="stylesheet" href="../../../../resources/static/css/login.css">
     <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <style>
 

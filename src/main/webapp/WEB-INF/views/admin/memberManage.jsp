@@ -1,7 +1,7 @@
 <%@page import="java.util.Vector"%>
 <%@page import="model.Bean.MemberBean"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="mMgr" class="controll.Mgr.MemberMgr"/>
 <html>
 <head>

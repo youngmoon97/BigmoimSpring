@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.admin.repository.ClassCommentRepository">
+
+    <sql id="fullColumn">
+    ccNum,
+    ccComment,
+    memberId,
+    moimNum,
+    ccDate
+    </sql>
+
+    <insert id="ccInsert" parameterType="com.bigmoim.module.boardcomment.entity.ClassCommentEntity">
+        INSERT INTO `classComment` (
+            ccComment,
+            memberId,
+            ccDate,
+            moimNum
+        )
+        VALUES (
+
+                   #{ccComment},
+                   #{memberId},
+                   NOW(),
+                   #{moimNum}
+               )
+    </insert>
+
+    <update id="ccUpdate" parameterType="int">
+        UPDATE `classComment`
+        SET classComment = #{classComment}
+        WHERE ccNum = #{ccNum}
+    </update>
+
+    <delete id="ccDelete" parameterType="int">
+        DELETE `classComment`
+        WHERE ccNum = #{ccNum}
+    </delete>
+
+    <select id="ccList" parameterType="int" resultType="com.bigmoim.module.boardcomment.entity.ClassCommentEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM classComment
+        WHERE moimNum = #{moimNum}
+    </select>
+
+    <select id="getCcNum" parameterType="String, int, String" resultType="int">
+        SELECT ccNum
+        FROM `classComment`
+        WHERE memberId = #{memberId}
+        AND moimNum = #{moimNum}
+        AND ccComment = #{ccComment}
+    </select>
+</mapper>

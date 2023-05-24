@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.admin.repository.CategoryRepository">
+
+    <sql id="business_fullColumn">
+    businessNum,
+    businessName
+    </sql>
+
+    <sql id="task_fullColumn">
+    taskNum,
+    taskName
+    </sql>
+
+    <sql id="theme_fullColumn">
+    themeNum,
+    themeName
+    </sql>
+
+    <!--업종, 직무, 테마 리스트-->
+    <select id="businessList" resultType="com.bigmoim.module.admin.entity.BusinessEntity">
+        SELECT <include refid="business_fullColumn"/>
+        FROM `business`
+    </select>
+
+    <select id="taskList" resultType="com.bigmoim.module.admin.entity.TaskEntity">
+        SELECT <include refid="task_fullColumn"/>
+        FROM `task`
+    </select>
+
+    <select id="themeList" resultType="com.bigmoim.module.admin.entity.ThemeEntity">
+        SELECT <include refid="theme_fullColumn"/>
+        FROM `theme`
+    </select>
+
+    <!--최근 본 모임 리스트-->
+   <select id="rsList" parameterType="String" resultType="com.bigmoim.module.admin.entity.MoimEntity">
+       SELECT m.moimNum, m.moimName, m.moimImg, m.moimArea, m.moimHCount
+            , m.moimNCount, m.categoryNum, m.moimProfile, m.categoryNum
+       FROM moim m, recentseen r
+       WHERE m.moimNum = r.moimNum and r.memberId = #{memberId}
+   </select>
+
+    <!--업종, 직무, 테마별 개인의 모임 가져오기-->
+    <select id="pbusinessList" parameterType="int" resultType="com.bigmoim.module.admin.entity.BusinessEntity">
+        SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
+        FROM moim
+        WHERE businessNum = #{businessNum}
+    </select>
+
+    <select id="ptaskList" parameterType="int" resultType="com.bigmoim.module.admin.entity.TaskEntity">
+        SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
+        FROM moim
+        WHERE taskNum = #{taskNum}
+    </select>
+
+    <select id="pthemeList" parameterType="int" resultType="com.bigmoim.module.admin.entity.ThemeEntity">
+        SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
+        FROM moim
+        WHERE themeNum = #{themeNum}
+    </select>
+
+    <!--업종, 직무, 테마 하나의 이름 가져오기-->
+    <select id="getBusinessName" parameterType="int" resultType="String">
+        SELECT businessName
+        FROM business
+        WHERE businessNum = #{businessNum}
+    </select>
+
+    <select id="getTaskName" parameterType="int" resultType="String">
+        SELECT taskName
+        FROM task
+        WHERE taskNum = #{taskNum}
+    </select>
+
+    <select id="getThemeName" parameterType="int" resultType="String">
+        SELECT ThemeName
+        FROM Theme
+        WHERE ThemeNum = #{ThemeNum}
+    </select>
+
+    <!--찜 목록 리스트 출력-->
+    <select id="jjimList" parameterType="String" resultType="com.bigmoim.module.admin.entity.MoimEntity">
+        SELECT m.moimName, m.moimImg, m.moimArea, m.moimNCount, m.categoryNum
+        FROM moim m, jjimlist j
+        WHERE m.moimNum = j.moimNum AND
+              j.memberId = #{memberId}
+    </select>
+
+    <!--찜 목록 추가-->
+    <insert id="jjimInsert" parameterType="String, int">
+        INSERT INTO jjimList(
+                             memberId,
+                             moimNum
+                             )
+        VALUES (
+                #{memberId},
+                #{moimNum}
+                )
+    </insert>
+</mapper>
