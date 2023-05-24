@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.moimjoin.repository.MoimJoinRepository">
+
+    <sql id="moimjoin_fullColumn">
+        mjNum,
+        moimNum,
+        memberId,
+        mjCheck,
+        mjDate,
+        mjContent,
+    </sql>
+    <!-- 모임별 가입 신청 리스트-->
+    <select id="findBymoimNum" resultType="com.bigmoim.module.moimjoin.entity.MoimJoinEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `moimjoin`
+        WHERE moimNum = #{moimNum}
+    </select>
+    <!-- 모임 가입 수락 업데이트-->
+    <update id="mjAccept">
+        UPDATE moimjoin
+        SET mjCheck = 1
+        WHERE memberId = #{memberId} and  = moimNum = #{moimNum}
+    </update>
+    <!-- 모임 가입 거절-->
+    <delete id="mjDelete">
+        DELETE
+        FROM moimjoin
+        WHERE memberId = #{memberId} and moimNum = #{moimNum}
+    </delete>
+    <insert id="mjInsert">
+        INSERT INTO `moimjoin` (
+            moimNum,
+            memberId,
+            mjDate,
+            mjContent,
+        )
+        VALUES (
+                   #{moimNum},
+                   #{memberId},
+                   #{mjDate},
+                   #{mjContent}
+               )
+    </insert>
+
+</mapper>

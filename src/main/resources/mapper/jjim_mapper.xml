@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.jjimlist.repository.JjimListRepository">
+
+    <sql id="jjim_fullColumn">
+        jjimNum,
+        memberId,
+        moimNum,
+    </sql>
+
+    <select id="jjimList" parameterType="int" resultType="com.bigmoim.module.jjimlist.entity.JjimListEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `jjimlist`
+        WHERE memberId = #{memberId}
+    </select>
+
+    <delete id="jjimDelete">
+        DELETE `jjimlist`
+        WHERE	mbNum = #{mbNum}
+        AND memberId = #{memberId}
+    </delete>
+
+    <insert id="jjimInsert">
+        INSERT INTO `jjimlist` (
+            memberId,
+            moimNum,
+        )
+        VALUES (
+
+                   #{memberId},
+                   #{moimNum},
+               )
+    </insert>
+</mapper>

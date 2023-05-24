@@ -34,7 +34,8 @@
     </update>
 
     <delete id="ccDelete" parameterType="int">
-        DELETE `classComment`
+        DELETE
+        FROM `classComment`
         WHERE ccNum = #{ccNum}
     </delete>
 

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bigmoim.module.admin.repository.CategoryRepository">
+<mapper namespace="com.bigmoim.module.moimcategory.repository.CategoryRepository">
 
-    <sql id="fullColumn">
+    <sql id="category_fullColumn">
     categoryNum,
     categoryName,
     categoryImg
     </sql>
 
-    <select id="categoryList" resultType="com.bigmoim.module.admin.entity.CategoryEntity">
-        SELECT <include refid="fullColumn"/>
+    <select id="categoryList" resultType="com.bigmoim.module.moimcategory.entity.CategoryEntity">
+        SELECT <include refid="category_fullColumn"/>
         FROM `category`
     </select>
 
-   <select id="categoryImg" parameterType="int" resultType="com.bigmoim.module.admin.entity.CategoryEntity">
+   <select id="categoryImg" parameterType="int" resultType="com.bigmoim.module.moimcategory.entity.CategoryEntity">
        SELECT category.categoryImg
        FROM moim inner join category ON moim.categoryNum = category.categoryNum
        WHERE moimNum = #{moimNum}
    </select>
 
-    <select id="categoryName" parameterType="int" resultType="com.bigmoim.module.admin.entity.CategoryEntity">
+    <select id="categoryName" parameterType="int" resultType="com.bigmoim.module.moimcategory.entity.CategoryEntity">
         SELECT categoryName
         FROM category
         WHERE categoryNum = #{categoryNum}

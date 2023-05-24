@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bigmoim.module.admin.repository.ScheduleJoinRepository">
+<mapper namespace="com.bigmoim.module.schedulejoin.repository.ScheduleJoinRepository">
 
     <sql id="moimMember_fullColumn">
         mmNum,
@@ -30,7 +30,7 @@
     </sql>
 
     <!--모든 모임일정 가져오기-->
-    <select id="allmoimScheduleList" resultType="com.bigmoim.module.admin.entity.MoimScheduleEntity">
+    <select id="allmoimScheduleList" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
         SELECT <include refid="moimSchedule_fullColumn"/>, m2.moimImg
         FROM moimSchedule m, moim m2
         WHERE m.moimNum = m2.moimNum AND
@@ -39,21 +39,21 @@
     </select>
 
     <!--모임스케줄에서 참여한 멤버 이름, 프로필, 사진 가져오기-->
-    <select id="moimScheduleImg" parameterType="int" resultType="com.bigmoim.module.admin.entity.TaskEntity">
+    <select id="moimScheduleImg" parameterType="int" resultType="com.bigmoim.module.member.entity.MemberEntity">
         SELECT member.memberImg, member.memberName, member.memberProfile, member.memberId
         FROM `member` inner join schedulejoin on memberId=schedulejoin.memberId
         WHERE schedulejoin.moimNum = #{moimNum}
     </select>
 
     <!--모임스케줄 가져오기-->
-    <select id="moimScheduleList" resultType="com.bigmoim.module.admin.entity.MoimScheduleEntity">
+    <select id="moimScheduleList" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
         SELECT  <include refid="moimSchedule_fullColumn"/>
         FROM  moimschedule
         WHERE datediff(msDate,now()) >= 0 AND moimNum = #{moimNum} order by msDate asc
     </select>
 
     <!--모임일정에서 일, 월, 요일 가져오기-->
-   <select id="moimScheduleDayList" parameterType="int" resultType="com.bigmoim.module.admin.entity.MemberEntity">
+   <select id="moimScheduleDayList" parameterType="int" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
        SELECT EXTRACT(day FROM moimschedule.msDate) AS moimScheduleDay
        FROM moimschedule
        WHERE moimNum = ?
@@ -74,14 +74,14 @@
     </select>
 
     <!--모임스케줄에서 참여한 멤버 이름, 프로필, 사진 가져오기-->
-    <select id="moimScheduleMember" parameterType="int" resultType="com.bigmoim.module.admin.entity.MemberEntity">
+    <select id="moimScheduleMember" parameterType="int" resultType="com.bigmoim.module.member.entity.MemberEntity">
         SELECT member.memberImg, member.memberName, member.memberProfile, member.memberId
         FROM member INNER JOIN schedulejoin ON member.memberId = schedulejoin.memberId
         WHERE schedulejoin.msNum = #{msNum}
     </select>
 
     <!--모임에서 가입한 전체 멤버 이름, 소개, 프로필사진 가져오기-->
-    <select id="moimScheduleAllMember" parameterType="int" resultType="com.bigmoim.module.admin.entity.MemberEntity">
+    <select id="moimScheduleAllMember" parameterType="int" resultType="com.bigmoim.module.member.entity.MemberEntity">
         SELECT m.memberImg , m.memberName , m.memberProfile, m.memberId
         FROM member m INNER JOIN moimmember m2 ON m.memberId = m2.memberId
         WHERE m2.moimNum = #{moimNum}
@@ -94,7 +94,7 @@
     </select>
 
     <!--모임회장의 이름, 자기소개, 이미지 가져오기-->
-    <select id="moimManager" parameterType="int" resultType="com.bigmoim.module.admin.entity.MemberEntity">
+    <select id="moimManager" parameterType="int" resultType="com.bigmoim.module.member.entity.MemberEntity">
         SELECT member.memberImg, member.memberProfile , member.memberName, member.memberId
         FROM member INNER JOIN moim ON member.memberId = moim.memberId
         WHERE moim.moimNum = #{moimNum}

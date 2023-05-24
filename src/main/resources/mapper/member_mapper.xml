@@ -3,7 +3,7 @@
 
 <mapper namespace="com.bigmoim.module.member.repository.MemberRepository">
 
-    <sql id="fullColumn">
+    <sql id="member_fullColumn">
         memberId,
         memberPw,
         memberName,
@@ -21,47 +21,101 @@
         themeNum,
     </sql>
 
-    <select id="findById" resultType="com.bigmoim.module.member.repository.MemberRepository">
-        SELECT <include refid="fullColumn"/>
-        FROM `member`
+    <!--회원탈퇴(삭제)-->
+    <delete id="deleteMember" parameterType="String">
+        DELETE
+        FROM 'member'
+        WHERE memberId = #{memberId}
+    </delete>
+
+    <!--로그인-->
+    <select id="loginMember" parameterType="String, String">
+        SELECT memberId, memberPw
+        FROM member
+        WHERE memberID = #{memeberId} AND memberPw = #{memberPw}
+    </select>
+
+    <!--id 중복 체크 중복-true-->
+    <select id="checkId" parameterType="memberId">
+        SELECT memberId
+        FROM member
         WHERE memberId = #{memberId}
     </select>
 
-    <insert id="insert">
-        INSERT INTO `member` (
-            memberId,
-            memberPw,
-            memberName,
-            memberTel,
-            memberBirth,
-            memberImg,
-            memberProfile,
-            memberGender,
-            memberAddr,
-            memberJobAddr,
-            memberLikeArea,
-            categoryNum,
-            businessNum,
-            taskNum,
-            themeNum,
-        )
+    <!--ID찾기-->
+    <select id="getIdSearch" parameterType="String, String" resultType="String">
+        SELECT memberId
+        FROM member
+        WHERE membername = #{memberName} AND membertel = #{memberTel}
+    </select>
+
+    <!--비밀번호 찾기-->
+    <select id="getPwSearch" parameterType="String, String" resultType="String">
+        SELECT memberPw
+        FROM member
+        WHERE memberId = #{memberId} AND memberTel = #{memberTel}
+    </select>
+
+    <!--회원가입-->
+    <insert id="insertMember" >
+        INSERT INTO member (
+                           memberImg,
+                           memberId,
+                           memberPw,
+                           memberName,
+                           memberTel,
+                           memberBirth,
+                           memberProfile,
+                           memberAddr,
+                           memberJobAddr,
+                           memberLikeArea,
+                           categoryNum,
+                           businessNum,
+                           taskNum,
+                           themeNum,
+                           memberGender)
         VALUES (
-                   #{memberId},
-                   #{memberPw},
-                   #{memberName},
-                   #{memberTel},
-                   #{memberBirth},
-                   #{memberImg},
-                   #{memberProfile},
-                   #{memberGender},
-                   #{memberAddr},
-                   #{memberJobAddr},
-                   #{memberLikeArea},
-                   #{categoryNum},
-                   #{businessNum},
-                   #{taskNum},
-                   #{themeNum}
+                #{memberImg},
+                #{memberId},
+                #{memberPw},
+                #{memberName},
+                #{memberTel},
+                #{memberBirth},
+                #{memberProfile},
+                #{memberAddr},
+                #{memberJobAddr},
+                #{memberLikeArea},
+                #{categoryNum},
+                #{businessNum},
+                #{taskNum},
+                #{themeNum},
+                #{memberGender}
                )
     </insert>
 
+    <!--회원정보 가져오기-->
+    <select id="getMember" resultType="com.bigmoim.module.member.entity.MemberEntity">
+        SELECT <include refid="member_fullColumn"/>
+        FROM member
+        WHERE memberId = #{memberId}
+    </select>
+
+    <!--회원정보 수정-->
+    <update id="updateMember">
+        UPDATE member
+        SET memberPw=#{memberPw}, memberName=#{memberName}, memberTel =#{memberTel},
+            memberImg=#{memberImg}, memberProfile=#{memberProfile}, memberAddr=#{memberAddr},
+            memberJobAddr=#{memberJobAddr}, memberLikeArea=#{memberLikeArea},
+            categoryNum=#{categoryNum}, businessNum=#{businessNum}, taskNum=#{taskNum}, themeNum=#{themeNum},
+            memberBirth=#{memberBirth}, memberSex=#{memberSex}
+		WHERE memberId = #{memberId}
+    </update>
+
+    <!--회원 목록-->
+    <select id="getMemberList" resultType="com.bigmoim.module.member.entity.MemberEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM member
+    </select>
+
+    <!--TODO 알림 따로 해야함-->
 </mapper>

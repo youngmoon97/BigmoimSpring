@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bigmoim.module.admin.repository.BoardCommentRepository">
+<mapper namespace="com.bigmoim.module.boardcomment.repository.BoardCommentRepository">
 
-    <sql id="fullColumn">
+    <sql id="boardComment_fullColumn">
         bcNum,
         bcContent,
         memberId,
@@ -11,8 +11,8 @@
         mbNum
     </sql>
 
-    <select id="bcList" parameterType="int" resultType="com.bigmoim.module.admin.entity.AdminEntity">
-        SELECT <include refid="fullColumn"/>
+    <select id="bcList" parameterType="int" resultType="com.bigmoim.module.boardcomment.entity.BoardCommentEntity">
+        SELECT <include refid="boardComment_fullColumn"/>
         FROM `boardComment`
         WHERE mbNum = #{mbNum}
     </select>
@@ -25,7 +25,6 @@
             mbNum
         )
         VALUES (
-
                    #{bcContent},
                    #{memberId},
                    #{bcDate},
@@ -33,14 +32,15 @@
                )
     </insert>
     
-    <delete id="bcDelete" parameterType="int" >
-        DELETE `boardComment`
-        WHERE	bcNum = #{bcNum}
+    <delete id="bcDelete" parameterType="int">
+        DELETE
+        FROM `boardComment`
+        WHERE bcNum = #{bcNum}
     </delete>
 
     <update id="bcUpdate" parameterType="int">
         UPDATE `boardComment`
-        SET bcConetent = #{bcContent}
+        SET bcContent = #{bcContent}
         WHERE bcNum = #{bcNum}
     </update>
 </mapper>

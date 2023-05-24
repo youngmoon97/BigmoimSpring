@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.role.repository.RoleRepository">
+
+    <sql id="moimschedule_fullColumn">
+        roleIdx,
+        memberId,
+        role,
+        create_date,
+    </sql>
+    <!-- -->
+    <select id="" resultType="com.bigmoim.module.role.entity.RoleEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM ``
+    </select>
+    <!-- -->
+    <update id="">
+        UPDATE
+        SET  = 1
+        WHERE  = #{} and  =  = #{}
+    </update>
+    <!-- -->
+    <delete id="">
+        DELETE
+        FROM
+        WHERE  = #{} and  = #{}
+    </delete>
+
+    <insert id="msInsert">
+        INSERT INTO `moimschedule` (
+            memberId,
+            role,
+            create_date,
+        )
+        VALUES (
+                   #{memberId},
+                   #{role},
+                   #{create_date}
+               )
+    </insert>
+
+</mapper>

@@ -13,5 +13,4 @@ public class JjimListEntity {
   private int jjimNum;
   private String memberId;
   private int moimNum;
-  private int classNum;
 }

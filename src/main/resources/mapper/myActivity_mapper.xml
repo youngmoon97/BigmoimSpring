@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bigmoim.module.admin.repository.CategoryRepository">
+<!-- TODO 확인필요:myactivity로 폴더 모으고 myactivityrepository 해야하는지? -->
+<mapper namespace="com.bigmoim.module.moimcategory.repository.CategoryRepository">
 
     <sql id="business_fullColumn">
     businessNum,
@@ -19,23 +20,23 @@
     </sql>
 
     <!--업종, 직무, 테마 리스트-->
-    <select id="businessList" resultType="com.bigmoim.module.admin.entity.BusinessEntity">
+    <select id="businessList" resultType="com.bigmoim.module.business.entity.BusinessEntity">
         SELECT <include refid="business_fullColumn"/>
         FROM `business`
     </select>
 
-    <select id="taskList" resultType="com.bigmoim.module.admin.entity.TaskEntity">
+    <select id="taskList" resultType="com.bigmoim.module.task.entity.TaskEntity">
         SELECT <include refid="task_fullColumn"/>
         FROM `task`
     </select>
 
-    <select id="themeList" resultType="com.bigmoim.module.admin.entity.ThemeEntity">
+    <select id="themeList" resultType="com.bigmoim.module.theme.entity.ThemeEntity">
         SELECT <include refid="theme_fullColumn"/>
         FROM `theme`
     </select>
 
     <!--최근 본 모임 리스트-->
-   <select id="rsList" parameterType="String" resultType="com.bigmoim.module.admin.entity.MoimEntity">
+   <select id="rsList" parameterType="String" resultType="com.bigmoim.module.moim.entity.MoimEntity">
        SELECT m.moimNum, m.moimName, m.moimImg, m.moimArea, m.moimHCount
             , m.moimNCount, m.categoryNum, m.moimProfile, m.categoryNum
        FROM moim m, recentseen r
@@ -43,19 +44,19 @@
    </select>
 
     <!--업종, 직무, 테마별 개인의 모임 가져오기-->
-    <select id="pbusinessList" parameterType="int" resultType="com.bigmoim.module.admin.entity.BusinessEntity">
+    <select id="pbusinessList" parameterType="int" resultType="com.bigmoim.module.business.entity.BusinessEntity">
         SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
         FROM moim
         WHERE businessNum = #{businessNum}
     </select>
 
-    <select id="ptaskList" parameterType="int" resultType="com.bigmoim.module.admin.entity.TaskEntity">
+    <select id="ptaskList" parameterType="int" resultType="com.bigmoim.module.task.entity.TaskEntity">
         SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
         FROM moim
         WHERE taskNum = #{taskNum}
     </select>
 
-    <select id="pthemeList" parameterType="int" resultType="com.bigmoim.module.admin.entity.ThemeEntity">
+    <select id="pthemeList" parameterType="int" resultType="com.bigmoim.module.theme.entity.ThemeEntity">
         SELECT moimNum, moimName, moimArea, moimHCount, moimNCount ,moimImg ,moimProfile, categoryNum
         FROM moim
         WHERE themeNum = #{themeNum}
@@ -81,7 +82,7 @@
     </select>
 
     <!--찜 목록 리스트 출력-->
-    <select id="jjimList" parameterType="String" resultType="com.bigmoim.module.admin.entity.MoimEntity">
+    <select id="jjimList" parameterType="String" resultType="com.bigmoim.module.moim.entity.MoimEntity">
         SELECT m.moimName, m.moimImg, m.moimArea, m.moimNCount, m.categoryNum
         FROM moim m, jjimlist j
         WHERE m.moimNum = j.moimNum AND

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.moim.repository.MoimRepository">
+
+    <sql id="moim_fullColumn">
+        moimNum,
+        moimName,
+        moimArea,
+        moimHCount,
+        moimNCount,
+        memberId,
+        moimKakao,
+        categoryNum,
+        moimImg,
+        moimProfile,
+        businessNum,
+        taskNum,
+        themeNum,
+        classPrice,
+        moimOrclass,
+    </sql>
+    <!-- 모임 전체 리스트 가져오기 -->
+    <select id="allMoim" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `moim`
+    </select>
+    <!-- 모임 한개 상세 가져오기 -->
+    <select id="findByMoimNum" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `moim`
+        WHERE moimNum = #{moimNum}
+    </select>
+    <!-- 자신의 모임 리스트-->
+    <select id="myMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE memberId = #{memberId}
+    </select>
+    <!-- 검색별 모임 리스트-->
+    <select id="searchMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE moimName LIKE #{moimName}
+    </select>
+    <!-- 모임 수정 -->
+    <update id="moimUpdate" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
+        UPDATE moim
+        SET moimName = #{moimName},
+            moimArea = #{moimArea},
+            moimHCount = #{moimHCount},
+            moimKakao = #{moimKakao},
+            categoryNum = #{categoryNum},
+            moimImg = #{moimImg},
+            moimProfile = #{moimProfile},
+            businessNum = #{businessNum},
+            taskNum = #{taskNum},
+            themeNum = #{themeNum},
+            classPrice = #{classPrice}
+            WHERE moimNum = #{moimNum}
+    </update>
+
+    <!-- 모임 삭제 -->
+    <delete id="moimDelete" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
+        DELETE
+        FROM moim
+        WHERE moimNum = #{moimNum}
+    </delete>
+
+    <!-- 클래스 리스트 가져오기 -->
+    <select id="classList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE moimOrclass = 1
+    </select>
+
+    <!-- 모임 업종별 리스트 -->
+    <select id="businessList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE businessNum = #{businessNum}
+    </select>
+    <!-- 모임 직무별 리스트 -->
+    <select id="taskList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE taskNum = #{taskNum}
+    </select>
+    <!-- 모임 테마별 리스트 -->
+    <select id="themeList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE themeNum = #{themeNum}
+    </select>
+    <!-- 모임 카테고리별 리스트 -->
+    <select id="categoryList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE categoryNum = #{categoryNum}
+    </select>
+    <!-- 모임 지역별 리스트 -->
+    <select id="areaList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM moim
+        WHERE moimArea = #{moimArea}
+    </select>
+
+
+
+    <!-- 모임 수정 -->
+
+
+    <!-- 모임 수정 -->
+
+
+    <!-- 모임 수정 -->
+
+
+    <!-- 모임 수정 -->
+
+
+    <!-- 모임 수정 -->
+
+
+    <!-- 모임 수정 -->
+
+
+    <insert id="moimInsert" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
+        INSERT INTO `moim` (
+            moimNum,
+            moimName,
+            moimArea,
+            moimHCount,
+            memberId,
+            moimKakao,
+            categoryNum,
+            moimImg,
+            moimProfile,
+            businessNum,
+            taskNum,
+            themeNum,
+            classPrice,
+            moimOrClass,
+        )
+        VALUES (
+                   #{moimNum},
+                   #{moimName},
+                   #{moimArea},
+                   #{moimHCount},
+                   #{memberId},
+                   #{moimKakao},
+                   #{categoryNum},
+                   #{moimImg},
+                   #{moimProfile},
+                   #{businessNum},
+                   #{taskNum},
+                   #{themeNum},
+                   #{classPrice},
+                   #{moimOrClass}
+               )
+    </insert>
+
+</mapper>

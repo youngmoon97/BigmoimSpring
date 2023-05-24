@@ -116,7 +116,7 @@ CREATE TABLE `moim`
 -- bigmoim.`role` definition
 CREATE TABLE `role`
 (
-    idx         int          NOT NULL AUTO_INCREMENT,
+    roleIdx     int          NOT NULL AUTO_INCREMENT,
     memberId    varchar(50)  NOT NULL,
     role        varchar(255) NOT NULL,
     create_date TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.zipcode.repository.ZipcodeRepository">
+
+    <sql id="zipcode_fullColumn">
+        zipcode,
+        area1,
+        area2,
+        area3,
+        area4
+    </sql>
+
+    <!--우편번호 검색:area1(시), area2(구/동) 만 사용-->
+    <select id="zipcodeRead" parameterType="String" resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM `zipcode`
+        WHERE area3 LIKE #{area3}
+    </select>
+
+    <!--시 리스트 가져오기-->
+    <select id="cityList" resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
+        SELECT DISTINCT area1 FROM zipcode
+    </select>
+
+    <!--구 리스트 가져오기-->
+    <select id="area2List" parameterType="String" resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
+        SELECT DISTINCT area2 FROM zipcode
+        WHERE area1 = #{area1}
+    </select>
+</mapper>
