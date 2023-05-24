@@ -3,35 +3,37 @@
 
 <mapper namespace="com.bigmoim.module.role.repository.RoleRepository">
 
-    <sql id="moimschedule_fullColumn">
+    <sql id="role_fullColumn">
         roleIdx,
         memberId,
         role,
         create_date,
     </sql>
-    <!-- -->
-    <select id="" resultType="com.bigmoim.module.role.entity.RoleEntity">
+    <!-- 멤버의 role 리스트 -->
+    <select id="findById" resultType="com.bigmoim.module.role.entity.RoleEntity">
         SELECT <include refid="fullColumn"/>
-        FROM ``
+        FROM role
+        WHERE memberId = #{memberId}
     </select>
+    <!-- Role별 리스트 -->
+    <select id="findByRole" resultType="com.bigmoim.module.role.entity.RoleEntity">
+        SELECT <include refid="fullColumn"/>
+        FROM role
+        WHERE role = #{role}
+    </select>
+
     <!-- -->
-    <update id="">
-        UPDATE
-        SET  = 1
-        WHERE  = #{} and  =  = #{}
-    </update>
-    <!-- -->
-    <delete id="">
+    <delete id="roleDelete">
         DELETE
-        FROM
-        WHERE  = #{} and  = #{}
+        FROM role
+        WHERE memberId = #{memberId} and role = #{role}
     </delete>
 
-    <insert id="msInsert">
+    <insert id="roleInsert">
         INSERT INTO `moimschedule` (
             memberId,
             role,
-            create_date,
+            create_date
         )
         VALUES (
                    #{memberId},
