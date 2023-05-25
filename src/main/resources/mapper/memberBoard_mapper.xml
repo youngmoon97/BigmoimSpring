@@ -14,7 +14,7 @@
         boardType
     </sql>
 
-    <select id="boardList" parameterType="int" resultType="com.bigmoim.module.memberboard.entity.MemberBoardEntity">
+    <select id="boardList" resultType="com.bigmoim.module.memberboard.entity.MemberBoardEntity">
         SELECT <include refid="fullColumn"/>
         FROM `memberBoard`
         WHERE moimNum = #{moimNum}

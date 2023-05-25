@@ -29,7 +29,7 @@
         WHERE memberId = #{memberId} and role = #{role}
     </delete>
 
-    <insert id="roleInsert">
+    <insert id="roleInsert" parameterType="com.bigmoim.module.role.entity.RoleEntity">
         INSERT INTO `moimschedule` (
             memberId,
             role,

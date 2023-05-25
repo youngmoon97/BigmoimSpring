@@ -2,13 +2,22 @@ package com.bigmoim.module.member.repository;
 
 import com.bigmoim.module.member.entity.MemberEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @Mapper
 public interface MemberRepository {
-    MemberEntity findById(String memberId);
-    Integer insert(MemberEntity memberEntity);
+    // TODO: 2023-05-24 시큐리티로 로그인
+    MemberEntity loginMember(@Param("memberId") String memberId, @Param("memberPw") String memberPw);
+    String checkId(String memberId);
+    MemberEntity getMember(String memberId);
+    List<MemberEntity> getMemberList();
+    Integer updateMember(String memberId);
+    Integer insertMember(MemberEntity memberEntity);
+    Integer deleteMember(String memberId);
 
 
 }

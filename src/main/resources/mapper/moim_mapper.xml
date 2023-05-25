@@ -106,25 +106,6 @@
     </select>
 
 
-
-    <!-- 모임 수정 -->
-
-
-    <!-- 모임 수정 -->
-
-
-    <!-- 모임 수정 -->
-
-
-    <!-- 모임 수정 -->
-
-
-    <!-- 모임 수정 -->
-
-
-    <!-- 모임 수정 -->
-
-
     <insert id="moimInsert" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
         INSERT INTO `moim` (
             moimNum,

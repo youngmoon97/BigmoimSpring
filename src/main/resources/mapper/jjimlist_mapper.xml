@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.jjimlist.repository.JjimListRepository">
+
+    <sql id="jjimList_fullColumn">
+        jjimNum,
+        memberId,
+        moimNum,
+    </sql>
+
+    <sql id="moim_fullColumn">
+        moimNum,
+        moimName,
+        moimArea,
+        moimHCount,
+        moimNCount,
+        memberId,
+        moimKakao,
+        moimImg,
+        categoryNum,
+        moimProfile,
+        moimDate,
+        businessNum,
+        taskNum,
+        themeNum,
+        classPrice,
+        classLike,
+        moimOrClass
+    </sql>
+
+    <!--찜리스트 insert-->
+    <insert id="jjimInsert">
+        INSERT INTO `jjimlist` (
+            memberId,
+            moimNum,
+        )
+        VALUES (
+                   #{memberId},
+                   #{moimNum},
+               )
+    </insert>
+
+    <!--멤버아이디, 모임번호로 찜 여부 검사-->
+    <select id="jjimCheck">
+        SELECT <include refid="jjimList_fullColumn"/>
+        FROM jjimlist
+        WHERE memberId = #{memberId} AND moimNum = #{moimNum}
+    </select>
+
+    <!--찜 삭제-->
+    <delete id="jjimDelete">
+        DELETE
+        FROM `jjimlist`
+        WHERE	mbNum = #{mbNum}
+        AND memberId = #{memberId}
+    </delete>
+
+    <!--찜목록리스트 출력-->
+    <select id="jjimList" parameterType="String" resultType="com.bigmoim.module.jjimlist.entity.JjimListEntity">
+        SELECT <include refid="moim_fullColumn"/>
+        FROM jjimlist j, moim m
+        WHERE j.moimNum = m.moimNum AND j.memberId = #{memberId}
+    </select>
+
+
+
+
+</mapper>
