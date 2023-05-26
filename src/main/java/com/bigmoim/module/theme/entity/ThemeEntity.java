@@ -12,4 +12,12 @@ import lombok.NoArgsConstructor;
 public class ThemeEntity {
   private int themeNum;
   private String themeName;
+
+  @Override
+  public String toString() {
+    return "ThemeEntity[" +
+            "themeNum=" + themeNum +
+            ", themeName='" + themeName +
+            "]";
+  }
 }
