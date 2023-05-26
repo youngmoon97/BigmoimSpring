@@ -12,4 +12,11 @@ import lombok.NoArgsConstructor;
 public class BusinessEntity {
   private int businessNum;
   private String businessName;
+
+  @Override
+  public String toString() {
+    return "BusinessEntity[" +
+            "businessNum=" + businessNum +
+            ", businessName='" + businessName + ']';
+  }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
-    public HttpEntity<?> categoryList(){
+    public HttpEntity<?> categoryList() {
         List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
         return new ResponseEntity<>(
                 ResDTO.builder()

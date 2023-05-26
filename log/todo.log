@@ -1588,3 +1588,52 @@ java.lang.IllegalArgumentException: XML fragments parsed from previous mappers d
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
 2023-05-26 10:49:48.069  WARN 8400 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2023-05-26 10:54:35.428  WARN 9756 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2023-05-26 11:32:35.661  WARN 12972 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessController' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\controller\BusinessController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessService' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\service\BusinessService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.bigmoim.module.business.repository.BusinessRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2023-05-26 11:32:35.711 ERROR 12972 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.bigmoim.module.business.service.BusinessService required a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' in your configuration.
+
+2023-05-26 11:33:36.500  WARN 14056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessController' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\controller\BusinessController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessService' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\service\BusinessService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.bigmoim.module.business.repository.BusinessRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2023-05-26 11:33:36.548 ERROR 14056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.bigmoim.module.business.service.BusinessService required a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' in your configuration.
+
+2023-05-26 11:34:48.132  WARN 10088 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessController' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\controller\BusinessController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'businessService' defined in file [C:\intellijWorkSpace\bigmoim\build\classes\java\main\com\bigmoim\module\business\service\BusinessService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.bigmoim.module.business.repository.BusinessRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2023-05-26 11:34:48.180 ERROR 10088 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.bigmoim.module.business.service.BusinessService required a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.bigmoim.module.business.repository.BusinessRepository' in your configuration.
+
