@@ -12,8 +12,8 @@
     </sql>
 
     <!--우편번호 검색:area1(시), area2(구/동) 만 사용-->
-    <select id="zipcodeRead" parameterType="String" resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
-        SELECT <include refid="fullColumn"/>
+    <select id="zipcodeRead"  resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
+        SELECT <include refid="zipcode_fullColumn"/>
         FROM `zipcode`
         WHERE area3 LIKE #{area3}
     </select>
@@ -24,7 +24,7 @@
     </select>
 
     <!--구 리스트 가져오기-->
-    <select id="area2List" parameterType="String" resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
+    <select id="area2List"  resultType="com.bigmoim.module.zipcode.entity.ZipcodeEntity">
         SELECT DISTINCT area2 FROM zipcode
         WHERE area1 = #{area1}
     </select>

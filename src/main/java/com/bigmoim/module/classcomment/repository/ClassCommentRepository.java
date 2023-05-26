@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface ClassCommentRepository {
@@ -15,7 +17,7 @@ public interface ClassCommentRepository {
 
     Integer ccDelete(int ccNum);
 
-    ClassCommentEntity ccList(int moimNum);
+    List<ClassCommentEntity> ccList(int moimNum);
 
     int getCcNum(@Param("memberId") String memberId,
                  @Param("moimNum") int moimNum,

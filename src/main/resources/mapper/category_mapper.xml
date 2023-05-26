@@ -14,13 +14,13 @@
         FROM category
     </select>
 
-   <select id="categoryImg" parameterType="int" resultType="com.bigmoim.module.category.entity.CategoryEntity">
+   <select id="categoryImg"  resultType="com.bigmoim.module.category.entity.CategoryEntity">
        SELECT category.categoryImg
        FROM moim inner join category ON moim.categoryNum = category.categoryNum
        WHERE moimNum = #{moimNum}
    </select>
 
-    <select id="categoryName" parameterType="int" resultType="com.bigmoim.module.category.entity.CategoryEntity">
+    <select id="categoryName"  resultType="com.bigmoim.module.category.entity.CategoryEntity">
         SELECT categoryName
         FROM category
         WHERE categoryNum = #{categoryNum}

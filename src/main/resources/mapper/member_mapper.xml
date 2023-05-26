@@ -22,35 +22,35 @@
     </sql>
 
     <!--회원탈퇴(삭제)-->
-    <delete id="deleteMember" parameterType="String">
+    <delete id="deleteMember" >
         DELETE
         FROM 'member'
         WHERE memberId = #{memberId}
     </delete>
 
     <!--로그인-->
-    <select id="loginMember" parameterType="String, String">
+    <select id="loginMember" >
         SELECT memberId, memberPw
         FROM member
         WHERE memberID = #{memeberId} AND memberPw = #{memberPw}
     </select>
 
     <!--id 중복 체크 중복-true-->
-    <select id="checkId" parameterType="memberId">
+    <select id="checkId" >
         SELECT memberId
         FROM member
         WHERE memberId = #{memberId}
     </select>
 
     <!--ID찾기-->
-    <select id="getIdSearch" parameterType="String, String" resultType="String">
+    <select id="getIdSearch" resultType="String">
         SELECT memberId
         FROM member
         WHERE membername = #{memberName} AND membertel = #{memberTel}
     </select>
 
     <!--비밀번호 찾기-->
-    <select id="getPwSearch" parameterType="String, String" resultType="String">
+    <select id="getPwSearch" resultType="String">
         SELECT memberPw
         FROM member
         WHERE memberId = #{memberId} AND memberTel = #{memberTel}
@@ -113,7 +113,7 @@
 
     <!--회원 목록-->
     <select id="getMemberList" resultType="com.bigmoim.module.member.entity.MemberEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="member_fullColumn"/>
         FROM member
     </select>
 

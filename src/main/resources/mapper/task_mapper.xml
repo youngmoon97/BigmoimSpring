@@ -9,7 +9,7 @@
     </sql>
 
     <select id="taskList" resultType="com.bigmoim.module.task.entity.TaskEntity">
-        SELECT <include refid="category_fullColumn"/>
+        SELECT <include refid="task_fullColumn"/>
         FROM task
     </select>
 

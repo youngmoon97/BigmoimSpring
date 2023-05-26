@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface BusinessRepository {
     List<BusinessEntity> businessList();
-
     String businessName(int businessNum);
 }

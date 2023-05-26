@@ -32,13 +32,13 @@
                )
     </insert>
     
-    <delete id="bcDelete" parameterType="int">
+    <delete id="bcDelete" >
         DELETE
         FROM `boardComment`
         WHERE bcNum = #{bcNum}
     </delete>
 
-    <update id="bcUpdate" parameterType="int">
+    <update id="bcUpdate">
         UPDATE `boardComment`
         SET bcContent = #{bcContent}
         WHERE bcNum = #{bcNum}

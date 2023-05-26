@@ -120,7 +120,7 @@ CREATE TABLE `role`
     memberId    varchar(50)  NOT NULL,
     role        varchar(255) NOT NULL,
     create_date TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (idx),
+    PRIMARY KEY (roleIdx),
     FOREIGN KEY (memberId) REFERENCES `member` (memberId)
 );
 -- bigmoimspring.classcomment definition

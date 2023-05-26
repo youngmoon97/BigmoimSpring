@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bigmoim.module.admin.repository.ClassCommentRepository">
+<mapper namespace="com.bigmoim.module.classcomment.repository.ClassCommentRepository">
 
-    <sql id="fullColumn">
-    ccNum,
-    ccComment,
-    memberId,
-    moimNum,
-    ccDate
+    <sql id="cc_fullColumn">
+        ccNum,
+        ccComment,
+        memberId,
+        moimNum,
+        ccDate
     </sql>
 
-    <insert id="ccInsert" parameterType="com.bigmoim.module.boardcomment.entity.ClassCommentEntity">
-        INSERT INTO `classComment` (
+    <insert id="ccInsert" parameterType="com.bigmoim.module.classcomment.entity.ClassCommentEntity">
+        INSERT INTO classComment (
             ccComment,
             memberId,
-            ccDate,
-            moimNum
+            moimNum,
+            ccDate
         )
         VALUES (
 
                    #{ccComment},
                    #{memberId},
-                   NOW(),
-                   #{moimNum}
+                   #{moimNum},
+                   #{ccDate}
                )
     </insert>
 
-    <update id="ccUpdate" parameterType="int">
-        UPDATE `classComment`
+    <update id="ccUpdate" >
+        UPDATE classComment
         SET classComment = #{classComment}
         WHERE ccNum = #{ccNum}
     </update>
 
-    <delete id="ccDelete" parameterType="int">
+    <delete id="ccDelete" >
         DELETE
-        FROM `classComment`
+        FROM classComment
         WHERE ccNum = #{ccNum}
     </delete>
 
-    <select id="ccList" parameterType="int" resultType="com.bigmoim.module.boardcomment.entity.ClassCommentEntity">
-        SELECT <include refid="fullColumn"/>
+    <select id="ccList"  resultType="com.bigmoim.module.classcomment.entity.ClassCommentEntity">
+        SELECT <include refid="cc_fullColumn"/>
         FROM classComment
         WHERE moimNum = #{moimNum}
     </select>
 
-    <select id="getCcNum" parameterType="String, int, String" resultType="int">
+    <select id="getCcNum"  resultType="int">
         SELECT ccNum
-        FROM `classComment`
+        FROM classComment
         WHERE memberId = #{memberId}
         AND moimNum = #{moimNum}
         AND ccComment = #{ccComment}

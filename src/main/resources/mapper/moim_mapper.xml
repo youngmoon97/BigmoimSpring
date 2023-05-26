@@ -22,24 +22,24 @@
     </sql>
     <!-- 모임 전체 리스트 가져오기 -->
     <select id="allMoim" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM `moim`
     </select>
     <!-- 모임 한개 상세 가져오기 -->
     <select id="findByMoimNum" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM `moim`
         WHERE moimNum = #{moimNum}
     </select>
     <!-- 자신의 모임 리스트-->
     <select id="myMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE memberId = #{memberId}
     </select>
     <!-- 검색별 모임 리스트-->
     <select id="searchMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE moimName LIKE #{moimName}
     </select>
@@ -69,38 +69,38 @@
 
     <!-- 클래스 리스트 가져오기 -->
     <select id="classList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE moimOrclass = 1
     </select>
 
     <!-- 모임 업종별 리스트 -->
     <select id="businessList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE businessNum = #{businessNum}
     </select>
     <!-- 모임 직무별 리스트 -->
     <select id="taskList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE taskNum = #{taskNum}
     </select>
     <!-- 모임 테마별 리스트 -->
     <select id="themeList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE themeNum = #{themeNum}
     </select>
     <!-- 모임 카테고리별 리스트 -->
     <select id="categoryList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE categoryNum = #{categoryNum}
     </select>
     <!-- 모임 지역별 리스트 -->
     <select id="areaList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE moimArea = #{moimArea}
     </select>

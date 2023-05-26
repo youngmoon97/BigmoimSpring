@@ -13,13 +13,13 @@
     </sql>
     <!-- 모임 사진 리스트-->
     <select id="photoList" resultType="com.bigmoim.module.moimphotos.entity.MoimPhotosEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moimphotos_fullColumn"/>
         FROM `moimphotos`
         WHERE moimNum = #{moimNum}
     </select>
     <!--모임 사진 상세-->
     <select id="photoDetail" resultType="com.bigmoim.module.moimphotos.entity.MoimPhotosEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moimphotos_fullColumn"/>
         FROM `moimphotos`
         WHERE photoNum = #{photoNum}
     </select>

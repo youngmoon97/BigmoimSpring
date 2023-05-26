@@ -13,7 +13,7 @@
     </sql>
     <!-- 모임별 가입 신청 리스트-->
     <select id="findBymoimNum" resultType="com.bigmoim.module.moimjoin.entity.MoimJoinEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moimjoin_fullColumn"/>
         FROM `moimjoin`
         WHERE moimNum = #{moimNum}
     </select>

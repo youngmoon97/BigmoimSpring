@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Getter
 @Builder
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ClassCommentEntity {
   private int ccNum;
   private String ccComment;
-  private String ccDate;
   private String memberId;
   private int moimNum;
+  private Date ccDate;
 }

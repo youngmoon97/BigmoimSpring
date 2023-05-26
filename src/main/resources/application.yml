@@ -15,7 +15,7 @@ spring:
     url: jdbc:h2:mem:testdb;MODE=MYSQL;
     username: sa
     password:
-  at  h2:
+  h2:
     console:
       enabled: true
       path: /h2
@@ -31,3 +31,15 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+# 로그 관련 설정
+logging:
+  file:
+    # / 를 붙이면 C드라이브 하위 폴더 생성됨
+    # / 를 안 붙이면 프로젝트 내부에 폴더 생성됨
+    name: log/todo.log
+    # 로그를 남길 데이터의 위험도
+    # TRACE < DEBUG < INFO < WARN < ERROR < FATAL
+  level:
+    root: warn
+  charset:
+    file: UTF-8

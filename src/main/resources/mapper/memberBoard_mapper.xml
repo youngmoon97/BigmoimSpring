@@ -15,7 +15,7 @@
     </sql>
 
     <select id="boardList" resultType="com.bigmoim.module.memberboard.entity.MemberBoardEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="memberBoard_fullColumn"/>
         FROM `memberBoard`
         WHERE moimNum = #{moimNum}
     </select>
@@ -40,7 +40,7 @@
                )
     </insert>
     
-    <delete id="boardDelete" parameterType="int, String" >
+    <delete id="boardDelete" >
         DELETE
         FROM `memberBoard`
         WHERE	mbNum = #{mbNum}

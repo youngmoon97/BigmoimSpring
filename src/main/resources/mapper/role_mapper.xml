@@ -11,13 +11,13 @@
     </sql>
     <!-- 멤버의 role 리스트 -->
     <select id="findById" resultType="com.bigmoim.module.role.entity.RoleEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="role_fullColumn"/>
         FROM role
         WHERE memberId = #{memberId}
     </select>
     <!-- Role별 리스트 -->
     <select id="findByRole" resultType="com.bigmoim.module.role.entity.RoleEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="role_fullColumn"/>
         FROM role
         WHERE role = #{role}
     </select>

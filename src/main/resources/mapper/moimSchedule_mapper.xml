@@ -18,7 +18,7 @@
     </sql>
     <!-- 모임별 가입 신청 리스트-->
     <select id="allmoimSchedule" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
-        SELECT <include refid="fullColumn"/>
+        SELECT <include refid="moimschedule_fullColumn"/>
         FROM `moimschedule`
     </select>
     <!-- 모임 가입 수락 업데이트-->
