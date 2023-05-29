@@ -14,7 +14,7 @@
                 <h1>CATEGORY LIST</h1>
                 <hr/>
                 <ul id="sortable" class="list-unstyled">
-                    <c:forEach items="${categoryList}" var="category">
+                    <c:forEach items="${resDto.categoryList}" var="category">
                             <li class="ui-state-default">
                                     <label>
                                         <span>${category.categoryNum}</span>

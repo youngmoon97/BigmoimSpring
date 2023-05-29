@@ -23,7 +23,7 @@ public class CategoryDTO {
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        static class Category {
+        public static class Category {
             int categoryNum;
             String categoryName;
             String categoryImg;
