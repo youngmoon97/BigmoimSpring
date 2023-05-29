@@ -30,6 +30,7 @@ public class CategoryDTO {
         }
         public static ResBasic fromEntityList(List<CategoryEntity> categoryEntityList){
             List<Category> categoryList =  categoryEntityList.stream().map(categoryEntity -> {
+//                return Category(1, "자기계발","ㅁㄴㅇ");
                 return Category.builder()
                         .categoryNum(categoryEntity.getCategoryNum())
                         .categoryName(categoryEntity.getCategoryName())

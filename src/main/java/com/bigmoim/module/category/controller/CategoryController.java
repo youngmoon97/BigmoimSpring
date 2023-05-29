@@ -19,7 +19,7 @@ public class CategoryController {
     public String getCategoryPage(Model model){
         CategoryDTO.ResBasic resDto = categoryService.getCategoryList();
 //        System.out.println(categoryList);
-        model.addAttribute("resDto", resDto);
+        model.addAttribute("resDto", resDto.getCategoryList());
         return "/main/categoryList";
     }
 
