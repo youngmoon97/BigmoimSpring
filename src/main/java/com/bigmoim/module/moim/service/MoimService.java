@@ -1,9 +1,6 @@
 package com.bigmoim.module.moim.service;
 
 import com.bigmoim.common.dto.ResDTO;
-import com.bigmoim.module.category.dto.CategoryDTO;
-import com.bigmoim.module.category.entity.CategoryEntity;
-import com.bigmoim.module.member.repository.MemberRepository;
 import com.bigmoim.module.moim.dto.MoimDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
 import com.bigmoim.module.moim.repository.MoimRepository;
@@ -22,6 +19,10 @@ import java.util.List;
 public class MoimService {
     private final MoimRepository moimRepository;
 
+    public MoimDTO.ResBasic getClassList(){
+        List<MoimEntity> classList = moimRepository.classList();
+        return MoimDTO.ResBasic.fromEntityList(classList);
+    }
     public HttpEntity<?> allMoim(){
         List<MoimEntity> moimEntityList = moimRepository.allMoim();
         return new ResponseEntity<>(

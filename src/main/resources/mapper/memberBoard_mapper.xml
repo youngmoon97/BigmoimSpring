@@ -39,12 +39,11 @@
                    #{moimNum}
                )
     </insert>
-    
+
     <delete id="boardDelete" >
         DELETE
         FROM `memberBoard`
-        WHERE	mbNum = #{mbNum}
-        AND memberId = #{memberId}
+        WHERE memberId = #{memberId}
     </delete>
 
     <update id="boardUpdate" >
@@ -53,6 +52,6 @@
             mbContent = #{mbContent},
             mbDate = NOW(),
             moimNum = #{moimNum}
-        WHERE mbNum = #{mbNum}
+        WHERE memberId = #{memberId}
     </update>
 </mapper>

@@ -1,11 +1,11 @@
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
-values ('youngmoon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '조영문', '01026200656', '19970919',
+values ('moon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '조영문', '01026200656', '19970919',
         'img1', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into role(memberId, role, create_date)
-values ('youngmoon', 'USER', now());
+values ('moon', 'USER', now());
 
 
 -- 직무
@@ -78,7 +78,7 @@ INSERT INTO business (businessName) VALUES
 -- moimcategory
 INSERT INTO category (categoryName) VALUES
                                                     ('게임/오락'),
-                                                    ('요리/제'),
+                                                    ('요리/제빵'),
                                                     ('아웃도어/여행'),
                                                     ('운동/스포츠'),
                                                     ('인문학/책/글'),

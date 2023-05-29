@@ -22,14 +22,17 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public HttpEntity<?> taskList(){
-        List<TaskEntity> taskEntityList = taskRepository.taskList();
-        return new ResponseEntity<>(
-                ResDTO.builder()
-                        .code(0)
-                        .message("직무 리스트 조회에 성공하였습니다.")
-                        .data(TaskDTO.ResBasic.fromEntityList(taskEntityList).getTaskList())
-                        .build(),
-                HttpStatus.OK);
+    public TaskDTO.ResBasic getTaskList(){
+        return TaskDTO.ResBasic.fromEntityList(taskRepository.taskList());
     }
+//    public HttpEntity<?> taskList(){
+//        List<TaskEntity> taskEntityList = taskRepository.taskList();
+//        return new ResponseEntity<>(
+//                ResDTO.builder()
+//                        .code(0)
+//                        .message("직무 리스트 조회에 성공하였습니다.")
+//                        .data(TaskDTO.ResBasic.fromEntityList(taskEntityList).getTaskList())
+//                        .build(),
+//                HttpStatus.OK);
+//    }
 }

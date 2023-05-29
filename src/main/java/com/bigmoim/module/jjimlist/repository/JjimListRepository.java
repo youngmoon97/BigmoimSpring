@@ -11,15 +11,16 @@ import java.util.List;
 @Mapper
 public interface JjimListRepository {
 
-    Integer jjimInsert(JjimListEntity jjimListEntity);
+    Integer jjimInsert(@Param("memberId") String memberId,
+                       @Param("moimNum") Integer moimNum);
 
     Integer jjimCheck(@Param("memberId") String memberId,
-                      @Param("moimNum")int moimNum);
+                      @Param("moimNum")Integer moimNum);
 
     Integer jjimDelete (@Param("memberId") String memberId,
-                        @Param("moimNum") int moimNum);
+                        @Param("moimNum") Integer moimNum);
 
-    int jjimCount (int moimNum);
+    Integer jjimCount (Integer moimNum);
 
      List<JjimListEntity> jjimList(String memberId);
 }

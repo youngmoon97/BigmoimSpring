@@ -252,11 +252,11 @@ CREATE TABLE `moimschedule`
 
 CREATE TABLE `recentseen`
 (
-    `resentseenNum` int  NOT NULL AUTO_INCREMENT,
+    `recentseenNum` int  NOT NULL AUTO_INCREMENT,
     `memberId`      varchar(50) DEFAULT NULL,
     `moimNum`       int         DEFAULT NULL,
     `rsDate`        date NOT NULL,
-    PRIMARY KEY (`resentseenNum`),
+    PRIMARY KEY (`recentseenNum`),
     KEY             `recentseen_FK` (`memberId`) USING BTREE,
     KEY             `recentseen_FK_2` (`moimNum`) USING BTREE
 );

@@ -1,0 +1,854 @@
+fbody {
+  font-family: 'Heebo', sans-serif;
+  background-color: #F2F2F2;
+  width: 100%;
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+a{
+   text-decoration: none;
+   color: black;
+}
+
+a:hover {
+   color: pink;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+
+.join-text {
+font-size: 28px;
+font-weight: bold;
+text-align: left;
+margin: 30px auto;
+padding: 20px;
+color: black;
+background-color: transparent;
+border-radius: 5px;
+}
+
+.main-container {
+  padding: 50px;
+  background-color: rgb(255, 231, 235);
+  min-width: min-content; /* 내용 최소너비를 유지 */
+}
+
+.main-wrapper {
+  max-width: 1300px; /* 전체적인 크기를 1300px로 제한 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.main-wrapper .search-area {
+  margin-right: 4px;
+  }
+
+.search-area {
+  width: calc(100% - 800px); /* 5px 크기 증가 */
+  display: flex;
+  margin-left: 4cm;
+  align-items: center;  /* 요소 수직정렬 */
+  border: 1px solid rgb(196, 196, 196);
+}
+
+form {
+  display: flex;
+  margin-bottom: 0;
+}
+
+/* 모든 텍스트 박스에 적용 */
+input[type="text"] {
+  height: 30px;
+  width: 390px;
+  margin-left: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-btn {
+  background-color: pink;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.login-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #F5F5F5;
+  margin-right: 10px;
+}
+
+.signup-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: pink;
+  color: white;
+  margin-right: 10px;
+}
+
+.notification {
+  margin-right: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-right: 30px;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  display: block;
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+nav a:hover {
+  background-color: white;
+  color: black;
+}
+
+main {
+  max-width: 680px;
+  margin: 0 auto; /* 가운데 정렬을 위한 margin 설정 */
+  width: 85%; /* 예시 값 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px 56px;
+  align-content: center;
+}
+
+.hidden-category {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 56px;
+  padding: 0 55px;
+}
+
+
+
+
+.category .image-text {
+  font-size: 12px;
+}
+
+.hidden-category .image-text {
+  font-size: 12px;
+}
+
+.category .more-btn {
+  background-color: rgb(236, 236, 236);
+  width: 40px;
+  height: 40px;
+  font-size: 13px;
+}
+
+.category a img,
+.hidden-category a img {
+  width: 108px;
+  height: 150px;
+}
+
+
+.more-btn {
+  background-color: #f2f2f2;
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.more-btn:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.category a .image-wrapper {
+  border-radius: 25px;
+}
+
+.category a .image-wrapper .image-text {
+  margin-top: 10px;
+}
+
+.category img {
+  width: 60px;
+  height: 60px;
+}
+
+.hidden-category img {
+  width: 60px;
+  height: 60px;
+}
+
+.category a .image-wrapper img {
+  width: 40px;
+  height: 40px;
+}
+
+.category a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.category a:not(:last-child) {
+  margin-right: 0;
+}
+
+.category a, .hidden-category a {
+  flex-basis: 15%;
+  border-radius: 100px;
+}
+
+.hidden-category a .image-text {
+  margin-top: 10px;
+}
+
+.category a:hover {
+transform: translateY(-10px);
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.more-wrapper {
+  margin: 0 auto;
+}
+
+.more-btn {
+  background-color: #f2f2f2;
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.more-btn:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+
+.product-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.product-card {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 300px;
+height: 400px;
+margin: 20px;
+background-color: white;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+width: 200px;
+height: 200px;
+margin-top: 20px;
+}
+
+.product-card h3 {
+margin-top: 20px;
+font-size: 24px;
+}
+
+.product-card p {
+margin-top: 10px;
+font-size: 16px;
+color: gray;
+}
+
+.product-card button {
+margin-top: 20px;
+padding: 10px 20px;
+border-radius: 5px;
+background-color: pink;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+.product-card button:hover {
+background-color: pink;
+}
+
+.moim-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.moim-info h4,
+.moim-info h5 {
+  margin: 0;
+}
+
+
+/* 카드 */
+
+/* Style for the card group */
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* 추가 */
+  align-items: center; /* 추가 */
+}
+
+/* Style for each card */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  max-width: 300px;
+  width: 100%;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-wrapper {
+  position: relative;
+}
+
+.card-wrapper img {
+  width: 100%;
+  height: 50px;
+}
+
+.card-nav {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  font-size: 16px;
+}
+
+.card-nav a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-nav-moimArea{
+  flex-direction: row;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.card-nav-categoryName{
+  flex-direction: row;
+  padding-right: 50px;
+}
+
+.card-nav-line{
+  flex-direction: row;
+  
+}
+
+/* 찜하기 버튼*/
+.like-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  /* 위치 지정*/
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  transform: translate(0, -50%);
+}
+
+  .like-btn {
+    color: gray;
+  }
+
+  .like-btn.liked {
+    color: red;
+  }
+
+/* 드롭다운 말풍선 */
+
+  /* 알람 드롭다운 메뉴 내용 */
+  .notification-dropdown a {
+    display: block;
+    padding: 5px;
+    /*border-bottom: 1px solid #ddd;*/
+  }
+  
+  /* 알람 드롭다운 메뉴 열기 */
+  .notification-dropdown.show {
+    display: block;
+  }
+
+/* Style for the card image */
+.card img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+/* Style for the card title */
+.card h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style for the card category */
+.card .category {
+  margin-top: 0;
+  margin: 0 20px 10px;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Style for the card moimProfile */
+.card .moimProfile {
+  margin-top: 0;
+  margin: 0 20px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Style for the like button */
+.card .btn-like {
+  margin: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff5a5f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style for the card group */
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  padding-top: 15px;
+  }
+  
+  /* Style for each card */
+  .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px;
+  }
+  
+  .card:hover {
+  transform: scale(1.03);
+  }
+  
+  /* Style for the card image */
+  .card img {
+    width: 100%;
+    height: 150px;
+  }
+  
+  /* Style for the card title */
+  .card h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  
+  
+  /* Style for the card category and like button */
+  .card .card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin: 0 20px 10px; */
+  }
+  
+  .card .category {
+  font-size: 0.8rem;
+  color: #999;
+  }
+  
+  .card .btn-like {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  }
+  
+  /* Style for the card moimProfile */
+  .card .moimProfile {
+  margin: 0 20px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #666;
+  }
+  
+  /* Style for the like button on hover */
+  .card .btn-like:hover img {
+  filter: brightness(0.8);
+  }
+
+
+.social-media {
+display: flex;
+}
+
+.social-media a {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 30px;
+height: 30px;
+margin-right: 10px;
+border-radius: 50%;
+background-color: white;
+color: pink;
+text-decoration: none;
+}
+
+.social-media a:hover {
+background-color: pink;
+color: white;
+}
+
+/* 하단 */
+footer {
+  display: flex;
+  justify-content: space-between; /* 왼쪽, 오른쪽에 붙이기 */
+  align-items: center;
+  padding: 20px;
+  background-color: pink;
+  color: white;
+  font-size: 16px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-section .footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  max-width: 100%;
+}
+
+.footer-section .footer-bottom li {
+  display: inline-block;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+
+.Creater li:first-child {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.git li:first-child {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  margin-top: -1em;
+}
+
+@media (max-width: 768px) {
+
+  header {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  }
+  
+  .search-area {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+  width: 200px;
+  margin-left: 5px;
+  }
+  
+  .login-btn, .signup-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-right: 5px;
+  }
+  
+  nav {
+  justify-content: space-between;
+  padding: 10px;
+  }
+  
+  nav ul {
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  nav li {
+  margin-right: 0;
+  margin-bottom: 10px;
+  }
+  
+  .category a {
+  width: 150px;
+  height: 150px;
+  font-size: 16px;
+  }
+  
+  .product-card {
+  width: 250px;
+  height: 350px;
+  margin: 10px;
+  }
+  
+  .product-card img {
+  width: 150px;
+  height: 150px;
+  }
+  
+  .product-card h3 {
+  font-size: 20px;
+  }
+  
+  .product-card p {
+  font-size: 14px;
+  }
+  
+  }
+  
+  .member-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.member-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.member-dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.member-dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.member-dropdown-content a:hover {
+background-color: #f1f1f1;
+}
+
+.member-dropdown-content a:hover {
+background-color: #f1f1f1;
+}
+
+.member-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.member-dropdown:hover .member-dropdown-content {
+    display: block;
+}
+
+.logout-btn {
+    background-color: pink;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.member-dropdown, .logout-btn, .notification {
+  display: inline-block;
+  vertical-align: middle; /* this will vertically align the elements */
+}
+
+.header-function {
+  display: flex;
+  align-items: center; /* center the items vertically */
+}
+
+.notification {
+  margin-left: 10px; /* add some space between the logout button and notification icon */
+}
+
+
+  
+  
+  @media (max-width: 576px) {
+  
+  input[type="text"] {
+  width: 150px;
+  font-size: 14px;
+  }
+  
+  .category a {
+  width: 120px;
+  height: 120px;
+  font-size: 14px;
+  }
+  
+  .product-card {
+  width: 200px;
+  height: 300px;
+  }
+  
+  .product-card img {
+  width: 120px;
+  height: 120px;
+  }
+  
+  .product-card h3 {
+  font-size: 18px;
+  }
+  
+  .product-card p {
+  font-size: 12px;
+  }
+  
+  /* 화면 폭이 768px 이하일 때 */
+@media (max-width: 768px) {
+  .search-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search-btn {
+    margin-top: 10px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+  }
+}
+
+/* 화면 폭이 768px보다 클 때 */
+@media (min-width: 769px) {
+  .search-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .search-btn {
+    margin-left: 10px;
+  }
+  
+  input[type="text"] {
+    width: 200px;
+  }
+}
+
+  
+  
+  }
+  

@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecentSeenEntity {
-    private int resentseenNum;
+    private Integer resentseenNum;
     private String memberId;
-    private int moimNum;
+    private Integer moimNum;
     private LocalDateTime rsDate;
 }

@@ -3,10 +3,10 @@ server:
 
 #JSP ????
 spring:
-#  security:
-#    user:
-#      name: test
-#      password: 123
+  security:
+    user:
+      name: test
+      password: 123
   mvc:
     view:
       prefix: /WEB-INF/views/

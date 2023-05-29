@@ -20,14 +20,17 @@ public class ThemeService {
 
     private final ThemeRepository themeRepository;
 
-    public HttpEntity<?> themeList(){
-        List<ThemeEntity> themeEntityList = themeRepository.themeList();
-        return new ResponseEntity<>(
-                ResDTO.builder()
-                        .code(0)
-                        .message("테마 리스트 조회에 성공하였습니다.")
-                        .data(ThemeDTO.ResBasic.fromEntityList(themeEntityList).getThemeList())
-                        .build(),
-                HttpStatus.OK);
+    public ThemeDTO.ResBasic getThemeList(){
+        return ThemeDTO.ResBasic.fromEntityList(themeRepository.themeList());
     }
+//    public HttpEntity<?> themeList(){
+//        List<ThemeEntity> themeEntityList = themeRepository.themeList();
+//        return new ResponseEntity<>(
+//                ResDTO.builder()
+//                        .code(0)
+//                        .message("테마 리스트 조회에 성공하였습니다.")
+//                        .data(ThemeDTO.ResBasic.fromEntityList(themeEntityList).getThemeList())
+//                        .build(),
+//                HttpStatus.OK);
+//    }
 }

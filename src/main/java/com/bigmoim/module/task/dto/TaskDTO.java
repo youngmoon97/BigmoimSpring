@@ -24,8 +24,8 @@ public class TaskDTO {
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        static class Task {
-            int taskNum;
+        public static class Task {
+            Integer taskNum;
             String taskName;
         }
         public static ResBasic fromEntityList(List<TaskEntity> taskEntityList){

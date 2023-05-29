@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BusinessEntity {
-  private int businessNum;
+  private Integer businessNum;
   private String businessName;
 
   @Override

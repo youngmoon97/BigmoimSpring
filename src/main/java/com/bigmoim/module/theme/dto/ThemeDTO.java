@@ -16,7 +16,6 @@ public class ThemeDTO {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-
     public static class ResBasic{
         private List<Theme> themeList;
 
@@ -24,8 +23,8 @@ public class ThemeDTO {
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        static class Theme{
-            int themeNum;
+        public static class Theme{
+            Integer themeNum;
             String themeName;
         }
 

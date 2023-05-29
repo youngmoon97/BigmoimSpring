@@ -1,11 +1,4 @@
-<%@page import="java.io.File"%>
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.time.LocalDate" %>
-<jsp:useBean id="mMgr" class="controll.Mgr.MemberMgr"/>
-<jsp:useBean id="mBean" class="model.Bean.MemberBean"/>
+
 
 <%
 	final String SAVEFOLDER = "C:/Jsp/bigmoim/src/main/webapp/image/";

@@ -17,19 +17,20 @@ public class BusinessDTO {
     @AllArgsConstructor
     public static class ResBasic {
 
-        private List<Business> businnesList;
+        private List<Business> businessList;
 
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        static class Business {
-            int businessNum;
+        public static class Business {
+            Integer businessNum;
             String businessName;
         }
 
         public static ResBasic fromEntityList(List<BusinessEntity> businessEntityList) {
-            List<ResBasic.Business> businessList = businessEntityList.stream().map(businessEntity -> {
+            List<Business> businessList = businessEntityList.stream().map(businessEntity -> {
+
                 return Business.builder()
                         .businessNum(businessEntity.getBusinessNum())
                         .businessName(businessEntity.getBusinessName())

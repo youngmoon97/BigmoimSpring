@@ -19,14 +19,18 @@ import java.util.List;
 public class BusinessService {
     private final BusinessRepository businessRepository;
 
-    public HttpEntity<?> businessList(){
-        List<BusinessEntity> businessEntityList = businessRepository.businessList();
-        return new ResponseEntity<>(
-                ResDTO.builder()
-                        .code(0)
-                        .message("업종 리스트 조희에 성공하였습니다.")
-                        .data(BusinessDTO.ResBasic.fromEntityList(businessEntityList).getBusinnesList())
-                        .build(),
-                HttpStatus.OK);
+    public BusinessDTO.ResBasic getBusinessList() {
+        return BusinessDTO.ResBasic.fromEntityList(businessRepository.businessList());
     }
+
+//    public HttpEntity<?> businessList(){
+//        List<BusinessEntity> businessEntityList = businessRepository.businessList();
+//        return new ResponseEntity<>(
+//                ResDTO.builder()
+//                        .code(0)
+//                        .message("업종 리스트 조희에 성공하였습니다.")
+//                        .data(BusinessDTO.ResBasic.fromEntityList(businessEntityList).getBusinnesList())
+//                        .build(),
+//                HttpStatus.OK);
+//    }
 }

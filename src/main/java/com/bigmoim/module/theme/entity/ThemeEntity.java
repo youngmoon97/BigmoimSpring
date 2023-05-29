@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ThemeEntity {
-  private int themeNum;
+  private Integer themeNum;
   private String themeName;
 
   @Override

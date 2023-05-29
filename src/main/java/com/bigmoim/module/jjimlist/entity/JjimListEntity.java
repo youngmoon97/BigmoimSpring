@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JjimListEntity {
-  private int jjimNum;
+  private Integer jjimNum;
   private String memberId;
-  private int moimNum;
+  private Integer moimNum;
 }
