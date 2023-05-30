@@ -17,4 +17,6 @@ public interface RoleRepository {
     Integer roleDelete(@Param("memberId") String memberId, @Param("role") String role);
 
     Integer roleInsert(RoleEntity roleEntity);
+
+    Integer roleDeleteAll(String memberId);
 }

@@ -1,5 +1,6 @@
 package com.bigmoim.module.moim.dto;
 
+import com.bigmoim.module.category.entity.CategoryEntity;
 import com.bigmoim.module.member.entity.MemberEntity;
 import com.bigmoim.module.member.entity.RoleEntity;
 import com.bigmoim.module.moim.entity.MoimEntity;
@@ -23,69 +24,89 @@ public class MainDTO {
         private List<AllMoim> allMoimList;
         private Member member;
         private List<Role> roleList;
+        private List<Category> categoryList;
 
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        public static class Member{
-            private String memberId;
-            private String memberImg;
+        public static class Category {
+            private Integer categoryNum;
+            private String categoryName;
+            private String categoryImg;
         }
+
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        public static class Role{
+        public static class Member {
+            private String memberId;
+            private String memberImg;
+        }
+
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Role {
             private String memberId;
             private String role;
         }
+
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
         public static class Class {
-            int moimNum;
+            Integer moimNum;
             String moimName;
             String moimArea;
-            int moimHCount;
-            int moimNCount;
+            Integer moimHCount;
+            Integer moimNCount;
             String memberId;
             String moimKakao;
-            int categoryNum;
+            Integer categoryNum;
             String moimImg;
             String moimProfile;
             String moimDate;
-            int businessNum;
-            int taskNum;
-            int themeNum;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
             String classPrice;
-            int moimOrClass;
+            Integer moimOrClass;
         }
+
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
         public static class AllMoim {
-            int moimNum;
+            Integer moimNum;
             String moimName;
             String moimArea;
-            int moimHCount;
-            int moimNCount;
+            Integer moimHCount;
+            Integer moimNCount;
             String memberId;
             String moimKakao;
-            int categoryNum;
+            Integer categoryNum;
             String moimImg;
             String moimProfile;
             String moimDate;
-            int businessNum;
-            int taskNum;
-            int themeNum;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
             String classPrice;
-            int moimOrClass;
+            Integer moimOrClass;
         }
 
-        public static ResBasic fromEntityList(List<MoimEntity> moimEntityList, List<MoimEntity> allMoimEntityList,MemberEntity memberEntity,List<RoleEntity> roleEntityList) {
+        public static ResBasic fromEntityList(
+                List<MoimEntity> moimEntityList,
+                List<MoimEntity> allMoimEntityList,
+                MemberEntity memberEntity,
+                List<RoleEntity> roleEntityList,
+                List<CategoryEntity> categoryEntityList
+        ) {
 
             List<Class> classList = moimEntityList.stream().map(moimEntity -> {
                 return Class.builder()
@@ -141,7 +162,14 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
 
-            return new ResBasic(classList,allMoimList,member,roleList);
+            List<Category> categoryList = categoryEntityList.stream().map(category -> {
+                return Category.builder()
+                        .categoryNum(category.getCategoryNum())
+                        .categoryName(category.getCategoryName())
+                        .categoryImg(category.getCategoryImg())
+                        .build();
+            }).collect(Collectors.toList());
+            return new ResBasic(classList, allMoimList, member, roleList, categoryList);
         }
     }
 }

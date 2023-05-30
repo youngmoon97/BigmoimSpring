@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>대모임에 오신걸 환영합니다!</title>
-    <link type="text/css" rel="stylesheet" href="/bigmoim/view/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Heebo:wght@500&display=swap");
     </style>
@@ -53,7 +53,6 @@
         </div>
         <p>.</p>
     </footer>
-
 </head>
 </body>
 </html>

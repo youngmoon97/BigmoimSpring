@@ -2,8 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <c:import url="../layout/top.jsp" charEncoding="UTF-8">
-    <c:param name="member" value="${mainDto.member}"></c:param>
-    <c:param name="roleList" value="${mainDto.roleList}"></c:param>
+<%--    <c:param name="member" value="$.member}"></c:param>--%>
+<%--    <c:param name="roleList" value="$.roleList}"></c:param>--%>
 </c:import>
 
 <!DOCTYPE html>
@@ -37,12 +37,13 @@
 <!-- 카드 -->
 <!-- 클래스 -->
 <c:choose>
-    <c:when test="${mainDto.member.memberId eq null}"><!--방문자일때-->
-        ${mainDto.member.memberId == "방문자"}
-        <c:forEach items="${mainDto.allMoimList}" var="allMoim"><!--방문자일때 전체모임출력-->
-            <div class="card-group">
+
+    <c:when test="${dto.member.memberId eq null}"><!--방문자일때-->
+        ${dto.member.memberId == "방문자"}
+        <div class="card-group">
+        <c:forEach items="${dto.allMoimList}" var="allMoim"><!--방문자일때 전체모임출력-->
                 <article class="card">
-                    <a href="/bigmoim/view/moim/moimdetail.jsp?num=${allMoim.moimNum}">
+                    <a href="../moim/moimdetail/${classList.moimNum}">
                         <div class="card-wrapper">
                             <img src=${allMoim.moimImg} alt="Image">
                                 <%--                            <form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
@@ -59,18 +60,14 @@
                                 <%--                                </button>--%>
                                 <%--                            </form>--%>
                             <h4>${allMoim.moimName}</h4>
-                            <h3>${allMoim.moimNCount}/ ${allMoim.moimHCount}</h3>
+                            <h3>${allMoim.moimNCount} / ${allMoim.moimHCount}</h3>
                             <div class="card-nav">
-                                <p class="moimArea" name="moimArea" value=""
-                                   style="margin-top: 0; color: black; text-decoration: none;">${allMoim.moimArea}
+                                <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allMoim.moimArea}
                                 </p>
-                                <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">
-                                    &nbsp; | &nbsp;</p>
-                                <p class="categoryName" name="categoryName" value=""
-                                   style="margin-top: 0; color: black; text-decoration: none;">${allmoim.categoryNum}
+                                <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
+                                <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allmoim.categoryNum}
                                 </p>
-                                <p class="moimProfile" name="moimProfile" value=""
-                                   style="margin-top: 0; color: black; text-decoration: none;"><${allmoim.moimProfile}
+                                <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allmoim.moimProfile}
                                 </p>
                             </div>
                         </div>
@@ -81,37 +78,69 @@
     </c:when>
     <c:otherwise><!--로그인했을때-->
         <c:choose>
-            <c:when test="${mainDto.classList.size() eq null}"><!-- 주변 클래스 모임이 없을때-->
-                <p class="join-text"> 님 주변 클래스 모임이 아직 없습니다 ㅠ</p>
-                <c:forEach items="${mainDto.allMoimList}" var="allMoim">
-
+            <c:when test="${dto.classList.size() eq 0}"><!-- 주변 클래스 모임이 없을때-->
+                <p class="join-text"> ${dto.member.memberId}님 주변 클래스 모임이 아직 없습니다 ㅠ</p>
+                <div class="card-group">
+                <c:forEach items="${dto.allMoimList}" var="allMoim">
+                    <article class="card">
+                        <a href="../moim/moimdetail/${allMoim.moimNum}">
+                            <div class="card-wrapper">
+                                <img src=${allMoim.moimImg} alt="Image">
+                                    <%--                            <form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
+                                    <%--                                <button class="like-btn" id="like-btn-${allMoim.moimNum}">--%>
+                                    <%--                                    <onclick--%>
+                                    <%--                                    ="likeBtnChange('${allMoim.moimNum}')">&lt;%&ndash;style="color:red; bgcolor: white;"&ndash;%&gt;--%>
+                                    <%--                                    </onclick>--%>
+                                    <%--                                    <i id="heart${allMoim.moimNum}" &ndash;%&gt;--%>
+                                    <%--                                        <%if (moimMgr.jjimCheck(memberId, moimbean.getMoimNum())) { %>--%>
+                                    <%--                                        class = "fas fa-heart">--%>
+                                    <%--                                        <% } else {%>&ndash;%&gt;--%>
+                                    <%--                                        class = "far fa-heart">--%>
+                                    <%--                                        <%}%>></i>--%>
+                                    <%--                                </button>--%>
+                                    <%--                            </form>--%>
+                                <h4>${allMoim.moimName}</h4>
+                                <h3>${allMoim.moimNCount}/ ${allMoim.moimHCount}</h3>
+                                <div class="card-nav">
+                                    <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allMoim.moimArea}
+                                    </p>
+                                    <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
+                                    <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allmoim.categoryNum}
+                                    </p>
+                                    <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allmoim.moimProfile}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    </div>
                 </c:forEach>
             </c:when>
             <c:otherwise><!-- 클래스모임 있을때 -->
-                <c:forEach items="${mainDto.classList}" var="classList">
-                    <article>
-                        <div class="text">
-                            <p class="join-text"> 님! 클래스 모임입니다</p>
-                        </div>
-                    </article>
-                    <div class="card-group">
+                <article>
+                    <div class="text">
+                        <p class="join-text"> ${dto.member.memberId}님! 클래스 모임입니다</p>
+                    </div>
+                </article>
+                <div class="card-group">
+                <c:forEach items="${dto.classList}" var="classList">
                         <article class="card">
-                            <a href="/bigmoim/view/moim/moimdetail.jsp?num=${classList.moimNum}">
+                            <a href="../moim/moimdetail/${classList.moimNum}">
                                 <div class="card-wrapper">-
                                     <img src=${classList.moimImg} alt="Image">
-                                        <%--        										<form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
-                                        <%--        											<button class="like-btn" id="like-btn-${class.moimNum}">--%>
-                                        <%--        													<onclick="likeBtnChange(${class.moimNum})" style="color:red; bgcolor: white;">--%>
-                                        <%--        												<i id="heart${class.moimNum}">--%>
-                                        <%--        														<%if(moimMgr.jjimCheck(memberId, moimbean.getMoimNum())){ %>--%>
-                                        <%--        												   class = "fas fa-heart"--%>
-                                        <%--        												   class = "far fa-heart"--%>
-                                        <%--        											</button>--%>
-                                        <%--                                                </form>--%>
+                                        <%--<form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
+                                        <%--	<button class="like-btn" id="like-btn-${class.moimNum}">--%>
+                                        <%--			<onclick="likeBtnChange(${class.moimNum})" style="color:red; bgcolor: white;">--%>
+                                        <%--		<i id="heart${class.moimNum}">--%>
+                                        <%--				<%if(moimMgr.jjimCheck(memberId, moimbean.getMoimNum())){ %>--%>
+                                        <%--		   class = "fas fa-heart"--%>
+                                        <%--		   class = "far fa-heart"--%>
+                                        <%--	</button>--%>
+                                        <%--</form>--%>
                                 </div>
-                                <h4><${classList.moimName}</h4>
+                                <h4>${classList.moimName}</h4>
                                 <h3>${classList.moimNCount} / ${classList.moimHCount}</h3>
-                                <div class="card-nav">--%>
+                                <div class="card-nav">
                                     <p class="moimArea" name="moimArea" value="${classList.moimArea}"
                                        style="margin-top: 0; color: black; text-decoration: none;">${classList.moimArea}</p>
                                     <p class="card-nav-line"
@@ -138,7 +167,7 @@
 
 <script type="text/javascript">
 
-    const maindto = `${mainDto.member.memberId}`;
+    const maindto = `${dto.member.memberId}`;
     console.log(maindto);
 
     function likeBtnChange(num) {

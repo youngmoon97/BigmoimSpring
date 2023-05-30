@@ -43,4 +43,10 @@
         SET bcContent = #{bcContent}
         WHERE bcNum = #{bcNum}
     </update>
+
+    <select id="findBcMemberId">
+        select <include refid="boardComment_fullColumn"/>
+        from boardComment
+        where bcNum = #{bcNum};
+    </select>
 </mapper>

@@ -45,11 +45,17 @@
         WHERE moimNum = #{moimNum}
     </select>
 
-    <select id="getCcNum"  resultType="int">
+    <select id="getCcNum">
         SELECT ccNum
         FROM classComment
         WHERE memberId = #{memberId}
         AND moimNum = #{moimNum}
         AND ccComment = #{ccComment}
+    </select>
+
+    <select id="findByMemberId">
+        select <include refid="cc_fullColumn"/>
+        FROM classComment
+        WHERE ccNum = #{ccNum}
     </select>
 </mapper>

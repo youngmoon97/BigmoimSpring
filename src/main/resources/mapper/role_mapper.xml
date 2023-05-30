@@ -21,7 +21,15 @@
         FROM role
         WHERE role = #{role}
     </select>
-    <!-- -->
+
+    <!--회원의 모든 역할 삭제-->
+    <delete id="roleDeleteAll">
+        DELETE
+        FROM role
+        WHERE memberId = #{memberId}
+    </delete>
+
+    <!--회원의 특정 역할 삭제-->
     <delete id="roleDelete">
         DELETE
         FROM role

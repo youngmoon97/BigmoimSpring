@@ -67,4 +67,17 @@ public class RoleServiceApiV1 {
                         .build(),
                 HttpStatus.OK);
     }
+
+    //역할 모두 제거
+    @Transactional
+    public HttpEntity<?> roleDeleteAll(String memberId){
+        roleRepository.roleDeleteAll(memberId);
+
+        return new ResponseEntity<>(
+                ResDTO.builder()
+                        .code(0)
+                        .message("모든 역할 제거에 성공하였습니다.")
+                        .build(),
+                HttpStatus.OK);
+    }
 }

@@ -11,6 +11,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ClassCommentRepository {
+
+    ClassCommentEntity findByMemberId(Integer ccNum);
+
     Integer ccInsert(ClassCommentEntity classCommentEntity);
 
     Integer ccUpdate(int ccNum);

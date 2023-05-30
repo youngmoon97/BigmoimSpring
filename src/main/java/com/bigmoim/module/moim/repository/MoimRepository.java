@@ -10,16 +10,16 @@ import java.util.List;
 @Mapper
 public interface MoimRepository {
     List<MoimEntity> allMoim();
-    MoimEntity findByMoimNum(int moinNum);
+    MoimEntity findByMoimNum(Integer moinNum);
     List<MoimEntity> myMoimList(String memberId);
     List<MoimEntity> searchMoimList(String moimName);
     List<MoimEntity> classList();
-    List<MoimEntity> businessList(int businessNum);
-    List<MoimEntity> taskList(int taskNum);
-    List<MoimEntity> themeList(int themeNum);
-    List<MoimEntity> categoryList(int categoryNum);
+    List<MoimEntity> businessList(Integer businessNum);
+    List<MoimEntity> taskList(Integer taskNum);
+    List<MoimEntity> themeList(Integer themeNum);
+    List<MoimEntity> categoryList(Integer categoryNum);
     List<MoimEntity> areaList(String moimArea);
     Integer moimInsert(MoimEntity moimEntity);
-    Integer moinUpdate(int moimNum);
-    Integer moimDelete(int moimNum);
+    Integer moinUpdate(Integer moimNum);
+    Integer moimDelete(Integer moimNum);
 }

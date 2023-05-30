@@ -17,7 +17,7 @@
     <main>
 
         <div class="category">
-            <c:forEach items="${categoryList}" var="category">
+            <c:forEach items="${dto.categoryList}" var="category">
                 <a href="/bigmoim/view/moim/categorymoim.jsp?num=${category.categoryNum}">
                     <input type="hidden" name="categoryNum" value="${category.categoryNum}">
                     <div class="image-wrapper">

@@ -1,11 +1,27 @@
+-- 회원
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('moon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '조영문', '01026200656', '19970919',
         'img1', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
+insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
+                   memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
+values ('chae', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '채기주', '01012344321', '19970919',
+        'img1', 'profile1', 1,
+        '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
+
+--역할
 insert into role(memberId, role, create_date)
-values ('moon', 'USER', now());
+values ('moon', 'USER', now()),
+       ('chae', 'ADMIN', now());
+
+
+-- 모임
+INSERT INTO moim
+(moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate, themeNum, taskNum, businessNum, classprice, moimOrclass)
+VALUES(1, '해운대 주짓수  TEAM HJ', '부산 해운대구', 100, 2, 'moon', NULL, 4, '주짓수11.png', '안녕하세요! 저희는 해운대구 중동에 위치한 주짓수 도장입니다. 남녀노소 모두 함께 운동할 수 있는 분위기와 언제나 친절한 감독님과 코치들 그리고 다수의 유색벨트 분들이 계십니다. 언제나 환영합니다! 화이팅
+카카오톡 오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', '2023-05-03', 0, 0, 0, NULL, 2);
 
 
 -- 직무

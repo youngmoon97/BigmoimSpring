@@ -17,14 +17,14 @@ public class MemberEntity {
     private String memberBirth;
     private String memberImg;
     private String memberProfile;
-    private int memberGender;	//남자=1, 여자=2
+    private Integer memberGender;	//남자=1, 여자=2
     private String memberAddr;
     private String memberJobAddr;
     private String memberLikeArea;
-    private int categoryNum;
-    private int businessNum;
-    private int taskNum;
-    private int themeNum;
+    private Integer categoryNum;
+    private Integer businessNum;
+    private Integer taskNum;
+    private Integer themeNum;
 
     public void setMemberId(String memberId) {
         this.memberId = memberId;
@@ -54,7 +54,7 @@ public class MemberEntity {
         this.memberProfile = memberProfile;
     }
 
-    public void setMemberSex(int memberGender) {
+    public void setMemberSex(Integer memberGender) {
         this.memberGender = memberGender;
     }
 
@@ -70,19 +70,19 @@ public class MemberEntity {
         this.memberLikeArea = memberLikeArea;
     }
 
-    public void setCategoryNum(int categoryNum) {
+    public void setCategoryNum(Integer categoryNum) {
         this.categoryNum = categoryNum;
     }
 
-    public void setBusinessNum(int businessNum) {
+    public void setBusinessNum(Integer businessNum) {
         this.businessNum = businessNum;
     }
 
-    public void setTaskNum(int taskNum) {
+    public void setTaskNum(Integer taskNum) {
         this.taskNum = taskNum;
     }
 
-    public void setThemeNum(int themeNum) {
+    public void setThemeNum(Integer themeNum) {
         this.themeNum = themeNum;
     }
 }

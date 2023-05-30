@@ -199,19 +199,6 @@ CREATE TABLE `moimjoin`
 );
 
 
--- bigmoimspring.moimmember definition
-
-CREATE TABLE `moimmember`
-(
-    `mmNum`    int         NOT NULL AUTO_INCREMENT,
-    `memberId` varchar(50) NOT NULL,
-    `moimNum`  int         NOT NULL,
-    PRIMARY KEY (`mmNum`),
-    KEY        `moimmember_FK` (`memberId`) USING BTREE,
-    KEY        `moimmember_FK_1` (`moimNum`) USING BTREE
-);
-
-
 -- bigmoimspring.moimphotos definition
 
 CREATE TABLE `moimphotos`

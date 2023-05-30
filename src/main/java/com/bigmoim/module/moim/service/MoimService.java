@@ -2,8 +2,11 @@ package com.bigmoim.module.moim.service;
 
 import com.bigmoim.common.dto.ResDTO;
 import com.bigmoim.config.security.CustomUserDetails;
+import com.bigmoim.module.category.entity.CategoryEntity;
+import com.bigmoim.module.category.repository.CategoryRepository;
 import com.bigmoim.module.member.entity.MemberEntity;
 import com.bigmoim.module.moim.dto.MainDTO;
+import com.bigmoim.module.moim.dto.MoimDetailDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
 import com.bigmoim.module.moim.repository.MoimRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +23,16 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class MoimService {
     private final MoimRepository moimRepository;
+    private final CategoryRepository categoryRepository;
     public MainDTO.ResBasic getMainList(CustomUserDetails customUserDetails){
         List<MoimEntity> classList = moimRepository.classList();
         List<MoimEntity> moimEntityList = moimRepository.allMoim();
-
-        return MainDTO.ResBasic.fromEntityList(classList,moimEntityList,customUserDetails.getMemberEntity(),customUserDetails.getRoleEntityList());
+        List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
+        return MainDTO.ResBasic.fromEntityList(classList,moimEntityList,customUserDetails.getMemberEntity(),customUserDetails.getRoleEntityList(),categoryEntityList);
+    }
+    public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum){
+        MoimEntity moimEntity = moimRepository.findByMoimNum(moimNum);
+        return MoimDetailDTO.ResMoimDetail.toMoimDetail(moimEntity, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList());
     }
 //    public HttpEntity<?> allMoim(){
 //        List<MoimEntity> moimEntityList = moimRepository.allMoim();
