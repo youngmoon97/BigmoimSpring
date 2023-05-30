@@ -43,7 +43,7 @@
     <delete id="boardDelete" >
         DELETE
         FROM `memberBoard`
-        WHERE memberId = #{memberId}
+        WHERE mbNum = #{mbNum}
     </delete>
 
     <update id="boardUpdate" >
@@ -51,7 +51,13 @@
         SET mbTitle = #{mbTitle},
             mbContent = #{mbContent},
             mbDate = NOW(),
-            moimNum = #{moimNum}
-        WHERE memberId = #{memberId}
+            mbImg = #{mbImg}
+        WHERE mbNum = #{mbNum}
     </update>
+
+    <select id="findByMemberId">
+        select <include refid="memberBoard_fullColumn"/>
+        from memberBoard
+        where mbNum = #{mbNum}
+    </select>
 </mapper>

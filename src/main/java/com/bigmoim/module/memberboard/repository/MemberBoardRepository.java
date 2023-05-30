@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 @Mapper
 public interface MemberBoardRepository {
+
+    MemberBoardEntity findByMemberId(Integer mbNum);
     List<MemberBoardEntity> boardList(Integer moinNum);
     Integer boardInsert(MemberBoardEntity memberBoardEntity);
-    Integer boardDelete(String memberId);
-    Integer boardUpdate(String memberId);
+    Integer boardDelete(Integer mbNum);
+    Integer boardUpdate(MemberBoardEntity memberBoardEntity);
 
 }

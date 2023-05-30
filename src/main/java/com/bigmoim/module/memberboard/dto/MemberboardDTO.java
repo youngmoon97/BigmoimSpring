@@ -18,6 +18,7 @@ public class MemberboardDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ReqBasic{
+        Integer mbNum;
         String mbTitle;
         String mbContent;
         String memberId;
@@ -25,6 +26,30 @@ public class MemberboardDTO {
 
         public MemberBoardEntity boardEntity(){
             return MemberBoardEntity.builder()
+                    .mbNum(mbNum)
+                    .mbTitle(mbTitle)
+                    .mbContent(mbContent)
+                    .mbDate(LocalDateTime.now())
+                    .memberId(memberId)
+                    .moimNum(moimNum)
+                    .build();
+        }
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReqUpdate{
+        Integer mbNum;
+        String mbTitle;
+        String mbContent;
+        String memberId;
+        Integer moimNum;
+
+        public MemberBoardEntity boardEntity(){
+            return MemberBoardEntity.builder()
+                    .mbNum(mbNum)
                     .mbTitle(mbTitle)
                     .mbContent(mbContent)
                     .mbDate(LocalDateTime.now())

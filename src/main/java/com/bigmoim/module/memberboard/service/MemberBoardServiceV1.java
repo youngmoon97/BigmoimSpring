@@ -1,7 +1,8 @@
 package com.bigmoim.module.memberboard.service;
 
 import com.bigmoim.common.dto.ResDTO;
-import com.bigmoim.module.member.entity.MemberEntity;
+import com.bigmoim.common.exception.BadRequestException;
+import com.bigmoim.config.security.CustomUserDetails;
 import com.bigmoim.module.memberboard.dto.MemberboardDTO;
 import com.bigmoim.module.memberboard.entity.MemberBoardEntity;
 import com.bigmoim.module.memberboard.repository.MemberBoardRepository;
@@ -11,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,9 +33,15 @@ public class MemberBoardServiceV1 {
     }
 
     @Transactional
-    public HttpEntity<?> boardUpdate(MemberboardDTO.ReqBasic reqDto){
-        memberBoardRepository.boardUpdate(reqDto.getMemberId());
+    public HttpEntity<?> boardUpdate(CustomUserDetails customUserDetails, MemberboardDTO.ReqUpdate reqDto){
+        MemberBoardEntity memberBoardEntity = memberBoardRepository.findByMemberId(reqDto.getMbNum());
+        if(!memberBoardEntity.getMemberId().equals(customUserDetails.getMemberEntity().getMemberId())){
+            throw new BadRequestException("잘못된 요청 입니다.");
+        }
 
+        memberBoardEntity.setUpdate(reqDto.getMbTitle(), reqDto.getMbContent(),"img");
+
+        memberBoardRepository.boardUpdate(memberBoardEntity);
         return new ResponseEntity<>(
                 ResDTO.builder()
                         .code(0)
@@ -46,9 +51,12 @@ public class MemberBoardServiceV1 {
     }
 
     @Transactional
-    public HttpEntity<?> boardDelete(MemberboardDTO.ReqBasic reqDto){
-        memberBoardRepository.boardDelete(reqDto.getMemberId());
-
+    public HttpEntity<?> boardDelete(CustomUserDetails customUserDetails, Integer mbNum){
+        MemberBoardEntity memberBoardEntity = memberBoardRepository.findByMemberId(mbNum);
+        if(!memberBoardEntity.getMemberId().equals(customUserDetails.getMemberEntity().getMemberId())){
+            throw new BadRequestException("잘못된 요청 입니다.");
+        }
+        memberBoardRepository.boardDelete( mbNum);
         return new ResponseEntity<>(
                 ResDTO.builder()
                         .code(0)

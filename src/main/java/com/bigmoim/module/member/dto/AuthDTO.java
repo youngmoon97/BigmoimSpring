@@ -146,7 +146,6 @@ public class AuthDTO {
         private List<TaskDTO.ResBasic.Task> taskList;
         private List<ThemeDTO.ResBasic.Theme> themeList;
 
-
         @Data
         @Builder
         @NoArgsConstructor
