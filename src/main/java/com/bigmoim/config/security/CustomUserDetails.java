@@ -60,6 +60,9 @@ public class CustomUserDetails implements UserDetails {
     public String getUsername() {
         return memberEntity.getMemberId();
     }
+    /*public String getUserArea() {
+        return memberEntity.getMemberAddr();
+    }*/
     // 계정이 만료되지 않았는지 체크
     @Override
     public boolean isAccountNonExpired() {

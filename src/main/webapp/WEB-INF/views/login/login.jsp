@@ -24,7 +24,7 @@
         </header>
         <form method="post" name=loginFrm class="login-input-section-wrap" action="loginProcs.jsp">
             <div class="login-input-wrap">
-                <input name="memberId" id="memberId" placeholder="아이디" type="text" style="outline: none;">
+                <input name="memberId" id="memberId" placeholder="아이디" value="moon" type="text" style="outline: none;">
             </div>
             <div  class="login-input-wrap password-wrap">
                 <input name="memberPw" id="memberPw" placeholder="비밀번호" type="password" style="outline: none;">

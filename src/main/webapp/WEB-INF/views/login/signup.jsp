@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../../../../resources/static/css/style.css">
 
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../../resources/static/css/owl.carousel.min.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../resources/static/css/bootstrap.min.css">
 
     <!-- Style -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../../../resources/static/css/style.css">
 
     <style>
         /*<!-- 사진 추가용 스타일-->*/
@@ -122,11 +122,11 @@
                 <div class="back-button" style="margin-top: 3em">
                     <!--a 태그에 메인 URL 입력해야함-->
                     <a href="javascript:history.back();">
-                        <img src="/bigmoim/image/back-button.png" alt="뒤로가기" style=""/>
+                        <img src="" alt="뒤로가기" style=""/>
                     </a>
                     <h3 style="margin-left: -7.5em"><strong>회원가입</strong></h3>
                 </div>
-                <form name="signFrm" action="signProc.jsp" method="POST" enctype="multipart/form-data">
+                <form name="signFrm" enctype="multipart/form-data">
                     <div style="width: 500px; font-size: 16px;">
 
                         <div class="sign-nameHeader">

@@ -57,7 +57,7 @@
   		z-index: 500;
   		">
         <div class="logo">
-            <a href=".../main/main"><img src="/bigmoim/image/logo.png" alt="대모임 로고" width="130px"
+            <a href="/main"><img src="/bigmoim/image/logo.png" alt="대모임 로고" width="130px"
                                              height="130px"/></a>
         </div>
         <div class="search-area">
@@ -78,19 +78,19 @@
                                  style=" width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;"/>
                             <!-- 이미지 스타일 값은 이미지 받아오고 수정해봅니다. -->
                             <div class="member-dropdown-content">
-                                <a href="/bigmoim/view/login/memberupdate.jsp">내 정보 수정</a>
-                                <a href="/bigmoim/view/moim/mymoim.jsp">내 모임 관리</a>
-                                <a href="/bigmoim/view/moim/makemoim.jsp">모임개설</a>
+                                <a href="/moim/memberupdate">내 정보 수정</a>
+                                <a href="/moim/mymoim">내 모임 관리</a>
+                                <a href="/moim/makemoim">모임개설</a>
                             </div>
                         </div>
                         <span class="member-name" style="padding-right: 20px;">${dto.member.memberId}</span>
-                        <button class="logout-btn" onclick="location.href='/bigmoim/view/login/logout.jsp'">로그아웃
+                        <button class="logout-btn" onclick="location.href='/login/logout'">로그아웃
                         </button>
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <button class="login-btn" onclick="location.href='/bigmoim/view/login/login.html'">로그인</button>
-                    <button class="signup-btn" onclick="location.href='/bigmoim/view/login/signup.jsp'">회원가입</button>
+                    <button class="login-btn" onclick="location.href='/login/login'">로그인</button>
+                    <button class="signup-btn" onclick="location.href='/login/signup.'">회원가입</button>
                     <%--                    <button class="notification" onclick="toggleDropdown()">--%>
                     <%--                        <img src="/bigmoim/image/bell.png" alt="알림" style="width: 25px; height: 25px;">--%>
 
@@ -131,12 +131,12 @@
     <!-- 네비게이션 -->
     <nav>
         <ul>
-            <li><a href="/bigmoim/view/main/main.jsp">클래스</a></li>
-            <li><a href="/bigmoim/view/moim/recomoim.jsp">모임추천</a></li>
-            <li><a href="/bigmoim/view/moim/moimschedule.jsp">모임일정</a></li>
-            <li><a href="/bigmoim/view/moim/newmoim.jsp">모임신규</a></li>
+            <li><a href="/main">클래스</a></li>
+            <li><a href="/moim/recomoim">모임추천</a></li>
+            <li><a href="/moim/moimschedule">모임일정</a></li>
+            <li><a href="/moim/newmoim">모임신규</a></li>
             <c:if test="${dto.member.memberId ne null}">
-                <li><a href="/bigmoim/view/myact/myactivity.jsp">내 활동</a></li>
+                <li><a href="/moim/myactivity">내 활동</a></li>
             </c:if>
         </ul>
 

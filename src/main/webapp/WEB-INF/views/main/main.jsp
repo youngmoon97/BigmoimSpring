@@ -43,7 +43,7 @@
         <div class="card-group">
         <c:forEach items="${dto.allMoimList}" var="allMoim"><!--방문자일때 전체모임출력-->
                 <article class="card">
-                    <a href="../moim/moimdetail/${classList.moimNum}">
+                    <a href="../moim/moimdetail/${allMoim.moimNum}">
                         <div class="card-wrapper">
                             <img src=${allMoim.moimImg} alt="Image">
                                 <%--                            <form name="jjimFrm" action="jjimProc.jsp" method="get">--%>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>대모임에 오신걸 환영합니다!</title>
-    <link type="text/css" rel="stylesheet" href="/bigmoim/view/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Heebo:wght@500&display=swap");
     </style>
@@ -18,7 +18,7 @@
 
         <div class="category">
             <c:forEach items="${dto.categoryList}" var="category">
-                <a href="/bigmoim/view/moim/categorymoim.jsp?num=${category.categoryNum}">
+                <a href="/moim/categorymoim/${category.categoryNum}">
                     <input type="hidden" name="categoryNum" value="${category.categoryNum}">
                     <div class="image-wrapper">
                         <img src="${category.categoryImg}" alt=""/>
@@ -28,7 +28,7 @@
             </c:forEach>
             <c:if test="${categoryList.length > 9}">
             <div class="hidden-category" style="display: none;">
-                <a href="/bigmoim/view/moim/categorymoim.jsp?num=${category.categoryNum}">
+                <a href="/moim/categorymoim/${category.categoryNum}">
                 <input type="hidden" name="categoryNum" value="${category.categoryNum}">
                 <div class="image-wrapper">
                     <img src="${category.categoryImg}" alt=""/>

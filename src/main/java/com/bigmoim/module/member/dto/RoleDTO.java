@@ -21,6 +21,7 @@ public class RoleDTO {
         private Integer roleIdx;
         private String memberId;
         private String role;
+        private Integer moimNum;
         private LocalDateTime createDate;
     }
 
@@ -38,6 +39,7 @@ public class RoleDTO {
                     .roleIdx(roleEntity.getRoleIdx())
                     .memberId(roleEntity.getMemberId())
                     .role(roleEntity.getRole())
+                    .moimNum(roleEntity.getMoimNum())
                     .createDate(roleEntity.getCreateDate())
                     .build();
         }
@@ -50,6 +52,7 @@ public class RoleDTO {
             private Integer roleIdx;
             private String memberId;
             private String role;
+            private Integer moimNum;
             private LocalDateTime createDate;
         }
         public static ResBasic fromEntityList(List<RoleEntity> RoleEntityList){
@@ -58,6 +61,7 @@ public class RoleDTO {
                         .roleIdx(roleEntity.getRoleIdx())
                         .memberId(roleEntity.getMemberId())
                         .role(roleEntity.getRole())
+                        .moimNum(roleEntity.getMoimNum())
                         .createDate(roleEntity.getCreateDate())
                         .build();
             }).collect(Collectors.toList());

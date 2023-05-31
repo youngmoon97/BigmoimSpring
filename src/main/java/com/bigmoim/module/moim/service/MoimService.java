@@ -5,6 +5,7 @@ import com.bigmoim.config.security.CustomUserDetails;
 import com.bigmoim.module.category.entity.CategoryEntity;
 import com.bigmoim.module.category.repository.CategoryRepository;
 import com.bigmoim.module.member.entity.MemberEntity;
+import com.bigmoim.module.member.repository.MemberRepository;
 import com.bigmoim.module.moim.dto.MainDTO;
 import com.bigmoim.module.moim.dto.MoimDetailDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
@@ -24,13 +25,35 @@ import java.util.List;
 public class MoimService {
     private final MoimRepository moimRepository;
     private final CategoryRepository categoryRepository;
-    public MainDTO.ResBasic getMainList(CustomUserDetails customUserDetails){
+    private final MemberRepository memberRepository;
+
+    public MainDTO.ResBasic getMainList(CustomUserDetails customUserDetails) {
+        MemberEntity memberDetail = memberRepository.getMember(customUserDetails.getUsername());
         List<MoimEntity> classList = moimRepository.classList();
-        List<MoimEntity> moimEntityList = moimRepository.allMoim();
+        List<MoimEntity> allMoimList = moimRepository.allMoim();
         List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
-        return MainDTO.ResBasic.fromEntityList(classList,moimEntityList,customUserDetails.getMemberEntity(),customUserDetails.getRoleEntityList(),categoryEntityList);
+        List<MoimEntity> newMoimList = moimRepository.newMoimList();
+        List<MoimEntity> recoMoimList = moimRepository.areaList(memberDetail.getMemberAddr());
+        List<MoimEntity> joinMoimList = moimRepository.joinMoimList(customUserDetails.getUsername());
+        List<MoimEntity> businessMoimList = moimRepository.businessList(memberDetail.getBusinessNum());
+        List<MoimEntity> taskMoimList = moimRepository.taskList(memberDetail.getTaskNum());
+        List<MoimEntity> themeMoimList = moimRepository.themeList(memberDetail.getThemeNum());
+
+        return MainDTO.ResBasic.fromEntityList(
+                classList,
+                allMoimList,
+                customUserDetails.getMemberEntity(),
+                customUserDetails.getRoleEntityList(),
+                categoryEntityList,
+                newMoimList,
+                recoMoimList,
+                joinMoimList,
+                businessMoimList,
+                taskMoimList,
+                themeMoimList);
     }
-    public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum){
+
+    public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum) {
         MoimEntity moimEntity = moimRepository.findByMoimNum(moimNum);
         return MoimDetailDTO.ResMoimDetail.toMoimDetail(moimEntity, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList());
     }
@@ -45,7 +68,7 @@ public class MoimService {
 //                HttpStatus.OK);
 //    }
 
-    public HttpEntity<?> findByMoimNum(int moimNum){
+    public HttpEntity<?> findByMoimNum(int moimNum) {
         MoimEntity findByMoimNumEntity = moimRepository.findByMoimNum(moimNum);
         return new ResponseEntity<>(
                 ResDTO.builder()
@@ -144,7 +167,7 @@ public class MoimService {
 //                HttpStatus.OK);
 //    }
 
-    public HttpEntity<?> moimInsert(MoimEntity moimEntity){
+    public HttpEntity<?> moimInsert(MoimEntity moimEntity) {
         Integer moimInsertResult = moimRepository.moimInsert(moimEntity);
         return new ResponseEntity<>(
                 ResDTO.builder()
@@ -155,7 +178,7 @@ public class MoimService {
                 HttpStatus.OK);
     }
 
-    public HttpEntity<?> moimUpdate(int moimNum){
+    public HttpEntity<?> moimUpdate(int moimNum) {
         Integer moimUpdateResult = moimRepository.moinUpdate(moimNum);
         return new ResponseEntity<>(
                 ResDTO.builder()
@@ -166,7 +189,7 @@ public class MoimService {
                 HttpStatus.OK);
     }
 
-    public HttpEntity<?> moimDelete(int moimNum){
+    public HttpEntity<?> moimDelete(int moimNum) {
         Integer moimDeleteResult = moimRepository.moimDelete(moimNum);
         return new ResponseEntity<>(
                 ResDTO.builder()

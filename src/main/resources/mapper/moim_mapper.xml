@@ -14,11 +14,12 @@
         categoryNum,
         moimImg,
         moimProfile,
+        moimDate,
         businessNum,
         taskNum,
         themeNum,
         classPrice,
-        moimOrclass,
+        moimOrclass
     </sql>
     <!-- 모임 전체 리스트 가져오기 -->
     <select id="allMoim" resultType="com.bigmoim.module.moim.entity.MoimEntity">
@@ -98,14 +99,24 @@
         FROM moim
         WHERE categoryNum = #{categoryNum}
     </select>
-    <!-- 모임 지역별 리스트 -->
+    <!-- 모임 지역별 리스트 = 모임추천 -->
     <select id="areaList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
         SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE moimArea = #{moimArea}
     </select>
-
-
+    <!-- 신규 모임 추천 -->
+    <select id="newMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="moim_fullColumn"/>
+        FROM moim
+--         WHERE abs(datediff(moimDate,now())) &lt;= 10
+    </select>
+    <!-- 가입한 모임 -->
+    <select id="joinMoimList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT m.*
+        FROM moim m, role r, member m2
+        where m.moimNum = r.moimNum and r.memberId = m2.memberId and m2.memberId = #{memberId}
+    </select>
     <insert id="moimInsert" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
         INSERT INTO `moim` (
             moimNum,
@@ -117,6 +128,7 @@
             categoryNum,
             moimImg,
             moimProfile,
+            moimDate,
             businessNum,
             taskNum,
             themeNum,
@@ -133,6 +145,7 @@
                    #{categoryNum},
                    #{moimImg},
                    #{moimProfile},
+                   #{moimDate},
                    #{businessNum},
                    #{taskNum},
                    #{themeNum},

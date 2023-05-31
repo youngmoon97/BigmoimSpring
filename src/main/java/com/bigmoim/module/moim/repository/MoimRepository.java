@@ -19,6 +19,8 @@ public interface MoimRepository {
     List<MoimEntity> themeList(Integer themeNum);
     List<MoimEntity> categoryList(Integer categoryNum);
     List<MoimEntity> areaList(String moimArea);
+    List<MoimEntity> joinMoimList(String memberId);
+    List<MoimEntity> newMoimList();
     Integer moimInsert(MoimEntity moimEntity);
     Integer moinUpdate(Integer moimNum);
     Integer moimDelete(Integer moimNum);

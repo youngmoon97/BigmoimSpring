@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/moim/moimdetail")
+@RequestMapping("/moim")
 public class MoimController {
     private final MoimService moimService;
 
-    @GetMapping("{moimNum}")
+    @GetMapping("/moimdetail/{moimNum}")
     public String getMoimDetail(@PathVariable("moimNum") Integer moimNum,
                                 @AuthenticationPrincipal CustomUserDetails customUserDetails,
                                 Model model){
@@ -26,5 +26,22 @@ public class MoimController {
         System.out.println(dto);
         model.addAttribute("dto", dto);
         return "/moim/moimdetail";
+    }
+    @GetMapping("/recomoim")
+    public String getRecoMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/recomoim";
+    }
+    @GetMapping("/newmoim")
+    public String getNewMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/newmoim";
+    }@GetMapping("/myactivity")
+    public String getMyActivityPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/myactivity";
     }
 }

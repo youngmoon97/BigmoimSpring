@@ -25,6 +25,12 @@ public class MainDTO {
         private Member member;
         private List<Role> roleList;
         private List<Category> categoryList;
+        private List<NewMoim> newMoimList;
+        private List<RecoMoim> recoMoimList;
+        private List<JoinMoim> joinMoimList;
+        private List<BusinessMoim> businessMoimList;
+        private List<TaskMoim> taskMoimList;
+        private List<ThemeMoim> themeMoimList;
 
         @Data
         @Builder
@@ -99,13 +105,151 @@ public class MainDTO {
             String classPrice;
             Integer moimOrClass;
         }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class NewMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class RecoMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class JoinMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class BusinessMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class TaskMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class ThemeMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            String moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
 
         public static ResBasic fromEntityList(
                 List<MoimEntity> moimEntityList,
                 List<MoimEntity> allMoimEntityList,
                 MemberEntity memberEntity,
                 List<RoleEntity> roleEntityList,
-                List<CategoryEntity> categoryEntityList
+                List<CategoryEntity> categoryEntityList,
+                List<MoimEntity> newMoimEntityList,
+                List<MoimEntity> recoMoimEntityList,
+                List<MoimEntity> joinMoimEntityList,
+                List<MoimEntity> businessMoimEntityList,
+                List<MoimEntity> taskMoimEntityList,
+                List<MoimEntity> themeMoimEntityList
         ) {
 
             List<Class> classList = moimEntityList.stream().map(moimEntity -> {
@@ -169,7 +313,129 @@ public class MainDTO {
                         .categoryImg(category.getCategoryImg())
                         .build();
             }).collect(Collectors.toList());
-            return new ResBasic(classList, allMoimList, member, roleList, categoryList);
+            List<NewMoim> newMoimList = newMoimEntityList.stream().map(moimEntity-> {
+                return NewMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+
+            List<RecoMoim> recoMoimList = recoMoimEntityList.stream().map(moimEntity -> {
+                return RecoMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+            List<JoinMoim> joinMoimList = joinMoimEntityList.stream().map(moimEntity -> {
+                return JoinMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+            List<BusinessMoim> businessMoimList = businessMoimEntityList.stream().map(moimEntity -> {
+                return BusinessMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+            List<TaskMoim> taskMoimList = taskMoimEntityList.stream().map(moimEntity -> {
+                return TaskMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+            List<ThemeMoim> themeMoimList = themeMoimEntityList.stream().map(moimEntity -> {
+                return ThemeMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
+
+            return new ResBasic(classList, allMoimList, member, roleList, categoryList,  newMoimList, recoMoimList,joinMoimList,businessMoimList,taskMoimList,themeMoimList);
         }
     }
 }
