@@ -68,13 +68,18 @@
         WHERE moimNum = #{moimNum}
     </delete>
 
-    <!-- 클래스 리스트 가져오기 -->
-    <select id="classList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+    <!-- 모든 클래스 리스트 가져오기 -->
+    <select id="allclassList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
         SELECT <include refid="moim_fullColumn"/>
         FROM moim
         WHERE moimOrclass = 1
     </select>
-
+    <!-- 주변 클래스 리스트 가져오기 -->
+    <select id="classList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
+        SELECT <include refid="moim_fullColumn"/>
+        FROM moim
+        WHERE moimOrclass = 1 and moimArea = #{moimArea}
+    </select>
     <!-- 모임 업종별 리스트 -->
     <select id="businessList" resultType="com.bigmoim.module.moim.entity.MoimEntity">
         SELECT <include refid="moim_fullColumn"/>

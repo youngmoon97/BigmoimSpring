@@ -2,21 +2,32 @@ package com.bigmoim.module.moim.service;
 
 import com.bigmoim.common.dto.ResDTO;
 import com.bigmoim.config.security.CustomUserDetails;
+import com.bigmoim.module.business.entity.BusinessEntity;
+import com.bigmoim.module.business.repository.BusinessRepository;
 import com.bigmoim.module.category.entity.CategoryEntity;
 import com.bigmoim.module.category.repository.CategoryRepository;
 import com.bigmoim.module.member.entity.MemberEntity;
+import com.bigmoim.module.member.entity.RoleEntity;
 import com.bigmoim.module.member.repository.MemberRepository;
+import com.bigmoim.module.member.repository.RoleRepository;
 import com.bigmoim.module.moim.dto.MainDTO;
+import com.bigmoim.module.moim.dto.MoimDTO;
 import com.bigmoim.module.moim.dto.MoimDetailDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
 import com.bigmoim.module.moim.repository.MoimRepository;
+import com.bigmoim.module.task.entity.TaskEntity;
+import com.bigmoim.module.task.repository.TaskRepository;
+import com.bigmoim.module.theme.entity.ThemeEntity;
+import com.bigmoim.module.theme.repository.ThemeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,11 +37,17 @@ public class MoimService {
     private final MoimRepository moimRepository;
     private final CategoryRepository categoryRepository;
     private final MemberRepository memberRepository;
-
+    private final BusinessRepository businessRepository;
+    private final TaskRepository taskRepository;
+    private final ThemeRepository themeRepository;
     public MainDTO.ResBasic getMainList(CustomUserDetails customUserDetails) {
         MemberEntity memberDetail = memberRepository.getMember(customUserDetails.getUsername());
-        List<MoimEntity> classList = moimRepository.classList();
+        List<MoimEntity> classList = moimRepository.classList(memberDetail.getMemberAddr());
+        List<MoimEntity> allclassList = moimRepository.allclassList();
         List<MoimEntity> allMoimList = moimRepository.allMoim();
+        List<BusinessEntity> businessEntityList = businessRepository.businessList();
+        List<TaskEntity> taskEntityList = taskRepository.taskList();
+        List<ThemeEntity> themeEntityList = themeRepository.themeList();
         List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
         List<MoimEntity> newMoimList = moimRepository.newMoimList();
         List<MoimEntity> recoMoimList = moimRepository.areaList(memberDetail.getMemberAddr());
@@ -38,24 +55,20 @@ public class MoimService {
         List<MoimEntity> businessMoimList = moimRepository.businessList(memberDetail.getBusinessNum());
         List<MoimEntity> taskMoimList = moimRepository.taskList(memberDetail.getTaskNum());
         List<MoimEntity> themeMoimList = moimRepository.themeList(memberDetail.getThemeNum());
-
-        return MainDTO.ResBasic.fromEntityList(
-                classList,
-                allMoimList,
-                customUserDetails.getMemberEntity(),
-                customUserDetails.getRoleEntityList(),
-                categoryEntityList,
-                newMoimList,
-                recoMoimList,
-                joinMoimList,
-                businessMoimList,
-                taskMoimList,
-                themeMoimList);
+        return MainDTO.ResBasic.fromEntityList(classList, allMoimList, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList(),
+                categoryEntityList, allclassList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList, themeMoimList,
+                 businessEntityList, taskEntityList, themeEntityList);
     }
 
     public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum) {
         MoimEntity moimEntity = moimRepository.findByMoimNum(moimNum);
         return MoimDetailDTO.ResMoimDetail.toMoimDetail(moimEntity, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList());
+    }
+    public MainDTO.ResCategoryMoim getCategoryMoim(Integer categoryNum, CustomUserDetails customUserDetails) {
+        List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
+        List<MoimEntity> categoryMoimList = moimRepository.categoryList(categoryNum);
+        return MainDTO.ResCategoryMoim.fromEntityList(customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList(),
+                categoryEntityList,categoryMoimList, categoryNum);
     }
 //    public HttpEntity<?> allMoim(){
 //        List<MoimEntity> moimEntityList = moimRepository.allMoim();
@@ -79,17 +92,7 @@ public class MoimService {
                 HttpStatus.OK);
     }
 
-//    public HttpEntity<?> myMoimList(String memberId){
-//        List<MoimEntity> myMoimListEntity = moimRepository.myMoimList(memberId);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("내 모임 리스트를 찾았습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(myMoimListEntity).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
+
 //    public HttpEntity<?> searchMoimList(String moimName){
 //        List<MoimEntity> searchMoimEntityList = moimRepository.searchMoimList(moimName);
 //        return new ResponseEntity<>(
@@ -100,83 +103,9 @@ public class MoimService {
 //                        .build(),
 //                HttpStatus.OK);
 //    }
-//
-//    public HttpEntity<?> classList(){
-//        List<MoimEntity> classEntityList = moimRepository.classList();
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("클래스 리스트 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(classEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
-//    public HttpEntity<?> businessList(int businessNum){
-//        List<MoimEntity> businessEntityList = moimRepository.businessList(businessNum);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("업종별 모임 리스트 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(businessEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
-//    public HttpEntity<?> taskList(int taskNum){
-//        List<MoimEntity> taskEntityList = moimRepository.taskList(taskNum);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("직무별 모임 리스트 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(taskEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
-//    public HttpEntity<?> themeList(int themeNum){
-//        List<MoimEntity> themeEntityList = moimRepository.themeList(themeNum);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("테마별 모임 리스트 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(themeEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
-//    public HttpEntity<?> categoryList(int categoryNum){
-//        List<MoimEntity> categoryEntityList = moimRepository.themeList(categoryNum);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("카테고리별 모임 리스트 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(categoryEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
-//
-//    public HttpEntity<?> areaList(String moimArea){
-//        List<MoimEntity> areaEntityList = moimRepository.areaList(moimArea);
-//        return new ResponseEntity<>(
-//                ResDTO.builder()
-//                        .code(0)
-//                        .message("지역별 모임 조회에 성공하였습니다.")
-//                        .data(MainDTO.ResBasic.fromEntityList(areaEntityList).getMoimList())
-//                        .build(),
-//                HttpStatus.OK);
-//    }
 
-    public HttpEntity<?> moimInsert(MoimEntity moimEntity) {
-        Integer moimInsertResult = moimRepository.moimInsert(moimEntity);
-        return new ResponseEntity<>(
-                ResDTO.builder()
-                        .code(0)
-                        .message("모임을 생성했습니다.")
-                        .data(moimInsertResult)
-                        .build(),
-                HttpStatus.OK);
-    }
+
+
 
     public HttpEntity<?> moimUpdate(int moimNum) {
         Integer moimUpdateResult = moimRepository.moinUpdate(moimNum);

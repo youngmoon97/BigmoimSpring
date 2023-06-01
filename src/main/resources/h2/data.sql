@@ -7,8 +7,26 @@ values ('moon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', 
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
-values ('chae', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '채기주', '01012344321', '19970919',
+values ('chae', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '채기주', '01012344321', '19980511',
         'img1', 'profile1', 1,
+        '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
+
+insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
+                   memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
+values ('lee', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '이상목', '01052481328', '19970322',
+        'img1', 'profile1', 1,
+        '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
+
+insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
+                   memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
+values ('seo', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '서지우', '01043218252', '19980505',
+        'img1', 'profile1', 2,
+        '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
+
+insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
+                   memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
+values ('ha', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '하서영', '01093314616', '20000317',
+        'img1', 'profile1', 2,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 --역할
@@ -17,14 +35,47 @@ values ('moon', 'USER', null, now()),
        ('chae', 'ADMIN', null, now()),
        ('moon', 'LEADER', 1, now());
 
+insert into role(memberId, role, moimNum, create_date)
+values ('ha', 'USER', null, now()),
+       ('ha', 'LEADER', 2, now()),
+       ('lee', 'USER', null, now()),
+       ('lee', 'LEADER', 3, now()),
+       ('seo', 'USER', null, now()),
+       ('seo', 'LEADER', 4, now()),
+       ('chae', 'USER', null, now()),
+       ('chae', 'LEADER', 5, now());
+
 
 -- 모임
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
 VALUES (1, '해운대 주짓수  TEAM HJ', '부산 해운대구', 100, 2, 'moon', NULL, 4, '주짓수11.png', '안녕하세요! 저희는 해운대구 중동에 위치한 주짓수 도장입니다. 남녀노소 모두 함께 운동할 수 있는 분위기와 언제나 친절한 감독님과 코치들 그리고 다수의 유색벨트 분들이 계십니다. 언제나 환영합니다! 화이팅
-카카오톡 오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', '2023-05-03', 0, 0, 2, NULL, 2);
+카카오톡 오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', '2023-05-03', 0, 0, 2, NULL, 1);
 
+INSERT INTO moim
+(moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
+ themeNum, taskNum, businessNum, classprice, moimOrclass)
+VALUES (2, '해운대 독서 모임', '부산 해운대구', 100, 2, 'ha', NULL, 5, '주짓수11.png', '반갑습니다! 저희와 함께 독서 토론도 하면서 친목해봐요!
+오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', '2023-05-08', 0, 0, 2, NULL, 2);
+
+INSERT INTO moim
+(moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
+ themeNum, taskNum, businessNum, classprice, moimOrclass)
+VALUES (3, '해운대 스프링 스터디 모임', '부산 해운대구', 10, 2, 'lee', NULL, 6, '주짓수11.png', '얼른 취업해야죠! 스프링 공부하면서 면접 연습도 해봅시다!
+여기는 오픈채팅방 주소입니다! https://open.kakao.com/o/gt3F2Gnc', '2023-05-28', 0, 0, 2, NULL, 2);
+
+INSERT INTO moim
+(moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
+ themeNum, taskNum, businessNum, classprice, moimOrclass)
+VALUES (4, '해운대 반려견 사랑 모임', '부산 해운대구', 30, 2, 'seo', NULL, 8, '주짓수11.png', '반려견을 사랑하는 사람들의 모임입니다! 편하게 문의해주세요!
+문의는 오픈채팅방로 부탁드립니다! https://open.kakao.com/o/gt3F2Gnc', '2023-06-01', 0, 0, 2, NULL, 2);
+
+INSERT INTO moim
+(moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
+ themeNum, taskNum, businessNum, classprice, moimOrclass)
+VALUES (5, '해운대 개발자 취업하러가자!', '부산 해운대구', 20, 2, 'chae', NULL, 6, '주짓수11.png', '개발자로 취업하기 위한 여정을 함께 해보지 않으시겠습니까?
+오픈 채팅방으로 와주세요! https://open.kakao.com/o/gt3F2Gnc', '2023-05-30', 0, 0, 2, NULL, 1);
 
 -- 직무
 insert into task

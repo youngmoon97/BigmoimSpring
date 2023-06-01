@@ -70,7 +70,7 @@
                                                 <%} %>
                                     </form>--%>
                             </div>
-                            <h4>${newmoim.moimNum}</h4>
+                            <h4>${newmoim.moimName}</h4>
                             <h3>${newmoim.moimNCount} / ${newmoim.moimHCount}</h3>
 
                             <div class="card-nav">

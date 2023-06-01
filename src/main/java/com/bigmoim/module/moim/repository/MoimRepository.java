@@ -13,7 +13,8 @@ public interface MoimRepository {
     MoimEntity findByMoimNum(Integer moinNum);
     List<MoimEntity> myMoimList(String memberId);
     List<MoimEntity> searchMoimList(String moimName);
-    List<MoimEntity> classList();
+    List<MoimEntity> classList(String moimArea);
+    List<MoimEntity> allclassList();
     List<MoimEntity> businessList(Integer businessNum);
     List<MoimEntity> taskList(Integer taskNum);
     List<MoimEntity> themeList(Integer themeNum);

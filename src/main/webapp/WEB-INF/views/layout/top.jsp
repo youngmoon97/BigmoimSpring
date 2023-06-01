@@ -84,11 +84,12 @@
                             </div>
                         </div>
                         <span class="member-name" style="padding-right: 20px;">${dto.member.memberId}</span>
-                        <button class="logout-btn" onclick="location.href='/login/logout'">로그아웃
+                        <button class="logout-btn" onclick="javascript:location.replace('/logout')">로그아웃
                         </button>
                     </div>
                 </c:when>
                 <c:otherwise>
+                    <span class="member-name" style="padding-right: 20px;">방문자</span>
                     <button class="login-btn" onclick="location.href='/login/login'">로그인</button>
                     <button class="signup-btn" onclick="location.href='/login/signup.'">회원가입</button>
                     <%--                    <button class="notification" onclick="toggleDropdown()">--%>

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryEntity {
-    private int categoryNum;
+    private Integer categoryNum;
     private String categoryName;
     private String categoryImg;
     @Override

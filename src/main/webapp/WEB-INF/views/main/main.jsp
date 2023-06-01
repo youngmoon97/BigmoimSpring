@@ -81,11 +81,11 @@
             <c:when test="${dto.classList.size() eq 0}"><!-- 주변 클래스 모임이 없을때-->
                 <p class="join-text"> ${dto.member.memberId}님 주변 클래스 모임이 아직 없습니다 ㅠ</p>
                 <div class="card-group">
-                <c:forEach items="${dto.allMoimList}" var="allMoim">
+                <c:forEach items="${dto.allclassList}" var="allclassMoim">
                     <article class="card">
-                        <a href="../moim/moimdetail/${allMoim.moimNum}">
+                        <a href="../moim/moimdetail/${allclassMoim.moimNum}">
                             <div class="card-wrapper">
-                                <img src=${allMoim.moimImg} alt="Image">
+                                <img src=${allclassMoim.moimImg} alt="Image">
                                     <%--                            <form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
                                     <%--                                <button class="like-btn" id="like-btn-${allMoim.moimNum}">--%>
                                     <%--                                    <onclick--%>
@@ -99,15 +99,15 @@
                                     <%--                                        <%}%>></i>--%>
                                     <%--                                </button>--%>
                                     <%--                            </form>--%>
-                                <h4>${allMoim.moimName}</h4>
-                                <h3>${allMoim.moimNCount}/ ${allMoim.moimHCount}</h3>
+                                <h4>${allclassMoim.moimName}</h4>
+                                <h3>${allclassMoim.moimNCount}/ ${allclassMoim.moimHCount}</h3>
                                 <div class="card-nav">
-                                    <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allMoim.moimArea}
+                                    <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allclassMoim.moimArea}
                                     </p>
                                     <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
-                                    <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allmoim.categoryNum}
+                                    <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allclassMoim.categoryNum}
                                     </p>
-                                    <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allmoim.moimProfile}
+                                    <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allclassMoim.moimProfile}
                                     </p>
                                 </div>
                             </div>

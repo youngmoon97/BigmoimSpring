@@ -27,6 +27,12 @@ public class MoimController {
         model.addAttribute("dto", dto);
         return "/moim/moimdetail";
     }
+    @GetMapping("/makemoim")
+    public String getMakeMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/makemoim";
+    }
     @GetMapping("/recomoim")
     public String getRecoMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
@@ -38,10 +44,18 @@ public class MoimController {
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/newmoim";
-    }@GetMapping("/myactivity")
+    }
+    @GetMapping("/myactivity")
     public String getMyActivityPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/myactivity";
+    }
+    @GetMapping("/categorymoim/{categoryNum}")
+    public String getCategoryMoimPage(@PathVariable("categoryNum") Integer categoryNum,
+                                      @AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResCategoryMoim dto = moimService.getCategoryMoim(categoryNum,customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/categorymoim";
     }
 }

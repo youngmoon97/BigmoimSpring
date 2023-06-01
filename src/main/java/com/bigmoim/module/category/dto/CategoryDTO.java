@@ -24,7 +24,7 @@ public class CategoryDTO {
         @NoArgsConstructor
         @AllArgsConstructor
         public static class Category {
-            int categoryNum;
+            Integer categoryNum;
             String categoryName;
             String categoryImg;
         }

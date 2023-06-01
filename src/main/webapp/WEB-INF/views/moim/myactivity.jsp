@@ -96,7 +96,7 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${joinmoim.moimNum}</h4>
+                        <h4>${joinmoim.moimName}</h4>
                         <h3>${joinmoim.moimNCount} / ${joinmoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${joinmoim.moimArea}</p>
@@ -186,7 +186,7 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${businessMoim.moimNum}</h4>
+                        <h4>${businessMoim.moimName}</h4>
                         <h3>${businessMoim.moimNCount} / ${businessMoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value=""
@@ -274,7 +274,7 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${taskMoim.moimNum}</h4>
+                        <h4>${taskMoim.moimName}</h4>
                         <h3>${taskMoim.moimNCount} / ${taskMoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value=""
@@ -362,7 +362,7 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${themeMoim.moimNum}</h4>
+                        <h4>${themeMoim.moimName}</h4>
                         <h3>${themeMoim.moimNCount} / ${themeMoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value=""
