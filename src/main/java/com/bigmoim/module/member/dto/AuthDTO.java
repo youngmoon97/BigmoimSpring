@@ -37,7 +37,7 @@ public class AuthDTO {
         @NotBlank(message = "비밀번호를 입력하세요.")
         @Size(min = 4, message = "비밀번호는 4자 이상으로 입력해주세요.")
         private String memberPw;
-        
+
         @NotBlank(message = "이름을 입력하세요.")
         private String memberName;
 
@@ -128,6 +128,35 @@ public class AuthDTO {
             return MemberEntity.builder()
                     .memberId(memberId)
                     .memberName(memberName)
+                    .memberTel(memberTel)
+                    .build();
+        }
+    }
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReqUpdatePw{
+
+        @NotBlank(message = "아이디를 입력하세요.")
+        @Size(min = 5, message = "아이디는 5자 이상 입력해주세요.")
+        private String memberId;
+
+        @NotBlank(message = "전화번호을 입력하세요.")
+        @Size(min = 11, message = "전화번호 11자 입력해주세요.")
+        private String memberTel;
+
+        @NotBlank(message = "새로운 비밀번호를 입력하세요.")
+        @Size(min = 3, message = "비밀번호 3자 입력해주세요.")
+        private String memberPw;
+
+        private String memberPwCheck;
+
+
+        public MemberEntity toEntity(){
+            return MemberEntity.builder()
+                    .memberId(memberId)
+                    .memberPw(memberPw)
                     .memberTel(memberTel)
                     .build();
         }

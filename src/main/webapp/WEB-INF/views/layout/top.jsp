@@ -78,7 +78,7 @@
                                  style=" width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;"/>
                             <!-- 이미지 스타일 값은 이미지 받아오고 수정해봅니다. -->
                             <div class="member-dropdown-content">
-                                <a href="/moim/memberupdate">내 정보 수정</a>
+                                <a href="/auth/memberupdate">내 정보 수정</a>
                                 <a href="/moim/mymoim">내 모임 관리</a>
                                 <a href="/moim/makemoim">모임개설</a>
                             </div>

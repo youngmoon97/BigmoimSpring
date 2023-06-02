@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>아이디 찾기 페이지</title>
     <link rel="stylesheet" href="/css/idFind.css">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div class="login-find-wrapper">
@@ -15,25 +15,25 @@
             <h1>아이디 찾기</h1>
         </div>
         <!-- 이름 -->
-        <form name="idfind" method="post">
+        <%--<form name="idfind" method="post" action="">--%>
             <div class="login-find-input">
                 <div>
                     <h3 class="login-find-title"><label>이름</label></h3>
                     <span class="box string-name">
-                            <input type="text" name="memberName" id="memberName" class="string" maxlength="20">
+                            <input type="text" name="memberName" id="memberName" class="string" maxlength="20" value="${memberName}">
                         </span>
                 </div>
                 <div>
                     <h3 class="login-find-title"><label>전화번호</label></h3>
                     <span class="box string-tel">
-                            <input type="text" name="memberTel" id="memberTel" class="string" maxlength="16">
+                            <input type="text" name="memberTel" id="memberTel" class="string" maxlength="16" value="${memberTel}">
                         </span>
                 </div>
             </div>
             <div class="login-find-btn">
                 <button type="button" onclick="findId()"> 아이디 찾기</button>
             </div>
-        </form>
+        <%--</form>--%>
     </div>
 </div>
 </body>
@@ -55,34 +55,79 @@
             return false;
         }
 
-        return true;
-    };
-    const findId = () => {
 
-        if(!validateFields()){
-            return;
+
+    };
+
+
+
+
+    const findId = () => {
+        const memberName = document.getElementById("memberName").value;
+        const memberTel = document.getElementById("memberTel").value;
+
+        if (memberName === "") {
+            alert("이름를 입력해주세요.");
+            memberName.focus();
+            return false;
         }
 
-        const nameElement = document.getElementById("memberName");
-        const telElement = document.getElementById("memberTel");
-        const formTag = document.createElement("form");
-        formTag.action="/login-process";
-        formTag.method="POST"
+        if (memberTel === "") {
+            alert("전화번호를 입력해주세요.");
+            memberTel.focus();
+            return false;
+        }
 
-        const nameInputTag = document.createElement("input");
-        nameInputTag.type = "hidden";
-        nameInputTag.name = "memberName";
-        nameInputTag.value = nameElement.value;
-        formTag.appendChild(nameInputTag);
-        // pw
-        const telInputTag = document.createElement("input");
-        telInputTag.type = "hidden";
-        telInputTag.name = "memberTel";
-        telInputTag.value = telElement.value;
-        formTag.appendChild(telInputTag);
+        console.log(memberName);
+        console.log(memberTel);
 
-        document.body.appendChild(formTag);
-        formTag.submit();
-    }
+        $.ajax({
+            url: "/memberIdString",
+            type: "get",
+            // global: false,
+            //dataType: "json",
+            // async : false,
+            //contentType: 'application/json',
+            data: {
+                memberName: memberName,
+                memberTel: memberTel
+            },
+            success : function(result){
+                alert("회원님의 아이디는 " + result.data + " 입니다");
+                if (result.code == 0) {
+                    location.replace("/auth/login");
+                }
+            },
+            error : function (){
+                alert("실패");
+            }
+        });
+
+
+        // if(!validateFields()){
+        //     return;
+        // }
+        //
+        // const nameElement = document.getElementById("memberName");
+        // const telElement = document.getElementById("memberTel");
+        // const formTag = document.createElement("form");
+        // formTag.action="/login-process";
+        // formTag.method="POST"
+        //
+        // const nameInputTag = document.createElement("input");
+        // nameInputTag.type = "hidden";
+        // nameInputTag.name = "memberName";
+        // nameInputTag.value = nameElement.value;
+        // formTag.appendChild(nameInputTag);
+        // // pw
+        // const telInputTag = document.createElement("input");
+        // telInputTag.type = "hidden";
+        // telInputTag.name = "memberTel";
+        // telInputTag.value = telElement.value;
+        // formTag.appendChild(telInputTag);
+        //
+        // document.body.appendChild(formTag);
+        // formTag.submit();
+    };
 </script>
 </html>

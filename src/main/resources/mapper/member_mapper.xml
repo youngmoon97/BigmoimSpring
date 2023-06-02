@@ -20,42 +20,24 @@
         taskNum,
         themeNum,
     </sql>
-
     <!--회원탈퇴(삭제)-->
     <delete id="deleteMember" >
         DELETE
         FROM 'member'
         WHERE memberId = #{memberId}
     </delete>
-
     <!--로그인-->
     <select id="loginMember" >
         SELECT memberId, memberPw
         FROM member
         WHERE memberID = #{memeberId} AND memberPw = #{memberPw}
     </select>
-
     <!--id 중복 체크-->
     <select id="checkId" resultType="Integer">
         SELECT count(memberId)
         FROM member
         WHERE memberId = #{memberId}
     </select>
-
-    <!--ID찾기-->
-    <select id="getIdSearch" resultType="String">
-        SELECT memberId
-        FROM member
-        WHERE membername = #{memberName} AND membertel = #{memberTel}
-    </select>
-
-    <!--비밀번호 찾기-->
-    <select id="getPwSearch" resultType="String">
-        SELECT memberPw
-        FROM member
-        WHERE memberId = #{memberId} AND memberTel = #{memberTel}
-    </select>
-
     <!--회원가입-->
     <insert id="insertMember" >
         INSERT INTO member (
@@ -116,6 +98,19 @@
         SELECT <include refid="member_fullColumn"/>
         FROM member
     </select>
+    <!--ID찾기-->
+    <select id="getIdSearch" resultType="String">
+        SELECT memberId
+        FROM member
+        WHERE memberName = #{memberName} AND memberTel = #{memberTel}
+    </select>
+    <!-- 비밀번호 업데이트 -->
+    <update id="pwUpdate" >
+        UPDATE Member
+        set  memberPw = #{memberPw}
+        where memberId = #{memberId} and memberTel = #{memberTel}
+    </update>
+
 
     <!--TODO 알림 따로 해야함-->
 </mapper>

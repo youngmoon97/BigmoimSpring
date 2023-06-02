@@ -23,9 +23,9 @@ public class AuthControllerApiV1 {
     public HttpEntity<?> findIdProc(@Validated @RequestBody AuthDTO.ReqJoin reqDto){
         return authServiceApiV1.findIdProc(reqDto);
     }
-
     @PostMapping("/signup/checkId/{id}")
     public Integer checkId(@PathVariable String id){
         return authService.checkId(id);
     }
+
 }

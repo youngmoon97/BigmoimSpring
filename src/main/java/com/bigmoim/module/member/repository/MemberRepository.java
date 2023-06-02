@@ -18,6 +18,6 @@ public interface MemberRepository {
     Integer updateMember(String memberId);
     Integer insertMember(MemberEntity memberEntity);
     Integer deleteMember(String memberId);
-
-
+    String getIdSearch(@Param("memberName") String memberName, @Param("memberTel") String memberTel);
+    Integer pwUpdate(MemberEntity memberEntity);
 }
