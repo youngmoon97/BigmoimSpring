@@ -40,12 +40,12 @@
             </div>
         </article>
         <div class="card-group">
-            <c:forEach items="${dto.recoMoimList}" var="recoMoim">
+            <c:forEach items="${dto.allMoimList}" var="allMoim">
                 <!-- 가입안하면 본인 지역 모임 전부 출력 -->
                 <article class="card">
-                    <a href="/moim/moimdetail/${recoMoim.moimNum}">
+                    <a href="/moim/moimdetail/${allMoim.moimNum}">
                         <div class="card-wrapper">
-                            <img src="${recoMoim.moimImg}" alt="Image">
+                            <img src="${allMoim.moimImg}" alt="Image">
                                 <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                     <button class="like-btn" id="area-like-btn-<%=moimbean.getMoimNum()%>"
                                             onclick="likeBtnChange(<%=moimbean.getMoimNum()%>)" style="color:red; bgcolor: white;">
@@ -57,16 +57,16 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${recoMoim.moimName}</h4>
-                        <h3>${recoMoim.moimNCount} / ${recoMoim.moimHCount}</h3>
+                        <h4>${allMoim.moimName}</h4>
+                        <h3>${allMoim.moimNCount} / ${allMoim.moimHCount}</h3>
                         <div class="card-nav">
-                            <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${recoMoim.moimArea}</p>
+                            <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${recoMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.categoryNum}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
-                           style="margin-top: 0;">${recoMoim.moimProfile}</p>
+                           style="margin-top: 0;">${allMoim.moimProfile}</p>
                     </a>
                 </article>
             </c:forEach>
@@ -129,13 +129,13 @@
             </div>
         </article>
         <div class="card-group">
-            <c:forEach items="${dto.recoMoimList}" var="recoMoim">
+            <c:forEach items="${dto.allMoimList}" var="allMoim">
 
                 <!-- 가입안하면 본인 지역 모임 전부 출력 -->
                 <article class="card">
-                    <a href="/moim/moimdetail/${recoMoim.moimNum}">
+                    <a href="/moim/moimdetail/${allMoim.moimNum}">
                         <div class="card-wrapper">
-                            <img src="${recoMoim.moimImg}" alt="Image">
+                            <img src="${allMoim.moimImg}" alt="Image">
                                 <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                     <button class="like-btn" id="area-like-btn-<%=moimbean.getMoimNum()%>"
                                             onclick="likeBtnChange(<%=moimbean.getMoimNum()%>)" style="color:red; bgcolor: white;">
@@ -147,16 +147,16 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${recoMoim.moimName}</h4>
-                        <h3>${recoMoim.moimNCount} / ${recoMoim.moimHCount}</h3>
+                        <h4>${allMoim.moimName}</h4>
+                        <h3>${allMoim.moimNCount} / ${allMoim.moimHCount}</h3>
                         <div class="card-nav">
-                            <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${recoMoim.moimArea}</p>
+                            <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${recoMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.categoryNum}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
-                           style="margin-top: 0;">${recoMoim.moimProfile}</p>
+                           style="margin-top: 0;">${allMoim.moimProfile}</p>
                     </a>
                 </article>
             </c:forEach>
@@ -216,13 +216,13 @@
             </div>
         </article>
         <div class="card-group">
-            <c:forEach items="${dto.recoMoimList}" var="recoMoim">
+            <c:forEach items="${dto.allMoimList}" var="allMoim">
 
                 <!-- 가입안하면 본인 지역 모임 전부 출력 -->
                 <article class="card">
-                    <a href="/moim/moimdetail/${recoMoim.moimNum}">
+                    <a href="/moim/moimdetail/${allMoim.moimNum}">
                         <div class="card-wrapper">
-                            <img src="${recoMoim.moimImg}" alt="Image">
+                            <img src="${allMoim.moimImg}" alt="Image">
                                 <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                     <button class="like-btn" id="area-like-btn-<%=moimbean.getMoimNum()%>"
                                             onclick="likeBtnChange(<%=moimbean.getMoimNum()%>)" style="color:red; bgcolor: white;">
@@ -234,17 +234,17 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${recoMoim.moimName}</h4>
-                        <h3>${recoMoim.moimNCount} / ${recoMoim.moimHCount}</h3>
+                        <h4>${allMoim.moimName}</h4>
+                        <h3>${allMoim.moimNCount} / ${allMoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value=""
-                               style="margin-top: 0;">${recoMoim.moimArea}</p>
+                               style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${recoMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.categoryNum}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
-                           style="margin-top: 0;">${recoMoim.moimProfile}</p>
+                           style="margin-top: 0;">${allMoim.moimProfile}</p>
                     </a>
                 </article>
             </c:forEach>
@@ -303,13 +303,13 @@
             </div>
         </article>
         <div class="card-group">
-            <c:forEach items="${dto.recoMoimList}" var="recoMoim">
+            <c:forEach items="${dto.allMoimList}" var="allMoim">
 
                 <!-- 가입안하면 본인 지역 모임 전부 출력 -->
                 <article class="card">
-                    <a href="/moim/moimdetail/${recoMoim.moimNum}">
+                    <a href="/moim/moimdetail/${allMoim.moimNum}">
                         <div class="card-wrapper">
-                            <img src="${recoMoim.moimImg}" alt="Image">
+                            <img src="${allMoim.moimImg}" alt="Image">
                                 <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                     <button class="like-btn" id="area-like-btn-<%=moimbean.getMoimNum()%>"
                                             onclick="likeBtnChange(<%=moimbean.getMoimNum()%>)" style="color:red; bgcolor: white;">
@@ -321,17 +321,17 @@
                                     </button>
                                 </form>--%>
                         </div>
-                        <h4>${recoMoim.moimName}</h4>
-                        <h3>${recoMoim.moimNCount} / ${recoMoim.moimHCount}</h3>
+                        <h4>${allMoim.moimName}</h4>
+                        <h3>${allMoim.moimNCount} / ${allMoim.moimHCount}</h3>
                         <div class="card-nav">
                             <p class="moimArea" name="moimArea" value=""
-                               style="margin-top: 0;">${recoMoim.moimArea}</p>
+                               style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${recoMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.categoryNum}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
-                           style="margin-top: 0;">${recoMoim.moimProfile}</p>
+                           style="margin-top: 0;">${allMoim.moimProfile}</p>
                     </a>
                 </article>
 

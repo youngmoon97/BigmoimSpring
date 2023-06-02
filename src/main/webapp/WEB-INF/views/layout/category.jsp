@@ -17,35 +17,39 @@
     <main>
 
         <div class="category">
-            <c:forEach items="${dto.categoryList}" var="category">
-                <a href="/moim/categorymoim/${category.categoryNum}">
-                    <input type="hidden" name="categoryNum" value="${category.categoryNum}">
-                    <div class="image-wrapper">
-                        <img src="${category.categoryImg}" alt=""/>
-                        <div class="image-text">${category.categoryName}</div>
-                    </div>
-                </a>
+            <c:forEach items="${dto.categoryList}" var="category" varStatus="loop">
+                <c:if test="${loop.index <= 7}">
+                    <a href="/moim/categorymoim/${category.categoryNum}">
+                        <input type="hidden" name="categoryNum" value="${category.categoryNum}">
+                        <div class="image-wrapper">
+                            <img src="${category.categoryImg}" alt=""/>
+                            <div class="image-text">${category.categoryName}</div>
+                        </div>
+                    </a>
+                </c:if>
             </c:forEach>
-            <c:if test="${categoryList.length > 9}">
             <div class="hidden-category" style="display: none;">
-                <a href="/moim/categorymoim/${category.categoryNum}">
-                <input type="hidden" name="categoryNum" value="${category.categoryNum}">
-                <div class="image-wrapper">
-                    <img src="${category.categoryImg}" alt=""/>
-                    <div class="image-text">${category.categoryName}
-                    </div>
-                </div>
-                </a>
+                <c:forEach items="${dto.categoryList}" var="category" varStatus="loop">
+                    <c:if test="${loop.index > 9}">
+                        <a href="/moim/categorymoim/${category.categoryNum}">
+                            <input type="hidden" name="categoryNum" value="${category.categoryNum}">
+                            <div class="image-wrapper">
+                                <img src="${category.categoryImg}" alt=""/>
+                                <div class="image-text">${category.categoryName}</div>
+                            </div>
+                        </a>
+                    </c:if>
+                </c:forEach>
             </div>
-            </c:if>
             <div class="more-wrapper">
                 <a href="#" class="more-btn">더보기</a>
             </div>
         </div>
+
     </main>
 </div>
 
-<script>
+<script type="text/javascript">
     const moreBtn = document.querySelector('.more-btn');
     const hiddenCategories = document.querySelector('.hidden-category');
     let isHidden = true; // hiddenCategories가 숨겨져 있는 상태

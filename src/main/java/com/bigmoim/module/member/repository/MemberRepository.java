@@ -12,7 +12,7 @@ import java.util.List;
 public interface MemberRepository {
     // TODO: 2023-05-24 시큐리티로 로그인
     MemberEntity loginMember(@Param("memberId") String memberId, @Param("memberPw") String memberPw);
-    String checkId(String memberId);
+    Integer checkId(String memberId);
     MemberEntity getMember(String memberId);
     List<MemberEntity> getMemberList();
     Integer updateMember(String memberId);

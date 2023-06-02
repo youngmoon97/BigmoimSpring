@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class AdminDTO {
             private Integer moimNum;
             private String moimName;
             private String memberId; //회장아이디
-            private String moimDate; //개설일자
+            private LocalDateTime moimDate; //개설일자
         }
 
         public static ResMoim fromMoimEntity(List<MoimEntity> moimEntityList) {

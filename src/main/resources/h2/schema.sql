@@ -71,7 +71,7 @@ CREATE TABLE `member`
     `memberImg`      varchar(200) DEFAULT NULL,
     `memberProfile`  varchar(200) DEFAULT NULL,
     `memberGender`   int          NOT NULL,
-    `memberAddr`     varchar(100) NOT NULL,
+    `memberAddr`     varchar(100),
     `memberJobAddr`  varchar(100) DEFAULT NULL,
     `memberLikeArea` varchar(100) DEFAULT NULL,
     `categoryNum`    int          DEFAULT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `moim`
     `memberId`    varchar(50)  NOT NULL COMMENT '모임회원아이디',
     `moimKakao`   varchar(100)          DEFAULT NULL COMMENT '모임 카카오톡 링크',
     `categoryNum` int                   DEFAULT NULL COMMENT '모임 카테고리 번호',
-    `moimImg`     varchar(100) NOT NULL COMMENT '모임 사진모음',
+    `moimImg`     varchar(100) NULL COMMENT '모임 사진모음',
     `moimProfile` varchar(2000)         DEFAULT NULL COMMENT '모임 소개 내용',
     `moimDate`    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '모임개설일자',
     `themeNum`    int                   DEFAULT NULL COMMENT '테마',
@@ -116,14 +116,14 @@ CREATE TABLE `moim`
 -- bigmoim.`role` definition
 CREATE TABLE `role`
 (
-    roleIdx     int          NOT NULL AUTO_INCREMENT,
-    memberId    varchar(50)  NOT NULL,
-    role        varchar(255) NOT NULL,
-    moimNum     int,
-    create_date TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    roleIdx    int          NOT NULL AUTO_INCREMENT,
+    memberId   varchar(50)  NOT NULL,
+    role       varchar(255) NOT NULL,
+    moimNum    int,
+    createDate TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (roleIdx),
-    KEY           `role_FK` (`moimNum`) USING BTREE,
-    KEY           `role_FK_1` (`memberId`) USING BTREE
+    KEY        `role_FK` (`moimNum`) USING BTREE,
+    KEY        `role_FK_1` (`memberId`) USING BTREE
 );
 -- bigmoimspring.classcomment definition
 

@@ -8,7 +8,7 @@
         memberId,
         role,
         moimNum,
-        create_date
+        createDate
     </sql>
     <!-- 멤버의 role 리스트 -->
     <select id="findById" resultType="com.bigmoim.module.member.entity.RoleEntity">
@@ -37,16 +37,17 @@
         WHERE memberId = #{memberId} and role = #{role}
     </delete>
 
+    <!--역할 추가-->
     <insert id="roleInsert" parameterType="com.bigmoim.module.member.entity.RoleEntity">
         INSERT INTO `role` (
             memberId,
             role,
-            create_date
+            createDate
         )
         VALUES (
                    #{memberId},
                    #{role},
-                   #{create_date}
+                   #{createDate}
                )
     </insert>
 

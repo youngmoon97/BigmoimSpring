@@ -137,7 +137,7 @@
                 </div>
 
                 <form action="makemoimProc.jsp" method="post" name="frm" id="frm" enctype="multipart/form-data">
-                    <input type="hidden" id="moimtype" value="2" name="moimOrClass">
+                    <input type="hidden" value="2" name="moimOrClass" id="moimOrClass">
                     <div style="width: 500px; font-size: 16px;">
                         <div class="image-preview-container">
                             <div>
@@ -156,7 +156,8 @@
 
                         <div>
                             <label>모임 명</label>
-                            <input type="text" class="form-control" id="moimName" name="moimName" rows="1" maxlength="30"
+                            <input type="text" class="form-control" id="moimName" name="moimName" rows="1"
+                                   maxlength="30"
                                    placeholder="모임 이름을 적어주세요">
                             <br>
                         </div>
@@ -165,20 +166,20 @@
                             <div class="col-md-6">
                                 <label>모임주소</label>
                                 <br>
-                                <input name="moimZipcode" size="5" readonly style="height: 40px;" value="">
+                                <input name="moimZipcode" size="5" readonly style="height: 40px;" value="48057">
                                 <input type="button" name="memberAddrBtn" value="우편번호찾기"
                                        onClick="zipSearch(this.name)"
                                        style="background: pink; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; height: 40px;">
                                 <br>
                                 <br>
-                                <input id="moimArea1" name="moimArea1" size="7" value="" readonly>
-                                <input id="moimArea2" name="moimArea2" size="10" value="" readonly>
-                                <input type="hidden" name="moimArea" id="moimArea">
+                                <input id="moimArea1" name="moimArea1" size="7" value="부산" readonly>
+                                <input id="moimArea2" name="moimArea2" size="10" value="해운대구" readonly>
+                                <input type="hidden" name="moimArea" id="moimArea" value="부산 해운대구">
                             </div>
 
                             <div class="col-md-6">
                                 <label>모임 종류</label>
-                                <select class="form-control" name="categoryNum"
+                                <select class="form-control" name="categoryNum" id="categoryNum"
                                         onchange="javascript:getCategoryNum(this.form.categoryNum.value)">
                                     <option value="0">관심사 선택</option>
                                     <c:forEach items="${dto.categoryList}" var="category">
@@ -188,7 +189,7 @@
                                     </c:forEach>
                                 </select>
                                 <br>
-                                <select class="form-control" name="businessNum"
+                                <select class="form-control" name="businessNum" id="businessNum"
                                         onChange="javascript:getBusinessNum(this.form.businessNum.value)">
                                     <option value="0">업종</option>
                                     <c:forEach items="${dto.businessList}" var="business">
@@ -198,7 +199,7 @@
                                     </c:forEach>
                                 </select>
                                 <br>
-                                <select class="form-control" name="taskNum"
+                                <select class="form-control" name="taskNum" id="taskNum"
                                         onchange="javascript:getTaskNum(this.form.taskNum.value)">
                                     <option value="0">직무</option>
                                     <c:forEach items="${dto.taskList}" var="task">
@@ -208,7 +209,7 @@
                                     </c:forEach>
                                 </select>
                                 <br>
-                                <select class="form-control" name="themeNum"
+                                <select class="form-control" name="themeNum" id="themeNum"
                                         onchange="javascript:getThemeNum(this.form.themeNum.value)">
                                     <option value="0">테마</option>
                                     <c:forEach items="${dto.themeList}" var="theme">
@@ -246,22 +247,22 @@
                         <div id="addHtml"></div>
 
                         <input type="button" value="모임 만들기" class="btn btn-pill text-white btn-block"
-                               style="background-color: pink;" onclick="abc()">
+                               style="background-color: pink;" onclick="makeMoim()">
                         <br>
-                        <input type="hidden" name="memberId" value="${dto.member.memberId}">
+                        <input type="hidden" id="memberId" name="memberId" value="${dto.member.memberId}">
                     </div>
                 </form>
-
-                <form method="GET" name="hiddenFrm">
+                <%--<form method="GET" name="hiddenFrm">
                     <input type="hidden" name="memberLikeArea_area1">
-                    <input type="hidden" name="moimName" value="">
-                    <input type="hidden" name="moimKakao" value="">
-                    <input type="hidden" name="moimImg" value="">
-                    <input type="hidden" name="moimProfile" value="">
-                    <input type="hidden" name="memberAddrZipcode" value="">
-                    <input type="hidden" name="memberAddrArea1" value="">
-                    <input type="hidden" name="memberAddrArea2" value="">
-                </form>
+                    <input type="hidden" name="moimName" value="${moimName}">
+                    <input type="hidden" name="moimKakao" value="${moimKakao}">
+                    <input type="hidden" name="moimImg" value="${moimImg}">
+                    <input type="hidden" name="moimProfile" value="${moimProfile}">
+                    <input type="hidden" name="memberAddrZipcode" value="${memberAddrZipcode}">
+                    <input type="hidden" name="memberAddrArea1" value="${memberAddrArea1}">
+                    <input type="hidden" name="memberAddrArea2" value="${memberAddrArea2}">
+                </form>--%>
+
             </div>
         </div>
     </div>
@@ -275,8 +276,10 @@
 <script type="text/javascript">
     const validateFields = () => {
         // id 속성을 이용해서 해당하는 요소를 가져온다.
+        const moimArea1 = document.getElementById("moimArea1");
+        const moimArea2 = document.getElementById("moimArea2");
         const nameElement = document.getElementById("moimName");
-        const areaElement = document.getElementById("moimArea");
+        const areaElement = moimArea1.value + " " + moimArea2.value;
         const HCountElement = document.getElementById("moimHCount");
 
         // 값들이 비어있는지 확인
@@ -301,7 +304,7 @@
     };
 
     const makeMoim = () => {
-        if(!validateFields()){
+        if (!validateFields()) {
             return;
         }
         const nameElement = document.getElementById("moimName");
@@ -309,33 +312,34 @@
         const HCountElement = document.getElementById("moimHCount");
         const profileElement = document.getElementById("moimProfile");
         const kakaoElement = document.getElementById("moimKakao");
-        const moimArea1 = document.getElementById("moimArea1").item(0).value;
-        const moimArea2 = document.getElementById("moimArea2").item(0).value;
-        const categoryNum = document.getElementById("categoryNum").item(0).value;
-        const businessNum = document.getElementById("businessNum").item(0).value;
-        const taskNum = document.getElementById("taskNum").item(0).value;
-        const themeNum = document.getElementById("themeNum").item(0).value;
-        const memberId = document.getElementById("memberId").value;
-        const moimArea = moimArea1 + " " + moimArea2;
-        const moimOrClass = document.getElementById("moimOrClass").value;
-        const classprice = document.getElementById("classprice").value;
-        document.frm.moimArea.value = moimArea;
+        const moimArea1 = document.getElementById("moimArea1");
+        const moimArea2 = document.getElementById("moimArea2");
+        const categoryNum = document.getElementById("categoryNum");
+        const businessNum = document.getElementById("businessNum");
+        const taskNum = document.getElementById("taskNum");
+        const themeNum = document.getElementById("themeNum");
+        const memberId = document.getElementById("memberId");
+        // const moimArea = document.getElementById("moimArea");
+        const moimOrClass = document.getElementById("moimOrClass");
+        // const classprice = document.getElementById("classprice").value;
 
-        const moim ={
+        const moim = {
             moimName: nameElement.value,
-            moimArea: moimArea.valueOf(0),
+            moimArea: moimArea1.value + " " +moimArea2.value,
             moimHCount: HCountElement.value,
             memberId: memberId.value,
             moimKakao: kakaoElement.value,
             categoryNum: categoryNum.value,
-            moimImg: imgElement.value,
+            //moimImg: imgElement.value,
             moimProfile: profileElement.value,
             businessNum: businessNum.value,
             taskNum: taskNum.value,
             themeNum: themeNum.value,
-            classPrice: classprice.value,
+            //classPrice: classprice.value,
             moimOrClass: moimOrClass.value,
         }
+
+        console.log(moim);
 
         fetch("/api/v1/moim/makemoim", {
             method: "POST",
@@ -348,7 +352,7 @@
             .then(result => {
                 alert(result.message);
                 if (result.code == 0) {
-                    location.replace("/main/main");
+                    location.replace("/main");
                 }
             })
             .catch(error => {
@@ -382,22 +386,6 @@
         window.open(url, "bigmoim 우편번호 검색", "width=500, height=300, top=100, left=300, scrollbar=yes");
     }
 
-    function setArea2List(memberLikeArea_area1) {
-
-        //
-        doucument.hiddenFrm.moimName.value = document.frm.moimName.value;
-        doucument.hiddenFrm.moimImg.value = document.frm.moimImg.value;
-        doucument.hiddenFrm.moimKakao.value = document.frm.moimKakao.value;
-        doucument.hiddenFrm.moimProfile.value = document.frm.moimProfile.value;
-
-
-        //
-        document.hiddenFrm.moimZipcode.value = document.frm.moimZipcode.value;
-        document.hiddenFrm.moimArea1.value = document.frm.moimArea1.value;
-        document.hiddenFrm.moimArea2.value = document.frm.moimArea2.value;
-
-        document.hiddenFrm.submit();
-    }
 
     /*모임대표사진 불러오기*/
     function showPreviewImage(input) {
@@ -417,12 +405,12 @@
 
     // 클래스 개설시 price 추가 모임개설시 삭제
 
-    const moimBtn = document.querySelector("#moimBtn");
-    const classBtn = document.querySelector("#classBtn");
-    const moimOrclass = document.querySelector("#moimtype");
+    const moimBtn = document.getElementById("#moimBtn");
+    const classBtn = document.getElementById("#classBtn");
+    const moimOrclass = document.getElementById("#moimtype");
 
     moimBtn.addEventListener("click", () => {
-        const addHtml = document.querySelector("#addHtml");
+        const addHtml = document.getElementById("#addHtml");
         //alert("모임개설");
         while (addHtml.hasChildNodes()) {
             addHtml.removeChild(addHtml.lastChild);
@@ -437,7 +425,7 @@
     // 193번째 줄로 이동
 
     classBtn.addEventListener("click", () => {
-        const addHtml = document.querySelector("#addHtml");
+        const addHtml = document.getElementById("#addHtml");
 
         while (addHtml.hasChildNodes()) {
             addHtml.removeChild(addHtml.lastChild);
@@ -456,7 +444,7 @@
 
 
     const change = (name) => {
-        const content = document.querySelector("#frm");
+        const content = document.getElementById("#frm");
         const labelList = content.querySelectorAll("label");
         for (const el of labelList) {
             if (name == "클래스") {

@@ -35,9 +35,9 @@
         WHERE memberID = #{memeberId} AND memberPw = #{memberPw}
     </select>
 
-    <!--id 중복 체크 중복-true-->
-    <select id="checkId" >
-        SELECT memberId
+    <!--id 중복 체크-->
+    <select id="checkId" resultType="Integer">
+        SELECT count(memberId)
         FROM member
         WHERE memberId = #{memberId}
     </select>
@@ -107,7 +107,7 @@
             memberImg=#{memberImg}, memberProfile=#{memberProfile}, memberAddr=#{memberAddr},
             memberJobAddr=#{memberJobAddr}, memberLikeArea=#{memberLikeArea},
             categoryNum=#{categoryNum}, businessNum=#{businessNum}, taskNum=#{taskNum}, themeNum=#{themeNum},
-            memberBirth=#{memberBirth}, memberSex=#{memberSex}
+            memberBirth=#{memberBirth}, memberGender=#{memberGender}
 		WHERE memberId = #{memberId}
     </update>
 

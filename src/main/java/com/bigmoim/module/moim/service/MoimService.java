@@ -55,9 +55,11 @@ public class MoimService {
         List<MoimEntity> businessMoimList = moimRepository.businessList(memberDetail.getBusinessNum());
         List<MoimEntity> taskMoimList = moimRepository.taskList(memberDetail.getTaskNum());
         List<MoimEntity> themeMoimList = moimRepository.themeList(memberDetail.getThemeNum());
+        List<MoimEntity> moimEntityList = moimRepository.myMoimList(customUserDetails.getUsername());
+
         return MainDTO.ResBasic.fromEntityList(classList, allMoimList, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList(),
                 categoryEntityList, allclassList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList, themeMoimList,
-                 businessEntityList, taskEntityList, themeEntityList);
+                 businessEntityList, taskEntityList, themeEntityList,moimEntityList);
     }
 
     public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum) {

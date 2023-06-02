@@ -5,6 +5,7 @@ import com.bigmoim.module.business.repository.BusinessRepository;
 import com.bigmoim.module.category.entity.CategoryEntity;
 import com.bigmoim.module.category.repository.CategoryRepository;
 import com.bigmoim.module.member.dto.AuthDTO;
+import com.bigmoim.module.member.repository.MemberRepository;
 import com.bigmoim.module.task.entity.TaskEntity;
 import com.bigmoim.module.task.repository.TaskRepository;
 import com.bigmoim.module.theme.entity.ThemeEntity;
@@ -23,6 +24,7 @@ public class AuthService {
     private final BusinessRepository businessRepository;
     private final TaskRepository taskRepository;
     private final ThemeRepository themeRepository;
+    private final MemberRepository memberRepository;
 
     public AuthDTO.ResSignup getAllList(){
         List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
@@ -31,5 +33,14 @@ public class AuthService {
         List<ThemeEntity> themeEntities = themeRepository.themeList();
 
         return AuthDTO.ResSignup.fromAllEntityList(categoryEntityList,businessEntityList,taskEntities,themeEntities);
+    }
+
+    //아이디 중복확인
+    public Integer checkId(String id){
+        if (memberRepository.checkId(id)==1) {
+            return 1; //중복
+        }else{
+            return 0; //사용가능
+        }
     }
 }

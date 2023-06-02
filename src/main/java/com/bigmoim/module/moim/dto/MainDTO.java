@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.taglibs.standard.extra.spath.Step;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,7 @@ public class MainDTO {
         private List<BusinessMoim> businessMoimList;
         private List<TaskMoim> taskMoimList;
         private List<ThemeMoim> themeMoimList;
+        private List<MyMoim> myMoimList;
 
 
         @Data
@@ -111,7 +113,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -134,14 +136,35 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
             String classPrice;
             Integer moimOrClass;
         }
-
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class MyMoim {
+            Integer moimNum;
+            String moimName;
+            String moimArea;
+            Integer moimHCount;
+            Integer moimNCount;
+            String memberId;
+            String moimKakao;
+            Integer categoryNum;
+            String moimImg;
+            String moimProfile;
+            LocalDateTime moimDate;
+            Integer businessNum;
+            Integer taskNum;
+            Integer themeNum;
+            String classPrice;
+            Integer moimOrClass;
+        }
         @Data
         @Builder
         @NoArgsConstructor
@@ -157,7 +180,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -180,7 +203,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -203,7 +226,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -226,7 +249,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -249,7 +272,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -272,7 +295,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -295,7 +318,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
@@ -318,7 +341,8 @@ public class MainDTO {
                 List<MoimEntity> themeMoimEntityList,
                 List<BusinessEntity> businessEntityList,
                 List<TaskEntity> taskEntityList,
-                List<ThemeEntity> themeEntityList
+                List<ThemeEntity> themeEntityList,
+                List<MoimEntity> myMoimEntityList
         ) {
 
             List<Class> classList = moimEntityList.stream().map(moimEntity -> {
@@ -540,9 +564,29 @@ public class MainDTO {
                         .moimOrClass(moimEntity.getMoimOrClass())
                         .build();
             }).collect(Collectors.toList());
-
+            List<MyMoim> myMoimList = myMoimEntityList.stream().map(moimEntity -> {
+                return MyMoim.builder()
+                        .moimNum(moimEntity.getMoimNum())
+                        .moimName(moimEntity.getMoimName())
+                        .moimArea(moimEntity.getMoimArea())
+                        .moimHCount(moimEntity.getMoimHCount())
+                        .moimNCount(moimEntity.getMoimNCount())
+                        .memberId(moimEntity.getMemberId())
+                        .moimKakao(moimEntity.getMoimKakao())
+                        .categoryNum(moimEntity.getCategoryNum())
+                        .moimImg(moimEntity.getMoimImg())
+                        .moimProfile(moimEntity.getMoimProfile())
+                        .moimDate(moimEntity.getMoimDate())
+                        .businessNum(moimEntity.getBusinessNum())
+                        .taskNum(moimEntity.getTaskNum())
+                        .themeNum(moimEntity.getThemeNum())
+                        .classPrice(moimEntity.getClassPrice())
+                        .moimOrClass(moimEntity.getMoimOrClass())
+                        .build();
+            }).collect(Collectors.toList());
             return new ResBasic(classList, allclassList, allMoimList, member, roleList, categoryList, businessList,
-                    taskList, themeList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList, themeMoimList);
+                    taskList, themeList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList,
+                    themeMoimList, myMoimList);
         }
     }
 
@@ -600,7 +644,7 @@ public class MainDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;

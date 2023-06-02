@@ -1,14 +1,16 @@
 package com.bigmoim.module.member.controller;
 
+import com.bigmoim.config.security.CustomUserDetails;
 import com.bigmoim.module.member.dto.AdminDTO;
 import com.bigmoim.module.member.service.AdminService;
+import com.bigmoim.module.member.service.AuthService;
+import com.bigmoim.module.moim.dto.MainDTO;
+import com.bigmoim.module.moim.service.MoimService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,8 +24,14 @@ public class AdminController {
         return "/login/login";
     }
 
+    private final MoimService moimService;
+
     @GetMapping("/index")
-    public String index(){return "/admin/index";}
+    public String index(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
+        MainDTO.ResBasic mainDto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto",mainDto);
+        return "/admin/index";
+    }
 
     @GetMapping("/memberManage")
     public String getMemberList(Model model){

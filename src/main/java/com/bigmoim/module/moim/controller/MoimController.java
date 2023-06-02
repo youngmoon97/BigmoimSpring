@@ -58,4 +58,10 @@ public class MoimController {
         model.addAttribute("dto", dto);
         return "/moim/categorymoim";
     }
+    @GetMapping("/mymoim")
+    public String getMyMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+        MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
+        model.addAttribute("dto", dto);
+        return "/moim/mymoim";
+    }
 }

@@ -124,7 +124,6 @@
     </select>
     <insert id="moimInsert" parameterType="com.bigmoim.module.moim.entity.MoimEntity">
         INSERT INTO `moim` (
-            moimNum,
             moimName,
             moimArea,
             moimHCount,
@@ -133,15 +132,13 @@
             categoryNum,
             moimImg,
             moimProfile,
-            moimDate,
             businessNum,
             taskNum,
             themeNum,
             classPrice,
-            moimOrClass,
+            moimOrClass
         )
         VALUES (
-                   #{moimNum},
                    #{moimName},
                    #{moimArea},
                    #{moimHCount},
@@ -150,7 +147,6 @@
                    #{categoryNum},
                    #{moimImg},
                    #{moimProfile},
-                   #{moimDate},
                    #{businessNum},
                    #{taskNum},
                    #{themeNum},

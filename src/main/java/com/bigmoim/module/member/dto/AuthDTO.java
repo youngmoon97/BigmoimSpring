@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,19 +35,16 @@ public class AuthDTO {
         private String memberId;
 
         @NotBlank(message = "비밀번호를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
+        @Size(min = 4, message = "비밀번호는 4자 이상으로 입력해주세요.")
         private String memberPw;
         
-        @NotBlank(message = "이름를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
+        @NotBlank(message = "이름을 입력하세요.")
         private String memberName;
 
-        @NotBlank(message = "전화번호를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
+        @NotNull(message = "전화번호를 입력하세요.")
         private String memberTel;
 
         @NotBlank(message = "생년월일를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
         private String memberBirth;
 
         private String memberImg;
@@ -54,12 +52,10 @@ public class AuthDTO {
         @Size(max = 100, message = "자기소개는 100자 이내로 작성해주세요.")
         private String memberProfile;
 
-        @NotBlank(message = "성별를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
+        @NotNull(message = "성별을 입력하세요.")
         private Integer memberGender;
 
-        @NotBlank(message = "주소를 입력하세요.")
-        @Size(min = 5, message = "비밀번호는 5자 이상으로 입력해주세요.")
+        //@NotBlank(message = "주소를 입력하세요.")
         private String memberAddr;
 
         private String memberJobAddr;
@@ -83,6 +79,7 @@ public class AuthDTO {
                     .memberJobAddr(memberJobAddr)
                     .memberLikeArea(memberLikeArea)
                     .categoryNum(categoryNum)
+                    .businessNum(businessNum)
                     .taskNum(taskNum)
                     .themeNum(themeNum)
                     .build();
@@ -98,8 +95,8 @@ public class AuthDTO {
         @Size(min = 5, message = "아이디는 5자 이상 입력해주세요.")
         private String memberName;
 
-        @NotBlank(message = "전화번호을 입력하세요.")
-        @Size(min = 11, message = "전화번호 11자 입력해주세요.")
+        @NotBlank(message = "전화번호를 입력하세요.")
+        @Size(min = 11, message = "전화번호 11자(숫자만) 입력해주세요.")
         private String memberTel;
 
         public MemberEntity toEntity(){
@@ -123,8 +120,8 @@ public class AuthDTO {
         @NotBlank(message = "이름을 입력하세요.")
         private String memberName;
 
-        @NotBlank(message = "전화번호을 입력하세요.")
-        @Size(min = 11, message = "전화번호 11자 입력해주세요.")
+        @NotBlank(message = "전화번호를 입력하세요.")
+        @Size(min = 11, message = "전화번호 11자(숫자만) 입력해주세요.")
         private String memberTel;
 
         public MemberEntity toEntity(){

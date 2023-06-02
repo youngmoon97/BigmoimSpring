@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -126,7 +127,7 @@
                     </a>
                     <h3 style="margin-left: -7.5em"><strong>회원가입</strong></h3>
                 </div>
-                <form name="signFrm" enctype="multipart/form-data">
+                <form name="signFrm" enctype="multipart/form-data" method="post">
                     <div style="width: 500px; font-size: 16px;">
 
                         <div class="sign-nameHeader">
@@ -140,11 +141,11 @@
                                  css 수정-->
                         <div>
                             <div class="sign-nameHeader">
-                                <label>아이디(필수)</label>
+                                <label>아이디(필수)</label> <label style="color: red" id="idContent" content=""></label>
                                 <div class="input-button-wrapper">
                                     <input type="text" class="form-control" name="memberId" id="memberId"
                                            placeholder="아이디를 입력해주세요.">
-                                    <button type="button" onclick="idCheck(this.form.memberId.value)"
+                                    <button type="button" onclick="checkId(this.form.memberId.value)"
                                             style="background: pink; color: #fff; border: none; padding: 10px 20px;
                                     cursor: pointer; border-radius: 5px; white-space: nowrap;">
                                         중복확인
@@ -154,18 +155,21 @@
 
                             <div class="sign-nameHeader">
                                 <label>비밀번호(필수)</label>
-                                <input type="password" class="form-control" name="memberPw" placeholder="비밀번호를 입력해주세요." id="memberPw">
+                                <input type="password" class="form-control" name="memberPw" placeholder="비밀번호를 입력해주세요."
+                                       id="memberPw">
                             </div>
 
                             <div class="sign-nameHeader">
                                 <label>비밀번호 재확인</label>
-                                <input type="password" class="form-control" name="memberPwConfirm" placeholder="비밀번호 재확인" id="memberPwConfirm">
+                                <input type="password" class="form-control" name="memberPwConfirm" id="memberPwConfirm"
+                                       placeholder="비밀번호 재확인" id="memberPwConfirm">
                             </div>
 
                             <div class="sign-nameHeader">
-                                <label>전화번호(필수 *숫자만 입력하세요)</label>
+                                <label>전화번호(필수)</label> <label style="color: red">*숫자만 입력하세요</label>
                                 <div class="input-button-wrapper">
-                                    <input type="text" class="form-control" name="memberTel" placeholder="전화번호를 입력해주세요." id="memberTel">
+                                    <input type="text" class="form-control" name="memberTel" placeholder="전화번호를 입력해주세요."
+                                           id="memberTel">
                                     <button type="button" onclick="phoneOK()"
                                             style="background: pink; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
                                         인증
@@ -180,7 +184,8 @@
                                         <label for="memberAddr">집주소(필수)</label>
                                     </div>
                                     <div>
-                                        <input name="memberAddrZipcode" size="5" readonly style="height: 40px;" id="memberAddrZipcode">
+                                        <input name="memberAddrZipcode" size="5" readonly style="height: 40px;"
+                                               id="memberAddrZipcode">
                                         <input type="button" name="memberAddrBtn" value="우편번호찾기"
                                                onClick="zipSearch(this.name)"
                                                style="background: pink; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; height: 40px;">
@@ -198,7 +203,8 @@
                                         <label>직장 주소</label>
                                     </div>
                                     <div>
-                                        <input name="memberJobAddrZipcode" size="5" readonly style="height: 40px;" id="memberJobAddrZipcode">
+                                        <input name="memberJobAddrZipcode" size="5" readonly style="height: 40px;"
+                                               id="memberJobAddrZipcode">
                                         <input type="button" name="memberJobAddrBtn" value="우편번호찾기"
                                                onClick="zipSearch(this.name)"
                                                style="background: pink; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; height: 40px;">
@@ -224,7 +230,7 @@
                                         <select class="form-control" name="memberLikeArea_area1"
                                                 id="memberLikeArea_area1"
                                                 onchange="javascript:setArea2List(this.form.memberLikeArea_area1.value)">
-                                            <option> </option>
+                                            <option></option>
 
                                             <option value="">
 
@@ -313,14 +319,14 @@
                             <div class="sign-nameHeader">
                                 <div class="form-row">
                                     <div class="col">
-                                        <select class="form-control" name="businessNum"
+                                        <select class="form-control" name="businessNum" id="businessNum"
                                                 onChange="javascript:getBusinessNum(this.form.businessNum.value)">
                                             <option value="0">업종</option>
                                             <c:forEach items="${authDto.businessList}" var="business">
                                                 <li class="ui-state-default">
                                                     <label>
                                                         <option value="${business.businessNum}">
-                                                            ${business.businessName}
+                                                                ${business.businessName}
                                                         </option>
                                                     </label>
                                                 </li>
@@ -328,7 +334,7 @@
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select class="form-control" name="taskNum"
+                                        <select class="form-control" name="taskNum" id="taskNum"
                                                 onchange="javascript:getTaskNum(this.form.taskNum.value)">
                                             <option value="0">직무</option>
                                             <c:forEach items="${authDto.taskList}" var="task">
@@ -343,7 +349,7 @@
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select class="form-control" name="themeNum"
+                                        <select class="form-control" name="themeNum" id="themeNum"
                                                 onchange="javascript:getThemeNum(this.form.themeNum.value)">
                                             <option value="0">테마</option>
                                             <c:forEach items="${authDto.themeList}" var="theme">
@@ -365,12 +371,12 @@
                             </div>
                             <div style="text-align: center;">
                                 <div class="d-inline-block" style="margin-right: 50px;">
-                                    <input class="form-check-input" type="radio" name="memberSex" id="male"
+                                    <input class="form-check-input" type="radio" name="memberGender" id="male"
                                            value="1" checked>
                                     <label class="form-check-label" for="male">남자</label>
                                 </div>
                                 <div class="d-inline-block" style="margin-left: 50px;">
-                                    <input class="form-check-input" type="radio" name="memberSex" id="female"
+                                    <input class="form-check-input" type="radio" name="memberGender" id="female"
                                            value="2">
                                     <label class="form-check-label" for="female">
                                         여자
@@ -383,7 +389,7 @@
                                 <br>
                             </div>
                             <div class="col">
-                                <select class="form-control" name="categoryNum"
+                                <select class="form-control" name="categoryNum" id="categoryNum"
                                         onchange="javascript:getCategoryNum(this.form.categoryNum.value)">
                                     <option value="0">관심사 선택</option>
                                     <c:forEach items="${authDto.categoryList}" var="category">
@@ -442,17 +448,16 @@
                                         <textarea class="form-control" id="memberProfile" name="memberProfile" rows="4"
                                                   maxlength="100" placeholder="자기소개를 해주세요. (100자 이내)"></textarea>
                 </div>
-                <input type="button" value="가입하기" onclick="inputCheck()"
+                <button type="button" value="가입하기" onclick="requestJoin()"
                        class="btn btn-pill text-white btn-block"
-                       style="background-color: pink;">
-
+                        style="background-color: pink;">가입하기</button>
             </div>
         </div>
         </form>
         <form method="POST" name="hiddenFrm">
             <input type="hidden" name="memberLikeArea_area1">
             <input type="hidden" name="memberName" id="${memberName}">
-            <input type="hidden" name="memberId" id="${memberId}">
+            <input type="hidden" name="memberIdHdn" id="${memberId}">
             <input type="hidden" name="memberPw" id="${memberPw}">
             <input type="hidden" name="memberPwConfirm" id="${memberPwConfirm}">
             <input type="hidden" name="memberTel" id="${memberTel}">
@@ -471,17 +476,173 @@
 </div>
 </div>
 </div>
+
 <script type="text/javascript">
-    function idCheck(id) {
-        if (id == "") {
-            alert("아이디를 입력하세요.");
-            document.signFrm.id.focus();
-            return;//이후에 코드를 실행이 안됨. 함수를 빠져나감.
+    //TODO 회원가입 요청
+    const requestJoin = () => {
+        alert("signup.jsp: requestJoin() 실행됨");
+        //입력값 검증
+        if (!validateFields()) {
+            return;
         }
-        url = "idCheck.jsp?id=" + id;
-        window.open(url, "ID 중복체크", "width=300, height=150, top=100, left=300");
+
+        // id 속성을 이용해서 해당하는 요소를 가져온다.
+        const memberNameElement = document.getElementById("memberName");
+        const memberIdElement = document.getElementById("memberId");
+        const memberPwElement = document.getElementById("memberPw");
+        const memberTelElement = document.getElementById("memberTel");
+        const memberAddrArea1Element = document.getElementById("memberAddrArea1");
+        const memberAddrArea2Element = document.getElementById("memberAddrArea2");
+        const memberJobAddrArea1Element = document.getElementById("memberJobAddrArea1");
+        const memberJobAddrArea2Element = document.getElementById("memberJobAddrArea2");
+        const memberLikeArea1Element = document.getElementById("memberLikeArea_area1");
+        const memberLikeArea2Element = document.getElementById("memberLikeArea_area2");
+        const memberBirthYearElement = document.getElementById("memberBirth_year");
+        const memberBirthMonthElement = document.getElementById("memberBirth_month");
+        const memberBirthDayElement = document.getElementById("memberBirth_day");
+        const memberBusinessElement = document.getElementById("businessNum");
+        const memberTaskElement = document.getElementById("taskNum");
+        const memberThemeElement = document.getElementById("themeNum");
+        var memberGenderVal = $('input[name="memberGender"]:checked').val();
+
+        const memberCategoryElement = document.getElementById("categoryNum");
+        const memberImgElement = document.getElementById("profile-image");
+        const memberProfileElement = document.getElementById("memberProfile");
+
+        //회원정보를 객체로 만듬
+        const member = {
+            memberName: memberNameElement.value,
+            memberId: memberIdElement.value,
+            memberPw: memberPwElement.value,
+            memberTel: memberTelElement.value,
+            memberAddr: memberAddrArea1Element.value + " " + memberAddrArea2Element.value,
+            memberJobAddr: memberJobAddrArea1Element.value + " " + memberJobAddrArea2Element.value,
+            memberLikeArea: memberLikeArea1Element.value + " " + memberLikeArea2Element.value,
+            memberBirth: memberBirthYearElement.value + " " + memberBirthMonthElement.value + " " + memberBirthDayElement.value,
+            businessNum: memberBusinessElement.value,
+            taskNum: memberTaskElement.value,
+            themeNum: memberThemeElement.value,
+            memberGender: memberGenderVal,
+            categoryNum: memberCategoryElement.value,
+            memberImg: memberImgElement.value,
+            memberProfile: memberProfileElement.value,
+
+        };
+
+        //rest 통신
+        fetch("/api/v1/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            body: JSON.stringify(member),
+        })
+            .then(res => res.json())
+            .then(result => {
+                alert(result.message);
+                if (result.code == 0) {
+                    location.replace("login");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
+
+        // 유효성 검사(아이디 등 값들이 비어있는지 확인)
+        const validateFields = () => {
+            // id 속성을 이용해서 해당하는 요소를 가져온다.
+            const nameElement = document.getElementById("memberName");
+            const idElement = document.getElementById("memberId");
+            const pwElement = document.getElementById("memberPw");
+            const pwConfirmElement = document.getElementById("memberPwConfirm");
+            const birthYearElement = document.getElementById("memberBirth_year");
+            const birthMonthElement = document.getElementById("memberBirth_month");
+            const birthDayElement = document.getElementById("memberBirth_day");
+            const telElement = document.getElementById("memberTel");
+
+            //TODO 유효성검사 마무리
+            //const memberAddrElement =
+            //const memberImgElement =
+
+            if (nameElement.value === "") {
+                alert("이름을 입력해주세요.");
+                nameElement.focus();
+                return false;
+            }
+
+            if (idElement.value.length < 5) {
+                alert("아이디를 5자이상 입력해주세요.");
+                idElement.focus();
+                return false;
+            }
+
+            if (pwElement.value === "") {
+                alert("비밀번호를 입력해주세요.");
+                pwElement.focus();
+                return false;
+            }
+
+            if (pwConfirmElement.value === "") {
+                alert("비밀번호 확인을 입력해주세요.");
+                pwConfirmElement.focus();
+                return false;
+            }
+
+            if (pwElement.value!=pwConfirmElement.value){
+                alert("비밀번호 확인이 일치하지 않습니다.");
+                pwConfirmElement.focus();
+                return false;
+            }
+
+            if (telElement.value.length != 11) {
+                alert("전화번호를 11자리로 입력해주세요.");
+                telElement.focus();
+                return false;
+            }
+
+            //생일 유효성검사
+            if (birthYearElement.value === ""||birthMonthElement.value===""||birthDayElement.value==="") {
+                alert("생일을 입력해주세요.");
+                birthYearElement.focus();
+                return false;
+            }
+            return true;
+        };
+
+    //중복확인페이지 열기
+    const checkIdPage = (id) => {
+        let checkIdPageUrl = '/auth/signup/idCheck/' + id;
+        let checkIdPageOption = "width=300, height=150, top=100, left=300"
+        openWin = window.open(checkIdPageUrl, "id 중복확인", checkIdPageOption);
+        openWin.document.getElementById("memberId").value = id;
     }
 
+    //중복확인
+    const checkId = (memberId) => {
+        console.log("idCheck.jsp : checkId 호출")
+        fetch("/api/v1/auth/signup/checkId/" + memberId, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(memberId),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                if (result == 1) {
+
+                    document.getElementById("idContent").innerHTML = memberId + "은(는) 이미 존재하는 아이디입니다.";
+                } else if (result == 0) {
+                    document.getElementById("idContent").innerHTML = memberId + "은(는) 사용 가능한 아이디입니다.";
+                }
+            })
+            .catch((error) => {
+                alert("아이디 중복확인 에러가 발생했습니다.");
+            });
+    };
+
+    //전화번호 인증
     function phoneOK() {
 
     }

@@ -2,6 +2,7 @@ package com.bigmoim.module.moim.repository;
 
 import com.bigmoim.module.moim.entity.MoimEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

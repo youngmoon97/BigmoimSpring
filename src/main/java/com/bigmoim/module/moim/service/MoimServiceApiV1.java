@@ -1,6 +1,7 @@
 package com.bigmoim.module.moim.service;
 
 import com.bigmoim.common.dto.ResDTO;
+import com.bigmoim.config.security.CustomUserDetails;
 import com.bigmoim.module.member.entity.RoleEntity;
 import com.bigmoim.module.member.repository.RoleRepository;
 import com.bigmoim.module.moim.dto.MoimDTO;
@@ -18,17 +19,22 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MoimServiceApiV1 {
-    private MoimRepository moimRepository;
-    private RoleRepository roleRepository;
+    private final MoimRepository moimRepository;
+    private final RoleRepository roleRepository;
 
     @Transactional
-    public HttpEntity<?> moimInsert(MoimDTO.ReqMakeMoim reqMakeMoim) {
+    public HttpEntity<?> moimInsert(CustomUserDetails customUserDetails, MoimDTO.ReqMakeMoim reqMakeMoim) {
 
-        moimRepository.moimInsert(reqMakeMoim.toEntity());
+        if(moimRepository==null)
+            System.out.println("null...........");
+        else
+            System.out.println(moimRepository);
+
+        moimRepository.moimInsert(reqMakeMoim.toEntity(customUserDetails.getUsername()));
 
         roleRepository.roleInsert(
                 RoleEntity.builder()
-                        .memberId(reqMakeMoim.toEntity().getMemberId())
+                        .memberId(customUserDetails.getUsername())
                         .role("Leader")
                         .createDate(LocalDateTime.now())
                         .build()

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +23,7 @@ public class MoimEntity {
     private Integer categoryNum;
     private String moimImg;
     private String moimProfile;
-    private String moimDate;
+    private LocalDateTime moimDate;
     private Integer businessNum;
     private Integer taskNum;
     private Integer themeNum;

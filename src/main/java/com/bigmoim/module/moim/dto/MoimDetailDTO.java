@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +57,7 @@ public class MoimDetailDTO {
             Integer categoryNum;
             String moimImg;
             String moimProfile;
-            String moimDate;
+            LocalDateTime moimDate;
             Integer businessNum;
             Integer taskNum;
             Integer themeNum;
