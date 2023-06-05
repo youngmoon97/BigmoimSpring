@@ -14,7 +14,7 @@
     <select id="rsList">
         SELECT m.moimNum, m.moimName ,m.moimImg,m.moimArea, m.moimHCount, m.moimNCount ,m.categoryNum, m.moimProfile, m.categoryNum
         FROM moim m, recentseen r
-        WHERE m.moimNum = r.moimNum AND r.memberId = ?
+        WHERE m.moimNum = r.moimNum AND r.memberId = #{memberId}
     </select>
 
     <!--최근 본 모임 추가-->

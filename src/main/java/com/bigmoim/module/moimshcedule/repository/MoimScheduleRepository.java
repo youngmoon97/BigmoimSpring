@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface MoimScheduleRepository {
-    List<MoimScheduleEntity> allmoimSchedule();
+    List<MoimScheduleEntity> moimSchedule(Integer moimNum);
     Integer mjAccept(@Param("memberId") String memberId, @Param("moimNum") int moimNum);
     Integer mjDelete(@Param("memberId") String memberId, @Param("moimNum") int moimNum);
     Integer msInsert(MoimScheduleEntity moimScheduleEntity);

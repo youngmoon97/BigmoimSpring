@@ -15,6 +15,10 @@ import com.bigmoim.module.moim.dto.MoimDTO;
 import com.bigmoim.module.moim.dto.MoimDetailDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
 import com.bigmoim.module.moim.repository.MoimRepository;
+import com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity;
+import com.bigmoim.module.moimshcedule.repository.MoimScheduleRepository;
+import com.bigmoim.module.schedulejoin.entity.ScheduleJoinEntity;
+import com.bigmoim.module.schedulejoin.repository.SchedulejoinRepostory;
 import com.bigmoim.module.task.entity.TaskEntity;
 import com.bigmoim.module.task.repository.TaskRepository;
 import com.bigmoim.module.theme.entity.ThemeEntity;
@@ -35,11 +39,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class MoimService {
     private final MoimRepository moimRepository;
+    private final RoleRepository roleRepository;
     private final CategoryRepository categoryRepository;
     private final MemberRepository memberRepository;
     private final BusinessRepository businessRepository;
     private final TaskRepository taskRepository;
     private final ThemeRepository themeRepository;
+    private final MoimScheduleRepository moimScheduleRepository;
+    private final SchedulejoinRepostory schedulejoinRepostory;
+
     public MainDTO.ResBasic getMainList(CustomUserDetails customUserDetails) {
         MemberEntity memberDetail = memberRepository.getMember(customUserDetails.getUsername());
         List<MoimEntity> classList = moimRepository.classList(memberDetail.getMemberAddr());
@@ -48,29 +56,58 @@ public class MoimService {
         List<BusinessEntity> businessEntityList = businessRepository.businessList();
         List<TaskEntity> taskEntityList = taskRepository.taskList();
         List<ThemeEntity> themeEntityList = themeRepository.themeList();
-        List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
         List<MoimEntity> newMoimList = moimRepository.newMoimList();
         List<MoimEntity> recoMoimList = moimRepository.areaList(memberDetail.getMemberAddr());
         List<MoimEntity> joinMoimList = moimRepository.joinMoimList(customUserDetails.getUsername());
         List<MoimEntity> businessMoimList = moimRepository.businessList(memberDetail.getBusinessNum());
         List<MoimEntity> taskMoimList = moimRepository.taskList(memberDetail.getTaskNum());
         List<MoimEntity> themeMoimList = moimRepository.themeList(memberDetail.getThemeNum());
-        List<MoimEntity> moimEntityList = moimRepository.myMoimList(customUserDetails.getUsername());
+        List<MoimEntity> myMoimEntityList = moimRepository.myMoimList(customUserDetails.getUsername());
+        List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
 
-        return MainDTO.ResBasic.fromEntityList(classList, allMoimList, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList(),
-                categoryEntityList, allclassList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList, themeMoimList,
-                 businessEntityList, taskEntityList, themeEntityList,moimEntityList);
+        return MainDTO.ResBasic.fromEntityList(
+                classList,
+                allMoimList,
+                customUserDetails.getMemberEntity(),
+                customUserDetails.getRoleEntityList(),
+                categoryEntityList,
+                newMoimList,
+                allclassList,
+                recoMoimList,
+                joinMoimList,
+                businessMoimList,
+                taskMoimList,
+                themeMoimList,
+                businessEntityList,
+                taskEntityList,
+                themeEntityList,
+                myMoimEntityList);
     }
-
+    // 모임 디테일
     public MoimDetailDTO.ResMoimDetail getMoimDetail(CustomUserDetails customUserDetails, Integer moimNum) {
         MoimEntity moimEntity = moimRepository.findByMoimNum(moimNum);
-        return MoimDetailDTO.ResMoimDetail.toMoimDetail(moimEntity, customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList());
+        List<RoleEntity> moimMemberEntity = roleRepository.moimMember(moimNum);
+        List<MoimScheduleEntity> moimScheduleEntityList = moimScheduleRepository.moimSchedule(moimNum);
+        List<ScheduleJoinEntity> scheduleJoinEntityList = schedulejoinRepostory.moimschedulejoin(moimNum);
+        List<MemberEntity> memberEntityList = memberRepository.getMemberList();
+        List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
+        return MoimDetailDTO.ResMoimDetail.toMoimDetail(
+                moimEntity,
+                customUserDetails.getMemberEntity(),
+                memberEntityList,
+                customUserDetails.getRoleEntityList(),
+                moimMemberEntity,
+                moimScheduleEntityList,
+                scheduleJoinEntityList,
+                categoryEntityList
+        );
     }
+    // 카테고리 별 모임
     public MainDTO.ResCategoryMoim getCategoryMoim(Integer categoryNum, CustomUserDetails customUserDetails) {
         List<CategoryEntity> categoryEntityList = categoryRepository.categoryList();
         List<MoimEntity> categoryMoimList = moimRepository.categoryList(categoryNum);
         return MainDTO.ResCategoryMoim.fromEntityList(customUserDetails.getMemberEntity(), customUserDetails.getRoleEntityList(),
-                categoryEntityList,categoryMoimList, categoryNum);
+                categoryEntityList, categoryMoimList, categoryNum);
     }
 //    public HttpEntity<?> allMoim(){
 //        List<MoimEntity> moimEntityList = moimRepository.allMoim();
@@ -105,8 +142,6 @@ public class MoimService {
 //                        .build(),
 //                HttpStatus.OK);
 //    }
-
-
 
 
     public HttpEntity<?> moimUpdate(int moimNum) {

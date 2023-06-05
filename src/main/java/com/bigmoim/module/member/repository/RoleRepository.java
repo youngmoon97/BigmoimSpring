@@ -19,4 +19,5 @@ public interface RoleRepository {
     Integer roleInsert(RoleEntity roleEntity);
 
     Integer roleDeleteAll(String memberId);
+    List<RoleEntity> moimMember(Integer moimNum);
 }

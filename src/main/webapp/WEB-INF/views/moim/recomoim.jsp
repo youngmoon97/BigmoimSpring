@@ -78,7 +78,7 @@
                                    style="margin-top: 0;">${recomoim.moimArea}</p>
                                 <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                                 <p class="categoryName" name="categoryName" value=""
-                                   style="margin-top: 0;">${recomoim.categoryNum}</p>
+                                   style="margin-top: 0;">${recomoim.category.categoryName}</p>
                             </div>
                             <p class="moimProfile" name="moimProfile" value="">${recomoim.moimProfile}</p>
                         </a>
@@ -92,12 +92,6 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose>
-        <article>
-            <div class="text">
-                <!-- class 이름 알잘딱깔센으로 적어보시길... -->
-                <p class="join-text"> 로그인을 하시면 더 많은 정보를 보실 수 있습니다.</p>
-            </div>
-        </article>
     </c:when>
     <c:otherwise> <!-- 로그인 안했을때-->
         <article>
@@ -118,7 +112,7 @@
                         <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${allmoim.moimArea}</p>
                         <p class="card-nav-line" style="margin-top: 0;" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                         <p class="categoryName" name="categoryName" value=""
-                           style="margin-top: 0;">${allmoim.categoryNum}</p>
+                           style="margin-top: 0;">${allmoim.category.categoryName}</p>
                     </div>
                     <p class="moimProfile" name="moimProfile" value="">${allmoim.moimProfile}</p>
                 </a>

@@ -21,7 +21,7 @@
    </select>
 
     <select id="categoryName"  resultType="com.bigmoim.module.category.entity.CategoryEntity">
-        SELECT categoryName
+        SELECT <include refid="category_fullColumn"/>
         FROM category
         WHERE categoryNum = #{categoryNum}
     </select>

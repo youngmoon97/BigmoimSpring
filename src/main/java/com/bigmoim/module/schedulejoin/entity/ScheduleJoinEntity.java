@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScheduleJoinEntity {
-    private int sjNum;
+    private Integer sjNum;
     private String memberid;
-    private int moimNum;
-    private int msNum;
+    private Integer moimNum;
+    private Integer msNum;
 }

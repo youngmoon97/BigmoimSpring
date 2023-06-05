@@ -15,6 +15,7 @@ import org.apache.taglibs.standard.extra.spath.Step;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MainDTO {
@@ -110,7 +111,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -133,7 +134,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -155,7 +156,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -177,7 +178,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -200,7 +201,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -223,7 +224,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -246,7 +247,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -269,7 +270,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -292,7 +293,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -315,7 +316,7 @@ public class MainDTO {
             Integer moimNCount;
             String memberId;
             String moimKakao;
-            Integer categoryNum;
+            Category category;
             String moimImg;
             String moimProfile;
             LocalDateTime moimDate;
@@ -346,6 +347,9 @@ public class MainDTO {
         ) {
 
             List<Class> classList = moimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return Class.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -354,7 +358,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -366,6 +376,10 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<AllClass> allclassList = allclassEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
+
                 return AllClass.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -374,7 +388,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -386,6 +406,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<AllMoim> allMoimList = allMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return AllMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -394,7 +417,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -417,7 +446,6 @@ public class MainDTO {
                         .role(role.getRole())
                         .build();
             }).collect(Collectors.toList());
-
             List<Category> categoryList = categoryEntityList.stream().map(category -> {
                 return Category.builder()
                         .categoryNum(category.getCategoryNum())
@@ -444,6 +472,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<NewMoim> newMoimList = newMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return NewMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -452,7 +483,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -465,6 +502,9 @@ public class MainDTO {
             }).collect(Collectors.toList());
 
             List<RecoMoim> recoMoimList = recoMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return RecoMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -473,7 +513,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -485,6 +531,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<JoinMoim> joinMoimList = joinMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return JoinMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -493,7 +542,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -505,6 +560,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<BusinessMoim> businessMoimList = businessMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return BusinessMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -513,7 +571,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -525,6 +589,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<TaskMoim> taskMoimList = taskMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return TaskMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -533,7 +600,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -545,6 +618,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<ThemeMoim> themeMoimList = themeMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return ThemeMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -553,7 +629,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -565,6 +647,9 @@ public class MainDTO {
                         .build();
             }).collect(Collectors.toList());
             List<MyMoim> myMoimList = myMoimEntityList.stream().map(moimEntity -> {
+                Optional<CategoryEntity> optionalCategoryEntity = categoryEntityList.stream().filter(categoryEntityForFilter ->
+                        categoryEntityForFilter.getCategoryNum().equals(moimEntity.getCategoryNum())
+                ).findFirst();
                 return MyMoim.builder()
                         .moimNum(moimEntity.getMoimNum())
                         .moimName(moimEntity.getMoimName())
@@ -573,7 +658,13 @@ public class MainDTO {
                         .moimNCount(moimEntity.getMoimNCount())
                         .memberId(moimEntity.getMemberId())
                         .moimKakao(moimEntity.getMoimKakao())
-                        .categoryNum(moimEntity.getCategoryNum())
+                        .category(
+                                Category.builder()
+                                        .categoryNum(optionalCategoryEntity.get().getCategoryNum())
+                                        .categoryName(optionalCategoryEntity.get().getCategoryName())
+                                        .categoryImg(optionalCategoryEntity.get().getCategoryImg())
+                                        .build()
+                        )
                         .moimImg(moimEntity.getMoimImg())
                         .moimProfile(moimEntity.getMoimProfile())
                         .moimDate(moimEntity.getMoimDate())
@@ -584,8 +675,11 @@ public class MainDTO {
                         .moimOrClass(moimEntity.getMoimOrClass())
                         .build();
             }).collect(Collectors.toList());
-            return new ResBasic(classList, allclassList, allMoimList, member, roleList, categoryList, businessList,
-                    taskList, themeList, newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList,
+
+            return new ResBasic(classList, allclassList, allMoimList,
+                    member, roleList,
+                    categoryList, businessList, taskList, themeList,
+                    newMoimList, recoMoimList, joinMoimList, businessMoimList, taskMoimList,
                     themeMoimList, myMoimList);
         }
     }

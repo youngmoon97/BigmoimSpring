@@ -23,30 +23,29 @@ public class MoimController {
                                 @AuthenticationPrincipal CustomUserDetails customUserDetails,
                                 Model model){
         MoimDetailDTO.ResMoimDetail dto = moimService.getMoimDetail(customUserDetails,moimNum);
-        System.out.println(dto);
         model.addAttribute("dto", dto);
         return "/moim/moimdetail";
     }
     @GetMapping("/makemoim")
-    public String getMakeMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+    public String getMakeMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/makemoim";
     }
     @GetMapping("/recomoim")
-    public String getRecoMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+    public String getRecoMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/recomoim";
     }
     @GetMapping("/newmoim")
-    public String getNewMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+    public String getNewMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/newmoim";
     }
     @GetMapping("/myactivity")
-    public String getMyActivityPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+    public String getMyActivityPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/myactivity";
@@ -59,7 +58,7 @@ public class MoimController {
         return "/moim/categorymoim";
     }
     @GetMapping("/mymoim")
-    public String getMyMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
+    public String getMyMoimPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic dto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto", dto);
         return "/moim/mymoim";

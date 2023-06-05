@@ -2,25 +2,25 @@
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('moon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '조영문', '01026200656', '19970919',
-        'img1', 'profile1', 1,
+        'moonIMG', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('chae', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '채기주', '01012344321', '19980511',
-        'img1', 'profile1', 1,
+        'chaeIMG', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('lee', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '이상목', '01052481328', '19970322',
-        'img1', 'profile1', 1,
+        'leeIMG', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('seo', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '서지우', '01043218252', '19980505',
-        'img1', 'profile1', 2,
+        'seoIMG', 'profile1', 2,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
@@ -29,23 +29,30 @@ values ('ha', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '�
         'img1', 'profile1', 2,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
---역할
+--역할-유저
 insert into role(memberId, role, moimNum, createDate)
 values ('moon', 'USER', null, now()),
-       ('chae', 'ADMIN', null, now()),
-       ('moon', 'LEADER', 1, now());
-
-
-insert into role(memberId, role, moimNum, createDate)
-values ('ha', 'USER', null, now()),
-       ('ha', 'LEADER', 2, now()),
+       ('ha', 'USER', null, now()),
        ('lee', 'USER', null, now()),
-       ('lee', 'LEADER', 3, now()),
        ('seo', 'USER', null, now()),
-       ('seo', 'LEADER', 4, now()),
-       ('chae', 'USER', null, now()),
-       ('chae', 'LEADER', 5, now());
+       ('chae', 'USER', null, now());
 
+-- 역할-admin
+insert into role(memberId, role, moimNum, createDate)
+values ('aaa', 'ADMIN', null, now());
+
+-- 역할 리더
+insert into role(memberId, role, moimNum, createDate)
+values ('moon', 'LEADER', 1, now()),
+       ('ha', 'LEADER', 2, now()),
+       ('lee', 'LEADER', 3, now()),
+       ('seo', 'LEADER', 4, now()),
+       ('chae', 'LEADER', 5, now());
+-- 역할 가입멤버
+insert into role(memberId, role, moimNum, createDate)
+values ('lee', 'member', 1, now()),
+       ('seo', 'member', 1, now()),
+       ('chae', 'member', 1, now());
 
 -- 모임
 INSERT INTO moim
@@ -77,6 +84,18 @@ INSERT INTO moim
  themeNum, taskNum, businessNum, classprice, moimOrclass)
 VALUES (5, '해운대 개발자 취업하러가자!', '부산 해운대구', 20, 2, 'chae', NULL, 6, '주짓수11.png', '개발자로 취업하기 위한 여정을 함께 해보지 않으시겠습니까?
 오픈 채팅방으로 와주세요! https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 1);
+
+-- 모임일정
+insert into moimschedule (msNum, msTime, msArea, moimNum, msHCount, memberId, msTitle, msContent, msDate)
+values (1, '13:33', '부산 해운대구', 1, 10, 'moon', '모임일정테스트1', '모임일정테스트1', now()),
+       (2, '15:55', '서울 강남구', 1, 20, 'moon', '모임일정테스트2', '모임일정테스트2', now());
+
+-- 일정신청
+insert into schedulejoin (sjNum, msNum, memberId, moimNum)
+values (1, 1, 'moon', 1),
+       (2, 1, 'lee', 1),
+       (3, 2, 'seo', 1);
+
 
 -- 직무
 insert into task
@@ -180,6 +199,7 @@ VALUES ('여행/호텔/레저'),
        ('부동산/중개업'),
        ('식음료/외식업'),
        ('서비스업');
+
 -- moimcategory
 INSERT INTO category (categoryName)
 VALUES ('게임/오락'),

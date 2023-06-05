@@ -10,12 +10,21 @@
         moimNum,
         createDate
     </sql>
+
     <!-- 멤버의 role 리스트 -->
     <select id="findById" resultType="com.bigmoim.module.member.entity.RoleEntity">
         SELECT <include refid="role_fullColumn"/>
         FROM role
         WHERE memberId = #{memberId}
     </select>
+
+    <!-- 멤버의 role 리스트 -->
+    <select id="moimMember" resultType="com.bigmoim.module.member.entity.RoleEntity">
+        SELECT <include refid="role_fullColumn"/>
+        FROM role
+        WHERE moimNum = #{moimNum}
+    </select>
+
     <!-- Role별 리스트 -->
     <select id="findByRole" resultType="com.bigmoim.module.member.entity.RoleEntity">
         SELECT <include refid="role_fullColumn"/>

@@ -27,7 +27,7 @@ public class AdminController {
     private final MoimService moimService;
 
     @GetMapping("/index")
-    public String index(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
+    public String index(@AuthenticationPrincipal CustomUserDetails customUserDetails,Model model){
         MainDTO.ResBasic mainDto = moimService.getMainList(customUserDetails);
         model.addAttribute("dto",mainDto);
         return "/admin/index";

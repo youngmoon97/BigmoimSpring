@@ -4,7 +4,7 @@
 <mapper namespace="com.bigmoim.module.moimshcedule.repository.MoimScheduleRepository">
 
     <sql id="moimschedule_fullColumn">
-        msNUm,
+        msNum,
         msTime,
         msArea,
         moimNum,
@@ -13,13 +13,13 @@
         msNCount,
         msTitle,
         msContent,
-        msDate,
-        moimImg,
+        msDate
     </sql>
     <!-- 모임별 가입 신청 리스트-->
-    <select id="allmoimSchedule" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
+    <select id="moimSchedule" resultType="com.bigmoim.module.moimshcedule.entity.MoimScheduleEntity">
         SELECT <include refid="moimschedule_fullColumn"/>
         FROM `moimschedule`
+        WHERE moimNum = #{moimNum}
     </select>
     <!-- 모임 가입 수락 업데이트-->
     <update id="mjAccept">
@@ -44,8 +44,7 @@
             msNCount,
             msTitle,
             msContent,
-            msDate,
-            moimImg,
+            msDate
         )
         VALUES (
                    #{msTime},

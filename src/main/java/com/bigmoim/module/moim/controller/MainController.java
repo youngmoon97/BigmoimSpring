@@ -21,6 +21,8 @@ public class MainController {
     @GetMapping
     public String getMainPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model){
         MainDTO.ResBasic mainDto = moimService.getMainList(customUserDetails);
+        if(mainDto.getMember().getMemberId()==null){
+        }
 //        System.out.println(mainDto.getMember());
         model.addAttribute("dto",mainDto);
         return "/main/main";

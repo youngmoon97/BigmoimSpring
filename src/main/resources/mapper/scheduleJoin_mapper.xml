@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bigmoim.module.schedulejoin.repository.SchedulejoinRepostory">
+
+    <sql id="schedulejoin_fullColumn">
+        sjNum,
+        msNum,
+        memberId,
+        moimNum
+    </sql>
+    <!-- 모임가입 신청 리스트-->
+    <select id="schedulejoin" resultType="com.bigmoim.module.schedulejoin.entity.ScheduleJoinEntity">
+        SELECT *
+        FROM `schedulejoin`
+        WHERE moimNum = #{moimNum} and msNum = #{msNum}
+    </select>
+    <select id="moimschedulejoin" resultType="com.bigmoim.module.schedulejoin.entity.ScheduleJoinEntity">
+        SELECT *
+        FROM `schedulejoin`
+        WHERE moimNum = #{moimNum}
+    </select>
+    <select id="allschedulejoin" resultType="com.bigmoim.module.schedulejoin.entity.ScheduleJoinEntity">
+        SELECT *
+        FROM `schedulejoin`
+    </select>
+
+    <insert id="sjInsert">
+        INSERT INTO `schedulejoin` (
+            msNum,
+            memberId,
+            moimNum
+        )
+        VALUES (
+                   #{msNum},
+                   #{memberId},
+                   #{moimNum}
+               )
+    </insert>
+
+</mapper>

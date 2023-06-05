@@ -12,5 +12,5 @@ import java.util.List;
 public interface CategoryRepository {
      List<CategoryEntity> categoryList();
      CategoryEntity categoryImg(int num);
-     String categoryName(int num);
+     CategoryEntity categoryName(int num);
 }

@@ -75,7 +75,7 @@
                            style="margin-top: 0;">${myMoim.moimArea}</p>
                         <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                         <p class="categoryName" name="categoryName" value=""
-                           style="margin-top: 0;">${myMoim.categoryNum}</p>
+                           style="margin-top: 0;">${myMoim.category.categoryName}</p>
                     </div>
                     <p class="moimProfile" name="moimProfile" value="">${myMoim.moimProfile}</p>
                 </a>

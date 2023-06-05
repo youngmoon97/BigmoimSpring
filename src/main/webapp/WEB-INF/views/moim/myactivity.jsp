@@ -63,7 +63,7 @@
                             <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${allMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${allMoim.moimProfile}</p>
@@ -102,7 +102,7 @@
                             <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${joinmoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${joinmoim.categoryNum}</p>
+                               style="margin-top: 0;">${joinmoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${joinmoim.moimProfile}</p>
@@ -153,7 +153,7 @@
                             <p class="moimArea" name="moimArea" value="" style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${allMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${allMoim.moimProfile}</p>
@@ -193,7 +193,7 @@
                                style="margin-top: 0;">${businessMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${businessMoim.categoryNum}</p>
+                               style="margin-top: 0;">${businessMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${businessMoim.moimProfile}</p>
@@ -241,7 +241,7 @@
                                style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${allMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${allMoim.moimProfile}</p>
@@ -281,7 +281,7 @@
                                style="margin-top: 0;">${taskMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${taskMoim.categoryNum}</p>
+                               style="margin-top: 0;">${taskMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${taskMoim.moimProfile}</p>
@@ -328,7 +328,7 @@
                                style="margin-top: 0;">${allMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${allMoim.categoryNum}</p>
+                               style="margin-top: 0;">${allMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${allMoim.moimProfile}</p>
@@ -369,7 +369,7 @@
                                style="margin-top: 0;">${themeMoim.moimArea}</p>
                             <p class="card-nav-line" style="margin-top: 0;">&nbsp; | &nbsp;</p>
                             <p class="categoryName" name="categoryName" value=""
-                               style="margin-top: 0;">${themeMoim.categoryNum}</p>
+                               style="margin-top: 0;">${themeMoim.category.categoryName}</p>
                         </div>
                         <p class="moimProfile" name="moimProfile" value=""
                            style="margin-top: 0;">${themeMoim.moimProfile}</p>

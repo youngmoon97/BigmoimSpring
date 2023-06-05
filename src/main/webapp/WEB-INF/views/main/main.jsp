@@ -65,7 +65,7 @@
                                 <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allMoim.moimArea}
                                 </p>
                                 <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
-                                <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allmoim.categoryNum}
+                                <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allMoim.category.categoryName}
                                 </p>
                                 <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allmoim.moimProfile}
                                 </p>
@@ -105,7 +105,7 @@
                                     <p class="moimArea" name="moimArea" value="" style="margin-top: 0; color: black; text-decoration: none;">${allclassMoim.moimArea}
                                     </p>
                                     <p class="card-nav-line" style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
-                                    <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allclassMoim.categoryNum}
+                                    <p class="categoryName" name="categoryName" value="" style="margin-top: 0; color: black; text-decoration: none;">${allclassMoim.category.categoryName}
                                     </p>
                                     <p class="moimProfile" name="moimProfile" value="" style="margin-top: 0; color: black; text-decoration: none;"><${allclassMoim.moimProfile}
                                     </p>
@@ -123,11 +123,11 @@
                     </div>
                 </article>
                 <div class="card-group">
-                <c:forEach items="${dto.classList}" var="classList">
+                <c:forEach items="${dto.classList}" var="classEl">
                         <article class="card">
-                            <a href="../moim/moimdetail/${classList.moimNum}">
+                            <a href="../moim/moimdetail/${classEl.moimNum}">
                                 <div class="card-wrapper">-
-                                    <img src=${classList.moimImg} alt="Image">
+                                    <img src=${classEl.moimImg} alt="Image">
                                         <%--<form name="jjimFrm" action="jjimProc.jsp" method="get">--%>
                                         <%--	<button class="like-btn" id="like-btn-${class.moimNum}">--%>
                                         <%--			<onclick="likeBtnChange(${class.moimNum})" style="color:red; bgcolor: white;">--%>
@@ -138,18 +138,18 @@
                                         <%--	</button>--%>
                                         <%--</form>--%>
                                 </div>
-                                <h4>${classList.moimName}</h4>
-                                <h3>${classList.moimNCount} / ${classList.moimHCount}</h3>
+                                <h4>${classEl.moimName}</h4>
+                                <h3>${classEl.moimNCount} / ${classEl.moimHCount}</h3>
                                 <div class="card-nav">
-                                    <p class="moimArea" name="moimArea" value="${classList.moimArea}"
-                                       style="margin-top: 0; color: black; text-decoration: none;">${classList.moimArea}</p>
+                                    <p class="moimArea" name="moimArea" value="${classEl.moimArea}"
+                                       style="margin-top: 0; color: black; text-decoration: none;">${classEl.moimArea}</p>
                                     <p class="card-nav-line"
                                        style="margin-top: 0; color: black; text-decoration: none;">&nbsp; | &nbsp;</p>
-                                    <p class="categoryName" name="categoryName" value="${classList.categoryNum}"
-                                       style="margin-top: 0; color: black; text-decoration: none;">${classList.categoryNum}</p>
+                                    <p class="categoryName" name="categoryName" value="${classEl.category.categoryName}"
+                                       style="margin-top: 0; color: black; text-decoration: none;">${classEl.category.categoryName}</p>
                                 </div>
-                                <p class="moimProfile" name="moimProfile" value="${classList.moimProfile}"
-                                   style="margin-top: 0; color: black; text-decoration: none;">${classList.moimProfile}</p>
+                                <p class="moimProfile" name="moimProfile" value="${classEl.moimProfile}"
+                                   style="margin-top: 0; color: black; text-decoration: none;">${classEl.moimProfile}</p>
                             </a>
                         </article>
                         <input type="hidden" name="jjimNum" value="">
