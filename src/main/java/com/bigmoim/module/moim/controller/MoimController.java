@@ -24,7 +24,6 @@ public class MoimController {
                                 Model model){
         MoimDetailDTO.ResMoimDetail dto = moimService.getMoimDetail(customUserDetails,moimNum);
         model.addAttribute("dto", dto);
-        System.out.println(model);
         return "/moim/moimdetail";
     }
     @GetMapping("/makemoim")

@@ -11,6 +11,7 @@ import java.util.List;
 @Mapper
 public interface MoimScheduleRepository {
     List<MoimScheduleEntity> moimSchedule(Integer moimNum);
+    List<MoimScheduleEntity> allMoimSchedule();
     Integer mjAccept(@Param("memberId") String memberId, @Param("moimNum") int moimNum);
     Integer mjDelete(@Param("memberId") String memberId, @Param("moimNum") int moimNum);
     Integer msInsert(MoimScheduleEntity moimScheduleEntity);

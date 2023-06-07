@@ -88,8 +88,9 @@
                     <input type="hidden" name="moimNum" value="">
                     <input type="hidden" name="classNum" value="">
                     </form>
-                    </div><!--card-group-->
+
                 </c:forEach>
+                </div><!--card-group-->
             </c:otherwise>
         </c:choose>
     </c:when>
@@ -117,8 +118,9 @@
                     <p class="moimProfile" name="moimProfile" value="">${allmoim.moimProfile}</p>
                 </a>
             </article>
-            </div>
+
         </c:forEach>
+        </div>
         <!--card-group-->
     </c:otherwise>
 </c:choose>

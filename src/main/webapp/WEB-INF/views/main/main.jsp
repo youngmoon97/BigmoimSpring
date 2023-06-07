@@ -73,8 +73,8 @@
                         </div>
                     </a>
                 </article>
-            </div>
         </c:forEach>
+        </div>
     </c:when>
     <c:otherwise><!--로그인했을때-->
         <c:choose>
@@ -113,8 +113,9 @@
                             </div>
                         </a>
                     </article>
-                    </div>
+
                 </c:forEach>
+                </div>
             </c:when>
             <c:otherwise><!-- 클래스모임 있을때 -->
                 <article>
@@ -157,9 +158,9 @@
                         <input type="hidden" name="moimNum" value="">
                         <input type="hidden" name="classNum" value="">
                         </form>
-                    </div>
                     <!--card-group-->
                 </c:forEach>
+                </div>
             </c:otherwise>
         </c:choose>
     </c:otherwise>

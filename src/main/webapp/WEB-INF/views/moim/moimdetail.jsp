@@ -260,8 +260,7 @@
                                     <ul class="tabcontent-list-detail">
                                         <li class="tabcontent-list-name" name="memberName">${scheduleMember.memrberId}
                                         </li>
-                                        <li class="tabcontent-list-hello"
-                                            name="memberProfile">${scheduleMember.memberImg}
+                                        <li class="tabcontent-list-hello" name="memberProfile">${scheduleMember.memberId}
                                         </li>
                                     </ul>
                                 </li>

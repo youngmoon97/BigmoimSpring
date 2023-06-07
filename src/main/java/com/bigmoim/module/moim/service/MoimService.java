@@ -11,7 +11,6 @@ import com.bigmoim.module.member.entity.RoleEntity;
 import com.bigmoim.module.member.repository.MemberRepository;
 import com.bigmoim.module.member.repository.RoleRepository;
 import com.bigmoim.module.moim.dto.MainDTO;
-import com.bigmoim.module.moim.dto.MoimDTO;
 import com.bigmoim.module.moim.dto.MoimDetailDTO;
 import com.bigmoim.module.moim.entity.MoimEntity;
 import com.bigmoim.module.moim.repository.MoimRepository;
@@ -24,14 +23,12 @@ import com.bigmoim.module.task.repository.TaskRepository;
 import com.bigmoim.module.theme.entity.ThemeEntity;
 import com.bigmoim.module.theme.repository.ThemeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
