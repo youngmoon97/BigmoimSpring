@@ -116,7 +116,7 @@
 
             </div>
         </div>
-        <ul class="meeting_list">
+        <ul class="meeting_list" style = "position: relative; left: 500px;">
             <c:choose>
                 <c:when test="${dto.moimDetail.moimScheduleList.size() eq 0}">
                     <div>
@@ -139,8 +139,8 @@
                                         </li>
                                         <li class="ico place" name="msArea">${moimSchedule.msArea}
                                         </li>
-                                        <li class="ico cost" name="">${dto.moimDetail.classPrice}
-                                        </li>
+                                        <!--<li class="ico cost" name="">${dto.moimDetail.classPrice}
+                                        </li>-->
                                         <h4 name="msNCount">
                                             멤버(${moimSchedule.memberList.size()} / ${moimSchedule.msHCount})
                                         </h4>
@@ -178,7 +178,7 @@
                                     <c:otherwise>
                                         <c:forEach items="${moimSchedule.memberList}" var="scheduleMember">
                                             <div class="joinMemberImg">
-                                                <img src="${scheduleMember.memberImg}"/>
+                                                <img src="${scheduleMember.memberImg}" alt=""/>
                                             </div>
                                         </c:forEach>
                                     </c:otherwise>
@@ -192,7 +192,7 @@
     </div>
 
     <!-- 클래스 멤버 -->
-    <div class="tab">
+    <div class="tab" style = "position: relative; left: 500px; width: 700px;">
         <c:if test="${dto.moimMemberList.size() ne 0}">
             <!-- 클래스 멤버 탭 부분 -->
             <ul class="tabnav">
@@ -217,7 +217,8 @@
             <!-- 클래스장 출력 -->
             <ul class="tabcontent-list">
                 <li class="tabcontent-list-img " name="memberImg">
-                    <img src="/bigmoim/image/" class="memberImg"/></li>
+                    <!-- TODO 잘못된 값 임시로 넣어놈 -> 로그인한 아이디의 이미지가져옴 -->
+                    <img src="${dto.member.memberImg}" class="memberImg"/></li>
                 <li>
                     <ul class="tabcontent-list-detail">
                         <li class="tabcontent-list-name" name="memberName">${dto.moimMemberList.get(0).memberId}
@@ -231,7 +232,7 @@
             <c:forEach items="${dto.moimMemberList}" var="moimMember" varStatus="status" begin="1">
                 <ul class="tabcontent-list">
                     <li class="tabcontent-list-img" name="memberImg"><img
-                            src="/bigmoim/image/${moimMember.memberId}" class="memberImg"/></li>
+                            src="${moimMember.memberImg}" class="memberImg"/></li>
                     <li>
                         <ul class="tabcontent-list-detail">
                             <li class="tabcontent-list-name" name="memberName">${moimMember.memberId}
@@ -246,7 +247,7 @@
         <!-- 일정에 따른 참여멤버 출력 -->
         <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
             <div class="tabcontent tab${moimSchedule.msNum}" style="display: none">
-                <h3 name="msNCount">클래스멤버(${moimSchedule.memberList.size()})</h3>
+                <h3 name="msNCount">모임일정멤버(${moimSchedule.memberList.size()})</h3>
                 <c:choose>
                     <c:when test="${moimSchedule.memberList.size() eq 0}">
                         <li><h3>참여멤버가 없습니다.</h3></li>
@@ -254,8 +255,8 @@
                     <c:otherwise>
                         <c:forEach items="${moimSchedule.memberList}" var="scheduleMember">
                             <ul class="tabcontent-list">
-                                <li class="tabcontent-list-img" name="memberImg"><img
-                                        src="${scheduleMember.memberImg}" class="memberImg"/></li>
+                                <li class="tabcontent-list-img" name="memberImg">
+                                    <img src="${scheduleMember.memberImg}" />
                                 <li>
                                     <ul class="tabcontent-list-detail">
                                         <li class="tabcontent-list-name" name="memberName">${scheduleMember.memberId}

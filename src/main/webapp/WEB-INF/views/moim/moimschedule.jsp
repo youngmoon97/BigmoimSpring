@@ -24,6 +24,10 @@
             padding-right: 10cm;
         }
 
+        #fix-area {
+            left: 300px;
+        }
+
     </style>
 </head>
 <body style="min-height: 100vh; display: flex; flex-direction: column; padding-top: 150px;">
