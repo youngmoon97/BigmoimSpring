@@ -258,7 +258,7 @@
                                         src="${scheduleMember.memberImg}" class="memberImg"/></li>
                                 <li>
                                     <ul class="tabcontent-list-detail">
-                                        <li class="tabcontent-list-name" name="memberName">${scheduleMember.memrberId}
+                                        <li class="tabcontent-list-name" name="memberName">${scheduleMember.memberId}
                                         </li>
                                         <li class="tabcontent-list-hello" name="memberProfile">${scheduleMember.memberId}
                                         </li>
