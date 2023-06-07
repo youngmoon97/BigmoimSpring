@@ -57,13 +57,13 @@
   		z-index: 500;
   		">
         <div class="logo">
-            <a href="/main"><img src="/bigmoim/image/logo.png" alt="대모임 로고" width="130px"
+            <a href="/main"><img src="https://categoryfile.s3.ap-northeast-2.amazonaws.com/logo.png" alt="대모임 로고" width="130px"
                                              height="130px"/></a>
         </div>
         <div class="search-area">
             <form name=searchFrm action="/bigmoim/view/moim/searchmoim.jsp">
                 <button type="submit" class="search-btn">
-                    <img src="/bigmoim/image/search.png" alt="검색" style="width: 30px; height: 30px;">
+                    <img src="https://categoryfile.s3.ap-northeast-2.amazonaws.com/search.png" alt="검색" style="width: 30px; height: 30px;">
                 </button>
                 <input type="text" name=searchText value="" placeholder="모임 이름으로 검색하세요!" style="outline: none;"/>
             </form>

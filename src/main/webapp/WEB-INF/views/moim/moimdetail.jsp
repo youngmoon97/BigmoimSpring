@@ -42,7 +42,7 @@
                             ${dto.moimDetail.moimArea}
                     </li>
                     <li class="moimarea-line">|</li>
-                    <li class="clubdetail-membercount" name="moimNCount">멤버&nbsp;${dto.moimMember.size()}
+                    <li class="clubdetail-membercount" name="moimNCount">멤버&nbsp;${dto.moimMemberList.size()}
                     </li>
                         <%--                    <form name="jjimFrm_class" action="../main/jjimProc.jsp" method="get">--%>
                         <%--                        <button id="detailjjim_class"--%>
@@ -91,7 +91,7 @@
         <div class="clubdetail-photo">
             <img
                     class="clubdetail-photo-detail"
-                    src=""
+                    src="${dto.moimDetail.moimImg}"
                     name="moimImg"
             />
         </div>
@@ -108,7 +108,9 @@
                 <h2 class="clubdetail-text" style="margin: 0px;">클래스일정</h2>
                 <c:if test="${dto.member.memberId.equals(dto.moimDetail.memberId)}">
                     <a href="makeschedule/${dto.moimDetail.memberId}/${dto.moimDetail.moimNum}">
-                        <img alt="모임일정 생성" src="../../image/플러스버튼.png" width="30" height="30" style="margin-left: 10px">
+                        <img alt="모임일정 생성"
+                             src="https://bigmoim.s3.ap-northeast-2.amazonaws.com/image/%ED%94%8C%EB%9F%AC%EC%8A%A4%EB%B2%84%ED%8A%BC.png"
+                             width="30" height="30" style="margin-left: 10px">
                     </a>
                 </c:if>
 
@@ -124,31 +126,33 @@
                 <c:otherwise>
                     <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
                         <li>
+                            <!-- 요일 / 일 -->
                             <h2 name="msTitle">${moimSchedule.msTitle}
                             </h2>
                             <ul class="mlist_in">
-                                <li class="date" name="msTime">${moimSchedule.msDate}<span>${moimSchedule.msDate}</span>
+                                <li class="date" name="msTime">${moimSchedule.msDate.substring(0,16)}
                                 </li>
                                 <li>
                                     <ul class="in_cont">
                                         <li class="ico calendar"
-                                            name="msTime">${moimSchedule.msDate}&nbsp;${moimSchedule.msDate}
+                                            name="msTime">${moimSchedule.msDate.substring(0,16)}
                                         </li>
                                         <li class="ico place" name="msArea">${moimSchedule.msArea}
                                         </li>
                                         <li class="ico cost" name="">${dto.moimDetail.classPrice}
                                         </li>
-                                        <h4 name="msNCount">참여
-                                            멤버(${dto.moimDeatil.moimScheduleList.scheduleJoinList.memberList.size() }/${dto.moimDetail.moimScheduleList.msHCount}</h4>
+                                        <h4 name="msNCount">
+                                            멤버(${moimSchedule.memberList.size()} / ${moimSchedule.msHCount})
+                                        </h4>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li class="btn" id="scheduleJoin">
-                            <c:forEach items="${dto.moimMember}" var="moimMember">
+                            <c:forEach items="${dto.moimMemberList}" var="moimMember">
                                 <c:if test="${dto.member.memberId.equals(moimMember.memberId)}">
                                     <c:choose>
-                                        <c:when test="${dto.moimMember.size() < moimSchedule.msHCount}">
+                                        <c:when test="${dto.moimMemberList.size() < moimSchedule.msHCount}">
                                             <a href="schedulejoinProc/${moimNum}/${memberId}/${moimSchedule.msNum}"
                                                class="share">
                                                 일정<br/><!-- 버튼 실행-->
@@ -168,13 +172,11 @@
                         <div class="member" id="cont_1">
                             <div class="container">
                                 <c:choose>
-                                    <c:when test="${dto.scheduleJoin.size() eq 0}">
+                                    <c:when test="${dto.moimDetail.moimScheduleList.size() eq 0}">
                                         <h4>참여 멤버가 없습니다.</h4>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:forEach
-                                                items="${dto.moimDeatil.moimScheduleList.scheduleJoinList.memberList}"
-                                                var="scheduleMember">
+                                        <c:forEach items="${moimSchedule.memberList}" var="scheduleMember">
                                             <div class="joinMemberImg">
                                                 <img src="${scheduleMember.memberImg}"/>
                                             </div>
@@ -189,108 +191,91 @@
         </ul>
     </div>
 
-    <%--<!-- 클래스 멤버 -->
+    <!-- 클래스 멤버 -->
     <div class="tab">
-        <%
-            if (moimAllMemvlist != null) {
-        %>
-        <!-- 클래스 멤버 탭 부분 -->
-        <ul class="tabnav">
-            <li class="tab-link current" name="msTime" onclick="change(0)"><a href="javascript:void(0)">전체멤버</a>
-            </li>
-            <%
-                if (msvlist != null) {
-                    for (int i = 0; i < msvlist.size(); i++) {
-                        MoimScheduleBean msbean = msvlist.get(i);
-                        MoimScheduleBean moimschbean = sjvlist.get(i);
+        <c:if test="${dto.moimMemberList.size() ne 0}">
+            <!-- 클래스 멤버 탭 부분 -->
+            <ul class="tabnav">
+                <li class="tab-link current" name="msTime" onclick="change(0)">
+                    <a href="javascript:void(0)">전체멤버</a>
+                </li>
+                <c:if test="${dto.moimDetail.moimScheduleList.size() ne 0}">
+                    <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
+                        <li class="tab-link current" name="msTime" onclick="change(${moimSchedule.msNum})">
+                            <a href="javascript:void(0)">${moimSchedule.msDate.substring(0,10)}</a>
+                        </li>
+                    </c:forEach>
 
-            %>
-            <li class="tab-link current" name="msTime" onclick="change(<%=msbean.getMsNum() %>)"><a
-                    href="javascript:void(0)"><%=mmDay%>월<%=moimschbean.getMsDate()%>일</a></li>
-            <%} %><!-- for -->
-            <%} %><!-- if -->
-        </ul>
+                </c:if>
+            </ul>
+        </c:if>
         <!-- 클래스 멤버 탭에 따른 멤버 출력 -->
         <div class="tabcontent tab0">
-            <h3 name="msNCount">클래스멤버(<%=moimAllMemvlist.size() %>)</h3>
+            <h3 name="msNCount">클래스멤버(${dto.moimMemberList.size()})</h3>
             <!-- 클래스장 위에 나오는 왕관부분 -->
             <div class="manager"></div>
             <!-- 클래스장 출력 -->
             <ul class="tabcontent-list">
-                <li class="tabcontent-list-img " name="memberImg"><img
-                        src="/bigmoim/image/<%=manngerBean.getMemberImg()%>" class="memberImg"/></li>
+                <li class="tabcontent-list-img " name="memberImg">
+                    <img src="/bigmoim/image/" class="memberImg"/></li>
                 <li>
                     <ul class="tabcontent-list-detail">
-                        <li class="tabcontent-list-name" name="memberName"><%=manngerBean.getMemberName() %>
+                        <li class="tabcontent-list-name" name="memberName">${dto.moimMemberList.get(0).memberId}
                         </li>
-                        <li class="tabcontent-list-hello" name="memberProfile"><%=manngerBean.getMemberProfile() %>
+                        <li class="tabcontent-list-hello" name="memberProfile">${dto.moimMemberList.get(0).memberId}
                         </li>
                     </ul>
                 </li>
             </ul>
             <!-- 모임장을 뺀 클래스 멤버들 -->
-            <%
-                for (int i = 0; i < moimAllMemvlist.size(); i++) {
-                    //System.out.println(moimAllMemvlist.get(i).getMemberId());
-                    if (!manngerBean.getMemberId().equals(moimAllMemvlist.get(i).getMemberId())) {
-                        MemberBean membean = moimAllMemvlist.get(i);
-            %>
-            <ul class="tabcontent-list">
-                <li class="tabcontent-list-img" name="memberImg"><img
-                        src="/bigmoim/image/<%=membean.getMemberImg()%>" class="memberImg"/></li>
-                <li>
-                    <ul class="tabcontent-list-detail">
-                        <li class="tabcontent-list-name" name="memberName"><%=membean.getMemberName() %>
-                        </li>
-                        <li class="tabcontent-list-hello" name="memberProfile"><%=membean.getMemberProfile() %>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <%} %><!-- if -->
-            <%} %><!-- for -->
+            <c:forEach items="${dto.moimMemberList}" var="moimMember" varStatus="status" begin="1">
+                <ul class="tabcontent-list">
+                    <li class="tabcontent-list-img" name="memberImg"><img
+                            src="/bigmoim/image/${moimMember.memberId}" class="memberImg"/></li>
+                    <li>
+                        <ul class="tabcontent-list-detail">
+                            <li class="tabcontent-list-name" name="memberName">${moimMember.memberId}
+                            </li>
+                            <li class="tabcontent-list-hello" name="memberProfile">${moimMember.memberId}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:forEach>
         </div>
         <!-- 일정에 따른 참여멤버 출력 -->
-        <%
-            for (int z = 0; z < msvlist.size(); z++) {
-                MoimScheduleBean moimScheduleBean = msvlist.get(z);
-                Vector<MemberBean> moimScheduleMember = sjMgr.moimScheduleMember(moimScheduleBean.getMsNum());
-                // Vector<ScheduleJoinBean> filteredList = scheduleJoinMsvList.stream().filter(item -> item.getMsNum() == moimScheduleBean.getMsNum()).collect(Collectors.toCollection(Vector::new));
-        %>
-        <div class="tabcontent tab<%=moimScheduleBean.getMsNum() %>" style="display: none">
-            <h3 name="msNCount">클래스멤버(<%=moimScheduleMember.size() %>)</h3>
-            <%
-                if (moimScheduleMember.size() <= 0) {
-            %>
-            <li><h3>참여멤버가 없습니다.</h3></li>
-            <%
-            } else {
-                for (int j = 0; j < moimScheduleMember.size(); j++) {
-                    MemberBean memberBean = moimScheduleMember.get(j);
-                    // filteredList.stream().filter(item -> item.getMemberid().equals(memberBean.getMemberId())).count() > 0
-                    if (moimScheduleMember.size() > 0) {
-            %>
-            <ul class="tabcontent-list">
-                <li class="tabcontent-list-img" name="memberImg"><img
-                        src="/bigmoim/image/<%=memberBean.getMemberImg()%>" class="memberImg"/></li>
-                <li>
-                    <ul class="tabcontent-list-detail">
-                        <li class="tabcontent-list-name" name="memberName"><%=memberBean.getMemberName() %>
-                        </li>
-                        <li class="tabcontent-list-hello" name="memberProfile"><%=memberBean.getMemberProfile() %>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <%}%><!-- if -->
-            <%}%><!-- for -->
-            <%} %><!-- if else -->
-        </div>
-        <%} %><!-- 큰 for -->
-        <%}%><!-- 큰 if else -->
+        <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
+            <div class="tabcontent tab${moimSchedule.msNum}" style="display: none">
+                <h3 name="msNCount">클래스멤버(${moimSchedule.memberList.size()})</h3>
+                <c:choose>
+                    <c:when test="${moimSchedule.memberList.size() eq 0}">
+                        <li><h3>참여멤버가 없습니다.</h3></li>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${moimSchedule.memberList}" var="scheduleMember">
+                            <ul class="tabcontent-list">
+                                <li class="tabcontent-list-img" name="memberImg"><img
+                                        src="${scheduleMember.memberImg}" class="memberImg"/></li>
+                                <li>
+                                    <ul class="tabcontent-list-detail">
+                                        <li class="tabcontent-list-name" name="memberName">${scheduleMember.memrberId}
+                                        </li>
+                                        <li class="tabcontent-list-hello"
+                                            name="memberProfile">${scheduleMember.memberImg}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </c:forEach>
+
+    </div>
     </div>
     <!-- 클래스 댓글 -->
-    <h2>댓글을 달아보세요</h2>
+    <%--<h2>댓글을 달아보세요</h2>
     <div class="commenttab">
         <%
             if (ccList.isEmpty()) {
@@ -329,19 +314,19 @@
         </form>
     </div>
 </div>
-</div>
---%>    </c:if>
+</div>--%>
+</c:if>
 
 <!-- 하단 -->
 <c:if test="${dto.moimDetail.moimOrClass eq 2}">
     <!-- 모임디테일 -->
     <!-- 메인 -->
     <c:import url="../layout/moimdetailtop.jsp"></c:import>
-    <div class="mainwrapper content1">
+    <div class="mainwrapper">
         <div class="clubdetail">
             <div class="category">
                 <div class="image-wrapper">
-                    <img src="" alt="게임 / 오락"/>
+                    <img src="${dto.moimDetail.category.categoryImg}" alt="카테고리이미지"/>
                 </div>
             </div>
             <div class="clubdetail-moim">
@@ -352,46 +337,44 @@
                             ${dto.moimDetail.moimArea}
                     </li>
                     <li class="moimarea-line">|</li>
-                    <li class="clubdetail-membercount" name="moimNCount">멤버&nbsp;${dto.moimMember.size()}
+                    <li class="clubdetail-membercount" name="moimNCount">멤버&nbsp;${dto.moimMemberList.size()}
                     </li>
-                    <form name="jjimFrm_moim" action="../main/jjimProc.jsp" method="get">
-                        <button id="detailjjim_moim"
-                                onclick="likeBtnChange_moim(${dto.moimDetail.moimNum})"
-                                style="color : red;
-	          background-color: transparent;
-			  border: none;
-			  font-size: 24px;
-			  cursor: pointer;
-			  width: 30px;
-			  height: 30px;">
-                                <%--<i id="heart_moim_${dto.moimDetail.moimNum}"
-                                        <%if (moimMgr.jjimCheck(memberId, moimbean.getMoimNum())) { %>
-                                   class="fas fa-heart" style="display: inline-block; width: 100%; height: 100%;"
-                                        <% } else {%>
-                                   class="far fa-heart" style="display: inline-block; width: 100%; height: 100%;"
-                                        <%}%>
-                                ></i>--%>
-                        </button>
-                        <c:choose>
-                            <c:when test="${dto.member.memberId eq null}">
+                        <%--                    <form name="jjimFrm_class" action="../main/jjimProc.jsp" method="get">--%>
+                        <%--                        <button id="detailjjim_class"--%>
+                        <%--                                onclick="likeBtnChange_class(${dto.moimDetail.moimNum})"--%>
+                        <%--                                style="color : red;--%>
+                        <%--	          background-color: transparent;--%>
+                        <%--			  border: none;--%>
+                        <%--			  font-size: 24px;--%>
+                        <%--			  cursor: pointer;--%>
+                        <%--			  width: 30px;--%>
+                        <%--			  height: 30px;">--%>
+                        <%--                            <i id="heart_class_${dto.moimDetail.moimNum}"--%>
+                        <%--                                    <%if (moimMgr.jjimCheck(memberId, moimbean.getMoimNum())) { %>--%>
+                        <%--                               class="fas fa-heart" style="display: inline-block; width: 100%; height: 100%;"<% } else {%>--%>
+                        <%--                               class="far fa-heart" style="display: inline-block; width: 100%; height: 100%;"--%>
+                        <%--                                    <%}%>--%>
+                        <%--                            ></i>--%>
+                        <%--                        </button>--%>
+                        <%--                    </form>--%>
+                    <c:choose>
+                        <c:when test="${dto.member.memberId eq null}">
 
-                            </c:when>
-                            <c:when test="${dto.member.memberId eq dto.moimDetail.memberId}">
-                                <li>
-                                    <button type="button" class="moimEditorBtn" onclick="moimUpdate_class()">
-                                        내클래스관리
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="classManageBtn" onclick="memberManage_class()">
-                                        클래스회원관리
-                                    </button>
-                                </li>
-                            </c:when>
-                            <c:otherwise>
+                        </c:when>
+                        <c:when test="${dto.member.memberId eq dto.moimDetail.memberId}">
+                            <li>
+                                <button type="button" class="moimEditorBtn" onclick="moimUpdate_class()">내클래스관리</button>
+                            </li>
+                            <li>
+                                <button type="button" class="classManageBtn" onclick="memberManage_class()">클래스회원관리
+                                </button>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
 
-                            </c:otherwise>
-                        </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                    <form>
                         <input type="hidden" name="jjimNum" value="">
                         <input type="hidden" name="memberId" value="">
                         <input type="hidden" name="moimNum" value="">
@@ -399,206 +382,191 @@
                 </ul>
             </div>
         </div>
-        <!-- 모임 대표 사진 -->
+        <!-- 클래스 대표 이미지 -->
         <div class="clubdetail-photo">
             <img
                     class="clubdetail-photo-detail"
-                    src=""
+                    src="${dto.moimDetail.moimImg}"
                     name="moimImg"
             />
         </div>
+        <!-- 클래스 소개 -->
         <div class="clubdetail-content">
             <p name="moimProfile">
                 <!-- 단락으로 들어올 시 끊어서 받을 수가 없음-->
                     ${dto.moimDetail.moimProfile}
             </p>
         </div>
+        <!-- 클래스 일정 -->
         <div class="clubdetail-schedule">
             <div style="display: flex;">
-                <h2 class="clubdetail-text" style="margin: 0px;">모임일정</h2>
-                    <%--<%if (manngerBean.getMemberId().equals(memberId)) {%>--%>
-                <a href="makeschedule.jsp?memberId=${dto.member.memberId}&moimNum=${dto.moimDetail.moimNum}">
-                    <img alt="모임일정 생성" src="../../image/플러스버튼.png" width="30" height="30"
-                         style="margin-left: 10px">
-                </a>
+                <h2 class="clubdetail-text" style="margin: 0px;">클래스일정</h2>
+                <c:if test="${dto.member.memberId.equals(dto.moimDetail.memberId)}">
+                    <a href="makeschedule/${dto.moimDetail.memberId}/${dto.moimDetail.moimNum}">
+                        <img alt="모임일정 생성"
+                             src="https://bigmoim.s3.ap-northeast-2.amazonaws.com/image/%ED%94%8C%EB%9F%AC%EC%8A%A4%EB%B2%84%ED%8A%BC.png"
+                             width="30" height="30" style="margin-left: 10px">
+                    </a>
+                </c:if>
+
             </div>
-                <%--        <ul class="meeting_list">--%>
-                <%--            <%--%>
-                <%--                if (msvlist.isEmpty()) {--%>
-                <%--            %>--%>
-                <%--            <div>--%>
-                <%--                <h4>일정이 없습니다.</h4>--%>
-                <%--            </div>--%>
-                <%--            <%--%>
-                <%--            } else {--%>
-                <%--                for (int i = 0; i < msvlist.size(); i++) {--%>
-                <%--                    MoimScheduleBean msbean = msvlist.get(i);--%>
-                <%--                    MoimScheduleBean moimschbean = sjvlist.get(i);--%>
-                <%--                    Vector<MemberBean> moimScheduleMember = sjMgr.moimScheduleMember(msbean.getMsNum());--%>
-                <%--            %>--%>
-                <%--            <li>--%>
-                <%--                <h2 name="msTitle"><%=msbean.getMsTitle() %>--%>
-                <%--                </h2>--%>
-                <%--                <ul class="mlist_in">--%>
-                <%--                    <li class="date" name="msTime"><%=mjDayName%><span><%=moimschbean.getMsDate()%></span></li>--%>
-                <%--                    <li>--%>
-                <%--                        <ul class="in_cont">--%>
-                <%--                            <li class="ico calendar" name="msTime"><%=msbean.getMsDate()%>&nbsp;<%=msbean.getMsTime()%>--%>
-                <%--                            </li>--%>
-                <%--                            <li class="ico place" name="msArea"><%=msbean.getMsArea()%>--%>
-                <%--                            </li>--%>
-                <%--                            <li class="ico cost" name="">없음</li>--%>
-                <%--                        </ul>--%>
-                <%--                    </li>--%>
-                <%--                    <li class="btn">--%>
-                <%--                        <%--%>
-                <%--                            if (moimScheduleMember.size() < msbean.getMsHCount()) {--%>
-                <%--                                boolean memberChk = sjMgr.moimMemberCheck(no, memberId);--%>
-                <%--                                if (memberChk) {--%>
-                <%--                        %>--%>
-                <%--                        <a href="schedulejoinProc.jsp?moimNum=<%=no %>&memberId=<%=memberId %>&msNum=<%=msbean.getMsNum() %>"--%>
-                <%--                           class="share">--%>
-                <%--                            일정<br/>--%>
-                <%--                            참여--%>
-                <%--                        </a>--%>
-                <%--                        <%--%>
-                <%--                            }--%>
-                <%--                        } else {%>--%>
-                <%--                        <a>--%>
-                <%--                            인원<br/>--%>
-                <%--                            초과--%>
-                <%--                        </a>--%>
-                <%--                        <% }--%>
-                <%--                        %>--%>
-
-                <%--                    </li>--%>
-                <%--                </ul>--%>
-                <%--                <div class="member" id="cont_1">--%>
-                <%--                    <!-- 추가-->--%>
-                <%--                    <h4 name="msNCount">참여 멤버(<%=moimScheduleMember.size() %>/<%=msbean.getMsHCount() %>)</h4>--%>
-                <%--                    <div class="container">--%>
-                <%--                        <%--%>
-                <%--                            if (moimScheduleMember.isEmpty()) {--%>
-                <%--                        %>--%>
-                <%--                        <h4>참여 멤버가 없습니다.</h4>--%>
-                <%--                        <%--%>
-                <%--                        } else {--%>
-                <%--                            for (int j = 0; j < moimScheduleMember.size(); j++) {--%>
-                <%--                                //MemberBean memberBean = moimschvlist.get(j);--%>
-                <%--                                MemberBean memberbean = moimScheduleMember.get(j);--%>
-                <%--                        %>--%>
-                <%--                        <div class="joinMemberImg">--%>
-                <%--                            <img src="/bigmoim/image/<%=memberbean.getMemberImg()%>"/>--%>
-                <%--                        </div>--%>
-                <%--                        <%}%><!-- for -->--%>
-                <%--                        <%}%><!-- if else -->--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--                <%}%><!-- for -->--%>
-                <%--                <%} %><!-- if else -->--%>
-                <%--            </li>--%>
-                <%--        </ul>--%>
-
-                <%--        <!-- 모임멤버 탭 -->--%>
-                <%--        <div class="tab">--%>
-                <%--            <%--%>
-                <%--                if (moimAllMemvlist != null) {--%>
-                <%--            %>--%>
-                <%--            <!-- 모임멤버 탭 부분 -->--%>
-                <%--            <ul class="tabnav">--%>
-                <%--                <li class="tab-link current" name="msTime" onclick="change(0)"><a href="javascript:void(0)">전체멤버</a>--%>
-                <%--                </li>--%>
-                <%--                <%--%>
-                <%--                    if (msvlist != null) {--%>
-                <%--                        for (int i = 0; i < msvlist.size(); i++) {--%>
-                <%--                            MoimScheduleBean msbean = msvlist.get(i);--%>
-                <%--                            MoimScheduleBean moimschbean = sjvlist.get(i);--%>
-                <%--                %>--%>
-                <%--                <li class="tab-link current" name="msTime" onclick="change(<%=msbean.getMsNum() %>)"><a--%>
-                <%--                        href="javascript:void(0)"><%=mmDay%>월<%=moimschbean.getMsDate()%>일</a></li>--%>
-                <%--                <%} %><!-- for -->--%>
-                <%--                <%} %><!-- if -->--%>
-                <%--            </ul>--%>
-                <%--            <!-- 모임 멤버 탭에 따른 멤버 출력 -->--%>
-                <%--            <div class="tabcontent tab0">--%>
-                <%--                <h3 name="msNCount">모임멤버(<%=moimAllMemvlist.size() %>)</h3>--%>
-                <%--                <!-- 모임장 위에 나오는 왕관부분 -->--%>
-                <%--                <div class="manager"></div>--%>
-                <%--                <!-- 모임장 출력 -->--%>
-                <%--                <ul class="tabcontent-list">--%>
-                <%--                    <li class="tabcontent-list-img " name="memberImg"><img--%>
-                <%--                            src="/bigmoim/image/<%=manngerBean.getMemberImg()%>" class="memberImg"/></li>--%>
-                <%--                    <li>--%>
-                <%--                        <ul class="tabcontent-list-detail">--%>
-                <%--                            <li class="tabcontent-list-name" name="memberName"><%=manngerBean.getMemberName() %>--%>
-                <%--                            </li>--%>
-                <%--                            <li class="tabcontent-list-hello" name="memberProfile"><%=manngerBean.getMemberProfile() %>--%>
-                <%--                            </li>--%>
-                <%--                        </ul>--%>
-                <%--                    </li>--%>
-                <%--                </ul>--%>
-                <%--                <!-- 모임장을 뺀 모임 멤버들 -->--%>
-                <%--                <%--%>
-                <%--                    for (int i = 0; i < moimAllMemvlist.size(); i++) {--%>
-                <%--                        //System.out.println(moimAllMemvlist.get(i).getMemberId());--%>
-                <%--                        if (!manngerBean.getMemberId().equals(moimAllMemvlist.get(i).getMemberId())) {--%>
-                <%--                            MemberBean membean = moimAllMemvlist.get(i);--%>
-                <%--                %>--%>
-                <%--                <ul class="tabcontent-list">--%>
-                <%--                    <li class="tabcontent-list-img" name="memberImg"><img--%>
-                <%--                            src="/bigmoim/image/<%=membean.getMemberImg()%>" class="memberImg"/></li>--%>
-                <%--                    <li>--%>
-                <%--                        <ul class="tabcontent-list-detail">--%>
-                <%--                            <li class="tabcontent-list-name" name="memberName"><%=membean.getMemberName() %>--%>
-                <%--                            </li>--%>
-                <%--                            <li class="tabcontent-list-hello" name="memberProfile"><%=membean.getMemberProfile() %>--%>
-                <%--                            </li>--%>
-                <%--                        </ul>--%>
-                <%--                    </li>--%>
-                <%--                </ul>--%>
-                <%--                <%} %><!-- if -->--%>
-                <%--                <%} %><!-- for -->--%>
-                <%--            </div>--%>
-                <%--            <!-- 일정에 따른 참여멤버출력 -->--%>
-                <%--            <%--%>
-                <%--                for (int z = 0; z < msvlist.size(); z++) {--%>
-                <%--                    MoimScheduleBean moimScheduleBean = msvlist.get(z);--%>
-                <%--                    Vector<MemberBean> moimScheduleMember = sjMgr.moimScheduleMember(moimScheduleBean.getMsNum());--%>
-                <%--                    // Vector<ScheduleJoinBean> filteredList = scheduleJoinMsvList.stream().filter(item -> item.getMsNum() == moimScheduleBean.getMsNum()).collect(Collectors.toCollection(Vector::new));--%>
-                <%--            %>--%>
-                <%--            <div class="tabcontent tab<%=moimScheduleBean.getMsNum() %>" style="display: none">--%>
-                <%--                <h3 name="msNCount">모임멤버(<%=moimScheduleMember.size() %>)</h3>--%>
-                <%--                <%--%>
-                <%--                    if (moimScheduleMember.size() <= 0) {--%>
-                <%--                %>--%>
-                <%--                <li><h3>참여멤버가 없습니다.</h3></li>--%>
-                <%--                <%--%>
-                <%--                } else {--%>
-                <%--                    for (int j = 0; j < moimScheduleMember.size(); j++) {--%>
-                <%--                        MemberBean memberBean = moimScheduleMember.get(j);--%>
-                <%--                        // filteredList.stream().filter(item -> item.getMemberid().equals(memberBean.getMemberId())).count() > 0--%>
-                <%--                        if (moimScheduleMember.size() > 0) {--%>
-                <%--                %>--%>
-                <%--                <ul class="tabcontent-list">--%>
-                <%--                    <li class="tabcontent-list-img" name="memberImg"><img--%>
-                <%--                            src="/bigmoim/image/<%=memberBean.getMemberImg()%>" class="memberImg"/></li>--%>
-                <%--                    <li>--%>
-                <%--                        <ul class="tabcontent-list-detail">--%>
-                <%--                            <li class="tabcontent-list-name" name="memberName"><%=memberBean.getMemberName() %>--%>
-                <%--                            </li>--%>
-                <%--                            <li class="tabcontent-list-hello" name="memberProfile"><%=memberBean.getMemberProfile() %>--%>
-                <%--                            </li>--%>
-                <%--                        </ul>--%>
-                <%--                    </li>--%>
-                <%--                </ul>--%>
-                <%--                <% }%><!-- if -->--%>
-                <%--                <%} %><!-- for -->--%>
-                <%--                <%} %><!-- if else -->--%>
-                <%--            </div>--%>
-                <%--            <%} %><!-- 큰 for -->--%>
-                <%--            <%} %><!-- 큰 if else -->--%>
-                <%--        </div>--%>
         </div>
+        <ul class="meeting_list">
+            <c:choose>
+                <c:when test="${dto.moimDetail.moimScheduleList.size() eq 0}">
+                    <div>
+                        <h4>일정이 없습니다.</h4>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
+                        <li>
+                            <!-- 요일 / 일 -->
+                            <h2 name="msTitle">${moimSchedule.msTitle}
+                            </h2>
+                            <ul class="mlist_in">
+                                <li class="date" name="msTime">${moimSchedule.msDate.substring(0,16)}
+                                </li>
+                                <li>
+                                    <ul class="in_cont">
+                                        <li class="ico calendar"
+                                            name="msTime">${moimSchedule.msDate.substring(0,16)}
+                                        </li>
+                                        <li class="ico place" name="msArea">${moimSchedule.msArea}
+                                        </li>
+                                        <li class="ico cost" name="">${dto.moimDetail.classPrice}
+                                        </li>
+                                        <h4 name="msNCount">참여
+                                                <%--                                            멤버(${dto.moimDetail.moimScheduleList.memberList.size() }/${dto.moimDetail.moimScheduleList.msHCount}</h4>--%>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="btn" id="scheduleJoin">
+                            <c:forEach items="${dto.moimMemberList}" var="moimMember">
+                                <c:if test="${dto.member.memberId.equals(moimMember.memberId)}">
+                                    <c:choose>
+                                        <c:when test="${dto.moimMemberList.size() < moimSchedule.msHCount}">
+                                            <a href="schedulejoinProc/${moimNum}/${memberId}/${moimSchedule.msNum}"
+                                               class="share">
+                                                일정<br/><!-- 버튼 실행-->
+                                                참여
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a>
+                                                인원<br/>
+                                                초과
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
+                            </c:forEach>
+                        </li>
+                        <div class="member" id="cont_1">
+                            <div class="container">
+                                <c:choose>
+                                    <c:when test="${dto.moimDetail.moimScheduleList.size() eq 0}">
+                                        <h4>참여 멤버가 없습니다.</h4>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <%--<c:forEach items="${dto.moimDetail.moimScheduleList.memberList}" var="scheduleMember">
+                                            <div class="joinMemberImg">
+                                                <img src="${scheduleMember.memberImg}"/>
+                                            </div>
+                                        </c:forEach>--%>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </ul>
+    </div>
+
+    <!-- 클래스 멤버 -->
+    <div class="tab">
+        <c:if test="${dto.moimMemberList.size() ne 0}">
+            <!-- 클래스 멤버 탭 부분 -->
+            <ul class="tabnav">
+                <li class="tab-link current" name="msTime" onclick="change(0)">
+                    <a href="javascript:void(0)">전체멤버</a>
+                </li>
+                <c:if test="${dto.moimDetail.moimScheduleList.size() ne 0}">
+                    <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
+                        <li class="tab-link current" name="msTime" onclick="change(${moimSchedule.msNum})">
+                            <a href="javascript:void(0)">${moimSchedule.msDate.substring(0,10)}</a>
+                        </li>
+                    </c:forEach>
+
+                </c:if>
+            </ul>
+        </c:if>
+        <!-- 클래스 멤버 탭에 따른 멤버 출력 -->
+        <div class="tabcontent tab0">
+            <h3 name="msNCount">클래스멤버(${dto.moimMemberList.size()})</h3>
+            <!-- 클래스장 위에 나오는 왕관부분 -->
+            <div class="manager"></div>
+            <!-- 클래스장 출력 -->
+            <ul class="tabcontent-list">
+                <li class="tabcontent-list-img " name="memberImg">
+                    <img src="/bigmoim/image/" class="memberImg"/></li>
+                <li>
+                    <ul class="tabcontent-list-detail">
+                        <li class="tabcontent-list-name" name="memberName">${dto.member.memberId}
+                        </li>
+                        <li class="tabcontent-list-hello" name="memberProfile">${dto.member.memberId}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 모임장을 뺀 클래스 멤버들 -->
+            <c:forEach items="${dto.moimMemberList}" var="moimMember">
+                <ul class="tabcontent-list">
+                    <li class="tabcontent-list-img" name="memberImg"><img
+                            src="/bigmoim/image/${moimMember.memberId}" class="memberImg"/></li>
+                    <li>
+                        <ul class="tabcontent-list-detail">
+                            <li class="tabcontent-list-name" name="memberName">${moimMember.memberId}
+                            </li>
+                            <li class="tabcontent-list-hello" name="memberProfile">${moimMember.memberId}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:forEach>
+        </div>
+        <!-- 일정에 따른 참여멤버 출력 -->
+        <c:forEach items="${dto.moimDetail.moimScheduleList}" var="moimSchedule">
+            <div class="tabcontent tab${moimSchedule.msNum}" style="display: none">
+                <h3 name="msNCount">클래스멤버(${moimSchedule.memberList.size()})</h3>
+                <c:choose>
+                    <c:when test="${moimSchedule.memberList.size() eq 0}">
+                        <li><h3>참여멤버가 없습니다.</h3></li>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${moimSchedule.memberList}" var="scheduleMember">
+                            <ul class="tabcontent-list">
+                                <li class="tabcontent-list-img" name="memberImg"><img
+                                        src="/bigmoim/image/${scheduleMember.memberImg}" class="memberImg"/></li>
+                                <li>
+                                    <ul class="tabcontent-list-detail">
+                                        <li class="tabcontent-list-name" name="memberName">${scheduleMember.memrberId}
+                                        </li>
+                                        <li class="tabcontent-list-hello"
+                                            name="memberProfile">${scheduleMember.memberImg}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </c:forEach>
+
+    </div>
     </div>
     <!-- ---------------------------------------------------게시판------------------------------- -->
 

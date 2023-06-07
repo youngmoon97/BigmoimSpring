@@ -36,10 +36,10 @@ public class MoimDetailDTO {
     public static class ResMoimDetail {
 
         private MoimDetail moimDetail;
-        private MainDTO.ResBasic.Member member;
+        private Member member;
         private List<Role> roleList;
-        private List<Role> moimMember;
-
+        private List<Role> moimMemberList;
+        private List<ScheduleJoin> scheduleJoinList;
         @Data
         @Builder
         @NoArgsConstructor
@@ -48,7 +48,6 @@ public class MoimDetailDTO {
             private String memberId;
             private String memberImg;
         }
-
         @Data
         @Builder
         @NoArgsConstructor
@@ -172,7 +171,6 @@ public class MoimDetailDTO {
                                                 .msContent(moimScheduleEntityForFilter.getMsContent())
                                                 .msDate(moimScheduleEntityForFilter.getMsDate())
                                                 .memberList(
-
                                                         scheduleJoinEntityList.stream().filter(scheduleJoinEntityForFilter -> {
                                                             return scheduleJoinEntityForFilter.getMsNum().equals(moimScheduleEntityForFilter.getMsNum());
                                                         }).map(scheduleJoinEntityForFilter -> {
@@ -192,10 +190,10 @@ public class MoimDetailDTO {
                     )
                     .build();
 
-            MainDTO.ResBasic.Member member = MainDTO.ResBasic.Member.builder()
-                    .memberId(memberEntity.getMemberId())
-                    .memberImg(memberEntity.getMemberImg())
-                    .build();
+            Member member1 = Member.builder()
+                            .memberId(memberEntity.getMemberId())
+                            .memberImg(memberEntity.getMemberImg())
+                            .build();
 
             List<Role> roleList = roleEntityList.stream().map(role -> {
                 return Role.builder()
@@ -213,8 +211,15 @@ public class MoimDetailDTO {
                         .build();
             }).collect(Collectors.toList());
 
+            List<ScheduleJoin> scheduleJoinList = scheduleJoinEntityList.stream().map(scheduleJoin -> {
+                return ScheduleJoin.builder()
+                        .msNum(scheduleJoin.getMsNum())
+                        .moimNum(scheduleJoin.getMoimNum())
+                        .sjNum(scheduleJoin.getSjNum())
+                        .build();
+            }).collect(Collectors.toList());
 
-            return new ResMoimDetail(moimDetail1, member, roleList, moimMember);
+            return new ResMoimDetail(moimDetail1, member1, roleList, moimMember, scheduleJoinList);
         }
     }
 }

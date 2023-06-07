@@ -56,7 +56,7 @@
                     <article class="card">
                         <a href="/moim/moimdetail/${newmoim.moimNum}">
                             <div class="card-wrapper">
-                                <img src="" alt="Image">
+                                <img src="${newmoim.moimImg}" alt="Image">
                                     <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                                 <%if (memberId!="방문자"){%>
                                         <button class="like-btn" id="like-btn-<%=moimbean.getMoimNum()%>"

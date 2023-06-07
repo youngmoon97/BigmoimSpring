@@ -47,8 +47,6 @@ public class AuthDTO {
         @NotBlank(message = "생년월일를 입력하세요.")
         private String memberBirth;
 
-        private String memberImg;
-
         @Size(max = 100, message = "자기소개는 100자 이내로 작성해주세요.")
         private String memberProfile;
 
@@ -65,14 +63,14 @@ public class AuthDTO {
         private Integer taskNum;
         private Integer themeNum;
 
-        public MemberEntity toEntity(PasswordEncoder passwordEncoder){
+        public MemberEntity toEntity(PasswordEncoder passwordEncoder, String memberImgUrl){
             return MemberEntity.builder()
                     .memberId(memberId)
                     .memberPw(passwordEncoder.encode(memberPw))
                     .memberName(memberName)
                     .memberTel(memberTel)
                     .memberBirth(memberBirth)
-                    .memberImg(memberImg)
+                    .memberImg(memberImgUrl)
                     .memberProfile(memberProfile)
                     .memberGender(memberGender)
                     .memberAddr(memberAddr)

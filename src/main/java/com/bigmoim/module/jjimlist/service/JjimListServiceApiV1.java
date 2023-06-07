@@ -1,9 +1,7 @@
 package com.bigmoim.module.jjimlist.service;
 
 import com.bigmoim.common.dto.ResDTO;
-import com.bigmoim.module.category.dto.CategoryDTO;
 import com.bigmoim.module.jjimlist.dto.JjimListDTO;
-import com.bigmoim.module.jjimlist.entity.JjimListEntity;
 import com.bigmoim.module.jjimlist.repository.JjimListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Service
 @RequiredArgsConstructor

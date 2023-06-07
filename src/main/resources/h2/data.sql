@@ -2,31 +2,31 @@
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('moon', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '조영문', '01026200656', '19970919',
-        'moonIMG', 'profile1', 1,
+        'https://moimfile.s3.ap-northeast-2.amazonaws.com/bakgu1.jpg', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('chae', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '채기주', '01012344321', '19980511',
-        'chaeIMG', 'profile1', 1,
+        'https://moimfile.s3.ap-northeast-2.amazonaws.com/jjang.jpg', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('lee', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '이상목', '01052481328', '19970322',
-        'leeIMG', 'profile1', 1,
+        'https://moimfile.s3.ap-northeast-2.amazonaws.com/bg_111.jpg', 'profile1', 1,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('seo', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '서지우', '01043218252', '19980505',
-        'seoIMG', 'profile1', 2,
+        'https://moimfile.s3.ap-northeast-2.amazonaws.com/cute.png', 'profile1', 2,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 insert into member(memberId, memberPw, memberName, memberTel, memberBirth, memberImg, memberProfile, memberGender,
                    memberAddr, memberJobAddr, memberLikeArea, categoryNum, businessNum, taskNum, themeNum)
 values ('ha', '$2a$12$BwmISEeH8nOQs6ZbQoLvGeGsB1SzK5czGpU6dviAlwHDVHTOjlEIe', '하서영', '01093314616', '20000317',
-        'img1', 'profile1', 2,
+        'https://moimfile.s3.ap-northeast-2.amazonaws.com/drone-lencois-maranhenses-VpjWLQ98Brw-unsplash.jpg', 'profile1', 2,
         '부산 해운대구', '부산 해운대구', '부산 해운대구', 1, 2, 3, 4);
 
 --역할-유저
@@ -58,31 +58,31 @@ values ('lee', 'member', 1, now()),
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
-VALUES (1, '해운대 주짓수  TEAM HJ', '부산 해운대구', 100, 2, 'moon', NULL, 4, '주짓수11.png', '안녕하세요! 저희는 해운대구 중동에 위치한 주짓수 도장입니다. 남녀노소 모두 함께 운동할 수 있는 분위기와 언제나 친절한 감독님과 코치들 그리고 다수의 유색벨트 분들이 계십니다. 언제나 환영합니다! 화이팅
+VALUES (1, '해운대 주짓수  TEAM HJ', '부산 해운대구', 100, 2, 'moon', NULL, 4, 'https://moimfile.s3.ap-northeast-2.amazonaws.com/%EC%A3%BC%EC%A7%93%EC%88%9811.png', '안녕하세요! 저희는 해운대구 중동에 위치한 주짓수 도장입니다. 남녀노소 모두 함께 운동할 수 있는 분위기와 언제나 친절한 감독님과 코치들 그리고 다수의 유색벨트 분들이 계십니다. 언제나 환영합니다! 화이팅
 카카오톡 오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 1);
 
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
-VALUES (2, '해운대 독서 모임', '부산 해운대구', 100, 2, 'ha', NULL, 5, '주짓수11.png', '반갑습니다! 저희와 함께 독서 토론도 하면서 친목해봐요!
+VALUES (2, '해운대 독서 모임', '부산 해운대구', 100, 2, 'ha', NULL, 5, 'https://moimfile.s3.ap-northeast-2.amazonaws.com/moimsampleImg4.png', '반갑습니다! 저희와 함께 독서 토론도 하면서 친목해봐요!
 오픈채팅 : https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 2);
 
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
-VALUES (3, '해운대 스프링 스터디 모임', '부산 해운대구', 10, 2, 'lee', NULL, 6, '주짓수11.png', '얼른 취업해야죠! 스프링 공부하면서 면접 연습도 해봅시다!
+VALUES (3, '해운대 스프링 스터디 모임', '부산 해운대구', 10, 2, 'lee', NULL, 6, 'https://moimfile.s3.ap-northeast-2.amazonaws.com/1280px-Spring_Framework_Logo_2018.svg.png', '얼른 취업해야죠! 스프링 공부하면서 면접 연습도 해봅시다!
 여기는 오픈채팅방 주소입니다! https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 2);
 
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
-VALUES (4, '해운대 반려견 사랑 모임', '부산 해운대구', 30, 2, 'seo', NULL, 8, '주짓수11.png', '반려견을 사랑하는 사람들의 모임입니다! 편하게 문의해주세요!
+VALUES (4, '해운대 반려견 사랑 모임', '부산 해운대구', 30, 2, 'seo', NULL, 8, 'https://moimfile.s3.ap-northeast-2.amazonaws.com/fome.jpg', '반려견을 사랑하는 사람들의 모임입니다! 편하게 문의해주세요!
 문의는 오픈채팅방로 부탁드립니다! https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 2);
 
 INSERT INTO moim
 (moimNum, moimName, moimArea, moimHCount, moimNCount, memberId, moimKakao, categoryNum, moimImg, moimProfile, moimDate,
  themeNum, taskNum, businessNum, classprice, moimOrclass)
-VALUES (5, '해운대 개발자 취업하러가자!', '부산 해운대구', 20, 2, 'chae', NULL, 6, '주짓수11.png', '개발자로 취업하기 위한 여정을 함께 해보지 않으시겠습니까?
+VALUES (5, '해운대 개발자 취업하러가자!', '부산 해운대구', 20, 2, 'chae', NULL, 6, 'https://moimfile.s3.ap-northeast-2.amazonaws.com/moimsampleImg7.png', '개발자로 취업하기 위한 여정을 함께 해보지 않으시겠습니까?
 오픈 채팅방으로 와주세요! https://open.kakao.com/o/gt3F2Gnc', now(), 0, 0, 2, NULL, 1);
 
 -- 모임일정
@@ -201,24 +201,24 @@ VALUES ('여행/호텔/레저'),
        ('서비스업');
 
 -- moimcategory
-INSERT INTO category (categoryName)
-VALUES ('게임/오락'),
-       ('요리/제빵'),
-       ('아웃도어/여행'),
-       ('운동/스포츠'),
-       ('인문학/책/글'),
-       ('업종/직무'),
-       ('외국/언어'),
-       ('문화/공연/축제'),
-       ('음악/악기'),
-       ('공예/만들기');
-INSERT INTO category (categoryName)
-VALUES ('댄스/무용'),
-       ('봉사활동'),
-       ('사교/인맥'),
-       ('차/오토바이'),
-       ('사진/영상'),
-       ('야구관람'),
-       ('반려동물'),
-       ('가족/결혼'),
-       ('자유주제');
+INSERT INTO category (categoryName, categoryImg)
+VALUES ('게임/오락','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category1.png'),
+       ('요리/제빵','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category2.png'),
+       ('아웃도어/여행','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category3.png'),
+       ('운동/스포츠','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category4.png'),
+       ('인문학/책/글','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category5.png'),
+       ('업종/직무','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category6.png'),
+       ('외국/언어','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category7.png'),
+       ('문화/공연/축제','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category8.png'),
+       ('음악/악기','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category9.png'),
+       ('공예/만들기','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category10.png');
+INSERT INTO category (categoryName, categoryImg)
+VALUES ('댄스/무용','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category11.png'),
+       ('봉사활동','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category12.png'),
+       ('사교/인맥','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category13.png'),
+       ('차/오토바이','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category14.png'),
+       ('사진/영상','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category15.png'),
+       ('야구관람','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category16.png'),
+       ('반려동물','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category17.png'),
+       ('가족/결혼','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category18.png'),
+       ('자유주제','https://categoryfile.s3.ap-northeast-2.amazonaws.com/image/category19.png');
