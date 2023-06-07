@@ -414,7 +414,7 @@
                             <div class="image-preview-container">
                                 <img id="preview-image" src="" alt="Preview Image">
                                 <label for="profile-image" class="file-input-container">사진 선택하기</label>
-                                <input type="file" class="form-control-file" id="profile-image" name="memberImg"
+                                <input type="file" class="form-control-file" id="profile-image" name="file"
                                        onchange="showPreviewImage(this)">
                             </div>
 
@@ -487,55 +487,56 @@
         }
 
         // id 속성을 이용해서 해당하는 요소를 가져온다.
-        const memberNameElement = document.getElementById("memberName");
-        const memberIdElement = document.getElementById("memberId");
-        const memberPwElement = document.getElementById("memberPw");
-        const memberTelElement = document.getElementById("memberTel");
-        const memberAddrArea1Element = document.getElementById("memberAddrArea1");
-        const memberAddrArea2Element = document.getElementById("memberAddrArea2");
-        const memberJobAddrArea1Element = document.getElementById("memberJobAddrArea1");
-        const memberJobAddrArea2Element = document.getElementById("memberJobAddrArea2");
-        const memberLikeArea1Element = document.getElementById("memberLikeArea_area1");
-        const memberLikeArea2Element = document.getElementById("memberLikeArea_area2");
-        const memberBirthYearElement = document.getElementById("memberBirth_year");
-        const memberBirthMonthElement = document.getElementById("memberBirth_month");
-        const memberBirthDayElement = document.getElementById("memberBirth_day");
-        const memberBusinessElement = document.getElementById("businessNum");
-        const memberTaskElement = document.getElementById("taskNum");
-        const memberThemeElement = document.getElementById("themeNum");
-        var memberGenderVal = $('input[name="memberGender"]:checked').val();
-
-        const memberCategoryElement = document.getElementById("categoryNum");
-        const memberImgElement = document.getElementById("profile-image");
-        const memberProfileElement = document.getElementById("memberProfile");
+        // const memberNameElement = document.getElementById("memberName");
+        // const memberIdElement = document.getElementById("memberId");
+        // const memberPwElement = document.getElementById("memberPw");
+        // const memberTelElement = document.getElementById("memberTel");
+        // const memberAddrArea1Element = document.getElementById("memberAddrArea1");
+        // const memberAddrArea2Element = document.getElementById("memberAddrArea2");
+        // const memberJobAddrArea1Element = document.getElementById("memberJobAddrArea1");
+        // const memberJobAddrArea2Element = document.getElementById("memberJobAddrArea2");
+        // const memberLikeArea1Element = document.getElementById("memberLikeArea_area1");
+        // const memberLikeArea2Element = document.getElementById("memberLikeArea_area2");
+        // const memberBirthYearElement = document.getElementById("memberBirth_year");
+        // const memberBirthMonthElement = document.getElementById("memberBirth_month");
+        // const memberBirthDayElement = document.getElementById("memberBirth_day");
+        // const memberBusinessElement = document.getElementById("businessNum");
+        // const memberTaskElement = document.getElementById("taskNum");
+        // const memberThemeElement = document.getElementById("themeNum");
+        // var memberGenderVal = $('input[name="memberGender"]:checked').val();
+        //
+        // const memberCategoryElement = document.getElementById("categoryNum");
+        // const memberImgElement = document.getElementById("profile-image");
+        // const memberProfileElement = document.getElementById("memberProfile");
 
         //회원정보를 객체로 만듬
-        const member = {
-            memberName: memberNameElement.value,
-            memberId: memberIdElement.value,
-            memberPw: memberPwElement.value,
-            memberTel: memberTelElement.value,
-            memberAddr: memberAddrArea1Element.value + " " + memberAddrArea2Element.value,
-            memberJobAddr: memberJobAddrArea1Element.value + " " + memberJobAddrArea2Element.value,
-            memberLikeArea: memberLikeArea1Element.value + " " + memberLikeArea2Element.value,
-            memberBirth: memberBirthYearElement.value + " " + memberBirthMonthElement.value + " " + memberBirthDayElement.value,
-            businessNum: memberBusinessElement.value,
-            taskNum: memberTaskElement.value,
-            themeNum: memberThemeElement.value,
-            memberGender: memberGenderVal,
-            categoryNum: memberCategoryElement.value,
-            memberImg: memberImgElement.value,
-            memberProfile: memberProfileElement.value,
-
-        };
-
+        // const member = {
+        //     memberName: memberNameElement.value,
+        //     memberId: memberIdElement.value,
+        //     memberPw: memberPwElement.value,
+        //     memberTel: memberTelElement.value,
+        //     memberAddr: memberAddrArea1Element.value + " " + memberAddrArea2Element.value,
+        //     memberJobAddr: memberJobAddrArea1Element.value + " " + memberJobAddrArea2Element.value,
+        //     memberLikeArea: memberLikeArea1Element.value + " " + memberLikeArea2Element.value,
+        //     memberBirth: memberBirthYearElement.value + " " + memberBirthMonthElement.value + " " + memberBirthDayElement.value,
+        //     businessNum: memberBusinessElement.value,
+        //     taskNum: memberTaskElement.value,
+        //     themeNum: memberThemeElement.value,
+        //     memberGender: memberGenderVal,
+        //     categoryNum: memberCategoryElement.value,
+        //     memberImg: memberImgElement.value,
+        //     memberProfile: memberProfileElement.value,
+        //
+        // };
+        const form = document.getElementById('signFrm');
+        const formData = new FormData(signFrm);
         //rest 통신
         fetch("/api/v1/auth/signup", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8"
-            },
-            body: JSON.stringify(member),
+            // headers: {
+            //      "Content-Type": "application/json;charset=utf-8"
+            // },
+            body: formData,
         })
             .then(res => res.json())
             .then(result => {

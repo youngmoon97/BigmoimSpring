@@ -136,7 +136,7 @@
                     </button>
                 </div>
 
-                <form action="makemoimProc.jsp" method="post" name="frm" id="frm" enctype="multipart/form-data">
+                <form name="frm" name="frm" id="frm" enctype="multipart/form-data" method="post">
                     <input type="hidden" value="2" name="moimOrClass" id="moimOrClass">
                     <div style="width: 500px; font-size: 16px;">
                         <div class="image-preview-container">
@@ -150,7 +150,7 @@
                             <img id="preview-image" src="" alt="Preview Image">
                             <label for="profile-image" class="file-input-container" style="margin-top: 6em">사진
                                 변경하기</label>
-                            <input type="file" class="form-control-file" id="profile-image" name="moimImg"
+                            <input type="file" class="form-control-file" id="profile-image" name="file"
                                    onchange="showPreviewImage(this)">
                         </div>
 
@@ -252,7 +252,7 @@
                         <input type="hidden" id="memberId" name="memberId" value="${dto.member.memberId}">
                     </div>
                 </form>
-                <%--<form method="GET" name="hiddenFrm">
+                <form method="POST" name="hiddenFrm">
                     <input type="hidden" name="memberLikeArea_area1">
                     <input type="hidden" name="moimName" value="${moimName}">
                     <input type="hidden" name="moimKakao" value="${moimKakao}">
@@ -261,7 +261,7 @@
                     <input type="hidden" name="memberAddrZipcode" value="${memberAddrZipcode}">
                     <input type="hidden" name="memberAddrArea1" value="${memberAddrArea1}">
                     <input type="hidden" name="memberAddrArea2" value="${memberAddrArea2}">
-                </form>--%>
+                </form>
 
             </div>
         </div>
@@ -307,46 +307,49 @@
         if (!validateFields()) {
             return;
         }
-        const nameElement = document.getElementById("moimName");
-        const imgElement = document.getElementById("moimImg");
-        const HCountElement = document.getElementById("moimHCount");
-        const profileElement = document.getElementById("moimProfile");
-        const kakaoElement = document.getElementById("moimKakao");
-        const moimArea1 = document.getElementById("moimArea1");
-        const moimArea2 = document.getElementById("moimArea2");
-        const categoryNum = document.getElementById("categoryNum");
-        const businessNum = document.getElementById("businessNum");
-        const taskNum = document.getElementById("taskNum");
-        const themeNum = document.getElementById("themeNum");
-        const memberId = document.getElementById("memberId");
-        // const moimArea = document.getElementById("moimArea");
-        const moimOrClass = document.getElementById("moimOrClass");
-        // const classprice = document.getElementById("classprice").value;
+        // const nameElement = document.getElementById("moimName");
+        // const imgElement = document.getElementById("moimImg");
+        // const HCountElement = document.getElementById("moimHCount");
+        // const profileElement = document.getElementById("moimProfile");
+        // const kakaoElement = document.getElementById("moimKakao");
+        // const moimArea1 = document.getElementById("moimArea1");
+        // const moimArea2 = document.getElementById("moimArea2");
+        // const categoryNum = document.getElementById("categoryNum");
+        // const businessNum = document.getElementById("businessNum");
+        // const taskNum = document.getElementById("taskNum");
+        // const themeNum = document.getElementById("themeNum");
+        // const memberId = document.getElementById("memberId");
+        // // const moimArea = document.getElementById("moimArea");
+        // const moimOrClass = document.getElementById("moimOrClass");
+        // // const classprice = document.getElementById("classprice").value;
 
-        const moim = {
-            moimName: nameElement.value,
-            moimArea: moimArea1.value + " " +moimArea2.value,
-            moimHCount: HCountElement.value,
-            memberId: memberId.value,
-            moimKakao: kakaoElement.value,
-            categoryNum: categoryNum.value,
-            //moimImg: imgElement.value,
-            moimProfile: profileElement.value,
-            businessNum: businessNum.value,
-            taskNum: taskNum.value,
-            themeNum: themeNum.value,
-            //classPrice: classprice.value,
-            moimOrClass: moimOrClass.value,
-        }
+        // const moim = {
+        //     moimName: nameElement.value,
+        //     moimArea: moimArea1.value + " " +moimArea2.value,
+        //     moimHCount: HCountElement.value,
+        //     memberId: memberId.value,
+        //     moimKakao: kakaoElement.value,
+        //     categoryNum: categoryNum.value,
+        //     //moimImg: imgElement.value,
+        //     moimProfile: profileElement.value,
+        //     businessNum: businessNum.value,
+        //     taskNum: taskNum.value,
+        //     themeNum: themeNum.value,
+        //     //classPrice: classprice.value,
+        //     moimOrClass: moimOrClass.value,
+        // }
 
-        console.log(moim);
+
+        const form = document.getElementById('frm');
+        const formData = new FormData(form);
+
 
         fetch("/api/v1/moim/makemoim", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8"
-            },
-            body: JSON.stringify(moim),
+            // headers: {
+            //     "Content-Type": "application/json;charset=utf-8"
+            // },
+            body: formData,
         })
             .then(res => res.json())
             .then(result => {

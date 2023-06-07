@@ -8,6 +8,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,8 +19,9 @@ public class MoimControllerApiV1 {
     private final MoimServiceApiV1 moimServiceApiV1;
 
     @PostMapping("/makemoim")
-    public HttpEntity<?> moimInsert(@AuthenticationPrincipal CustomUserDetails customUserDetails,
-            @Validated @RequestBody MoimDTO.ReqMakeMoim reqMakeMoim) {
-        return moimServiceApiV1.moimInsert(customUserDetails, reqMakeMoim);
+    public HttpEntity<?> moimInsert(@AuthenticationPrincipal CustomUserDetails customUserDetails, MoimDTO.ReqMakeMoim reqMakeMoim,
+                                    @RequestParam("file") List<MultipartFile> multipartFileList) {
+        System.out.println(multipartFileList);
+        return moimServiceApiV1.moimInsert(customUserDetails, reqMakeMoim, multipartFileList);
     }
 }

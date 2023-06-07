@@ -53,7 +53,7 @@
             <article class="card">
                 <a href="/moim/moimdetail/${myMoim.moimNum}">
                     <div class="card-wrapper">
-                        <img src="" alt="Image">
+                        <img src="${myMoim.moimImg}" alt="Image">
                             <%--<form name="jjimFrm" action="../main/jjimProc.jsp" method="get">
                                         <%if (memberId!="방문자"){%>
                                 <button class="like-btn" id="like-btn-<%=moimbean.getMoimNum()%>"
@@ -85,8 +85,9 @@
             <input type="hidden" name="moimNum" value="">
             <input type="hidden" name="classNum" value="">
             </form>
-            </div><!--card-group-->
+
         </c:forEach>
+        </div><!--card-group-->
     </c:otherwise>
 </c:choose>
 
